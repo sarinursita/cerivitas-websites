@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Stickers — Toko Stiker Lucu & Unik</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0faf2;
+            color: #2d3e2d;
+            line-height: 1.7;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* ===== HIJAU MINT PALETTE ===== */
+        :root {
+            --mint-light: #e8f5e9;
+            --mint-medium: #a5d6a7;
+            --mint-primary: #66bb6a;
+            --mint-dark: #2e7d32;
+            --mint-accent: #00c853;
+            --white: #ffffff;
+            --shadow: 0 8px 32px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(135deg, #66bb6a 0%, #2e7d32 100%);
+            color: white;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(46,125,50,0.3);
+        }
+        header .logo {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        header .logo span { color: #c8e6c9; }
+        header nav a {
+            color: white;
+            margin-left: 1.8rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+        header nav a:hover { opacity: 0.75; }
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+            padding: 5rem 5% 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .hero-text { flex: 1; min-width: 280px; }
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #1b5e20;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            animation: fadeUp 0.8s ease;
+        }
+        .hero-text p {
+            font-size: 1.15rem;
+            color: #336633;
+            max-width: 540px;
+            animation: fadeUp 1s ease;
+        }
+        .hero-text .btn {
+            display: inline-block;
+            margin-top: 1.8rem;
+            padding: 1rem 2.5rem;
+            background: var(--mint-dark);
+            color: white;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(46,125,50,0.3);
+            transition: all 0.3s;
+            animation: fadeUp 1.2s ease;
+        }
+        .hero-text .btn:hover {
+            background: #1b5e20;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46,125,50,0.4);
+        }
+        .hero-img {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+        .hero-img img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section {
+            padding: 4rem 5%;
+        }
+        section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1b5e20;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--mint-primary);
+            border-radius: 4px;
+            margin: 0.6rem auto 0;
+        }
+
+        /* ===== KATALOG PRODUK ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .product-card .info {
+            padding: 1.2rem 1.2rem 1.5rem;
+        }
+        .product-card .info h3 {
+            font-size: 1.15rem;
+            color: #1b5e20;
+            margin-bottom: 0.4rem;
+        }
+        .product-card .info p {
+            color: #558b2f;
+            font-size: 0.95rem;
+        }
+        .product-card .info .price {
+            font-weight: 800;
+            color: var(--mint-dark);
+            font-size: 1.2rem;
+            margin-top: 0.6rem;
+        }
+
+        /* ===== GALERI ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform 0.4s;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.04);
+        }
+
+        /* ===== TESTIMONI ===== */
+        .testimonials {
+            background: var(--mint-light);
+        }
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .testi-card {
+            background: white;
+            padding: 1.8rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--mint-primary);
+        }
+        .testi-card p {
+            font-style: italic;
+            color: #3e5a3e;
+            margin-bottom: 1rem;
+        }
+        .testi-card .name {
+            font-weight: 700;
+            color: #1b5e20;
+        }
+        .testi-card .stars {
+            color: #ffb300;
+            font-size: 1.1rem;
+        }
+
+        /* ===== KONTAK & ORDER ===== */
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .contact-flex .info { flex: 1; min-width: 260px; }
+        .contact-flex .info p {
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+        }
+        .contact-flex .info i { margin-right: 0.6rem; }
+        .contact-flex .info .btn {
+            display: inline-block;
+            margin-top: 0.8rem;
+            padding: 0.8rem 2rem;
+            background: #25D366;
+            color: white;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+        .contact-flex .info .btn:hover {
+            transform: scale(1.04);
+        }
+        .contact-flex img {
+            flex: 1;
+            min-width: 260px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== PENGIRIMAN ===== */
+        .shipping-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .shipping-item {
+            background: white;
+            padding: 2rem 1rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .shipping-item .icon { font-size: 2.5rem; margin-bottom: 0.6rem; }
+        .shipping-item h3 { color: #1b5e20; margin-bottom: 0.4rem; }
+        .shipping-item p { color: #558b2f; font-size: 0.95rem; }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #1b5e20;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+        .faq-question:hover { background: #f1fbe9; }
+        .faq-question .toggle { font-size: 1.4rem; transition: 0.3s; }
+        .faq-question.active .toggle { transform: rotate(45deg); }
+        .faq-answer {
+            padding: 0 1.5rem 1.2rem;
+            color: #3e5a3e;
+            display: none;
+        }
+        .faq-answer.show { display: block; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 5%;
+        }
+        footer p { opacity: 0.9; font-size: 0.95rem; }
+        footer .social { margin-top: 1rem; }
+        footer .social a {
+            display: inline-block;
+            margin: 0 0.5rem;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+        footer .social a:hover { transform: translateY(-3px); opacity: 0.8; }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header nav { display: none; flex-direction: column; background: #2e7d32; position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem 5%; }
+            header nav.show { display: flex; }
+            header nav a { margin: 0.6rem 0; }
+            .menu-toggle { display: block; }
+            .hero { padding: 3rem 5% 2rem; }
+            .hero-text h1 { font-size: 2.2rem; }
+            section h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <div class="logo">😊 <span>Happy</span> Stickers</div>
+    <button class="menu-toggle" onclick="document.querySelector('header nav').classList.toggle('show')">☰</button>
+    <nav>
+        <a href="#products">Katalog</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#testimonials">Testimoni</a>
+        <a href="#contact">Kontak</a>
+        <a href="#shipping">Pengiriman</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Stiker Lucu<br>Buat Harimu 🌟</h1>
+        <p>Happy Stickers adalah toko stiker online yang menjual berbagai stiker lucu dan unik. Cocok untuk menghias laptop, botol minum, atau planner kamu. Semua desain original dan dibuat dengan kualitas cetak terbaik!</p>
+        <a href="#products" class="btn">🛍️ Lihat Koleksi</a>
+    </div>
+    <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=600&q=80" alt="Stiker lucu koleksi Happy Stickers">
+    </div>
+</section>
+
+<!-- ===== KATALOG PRODUK ===== -->
+<section id="products">
+    <h2>🛍️ Katalog Produk</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&q=80" alt="Stiker Kucing Lucu">
+            <div class="info">
+                <h3>🐱 Stiker Kucing Lucu</h3>
+                <p>Stiker kucing imut dengan ekspresi gemas. Anti air & tahan lama!</p>
+                <div class="price">Rp 12.000</div>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&q=80" alt="Stiker Hello">
+            <div class="info">
+                <h3>☀️ Stiker Hello & Quotes</h3>
+                <p>Stiker kata-kata positif untuk mood booster harianmu.</p>
+                <div class="price">Rp 10.000</div>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&q=80" alt="Stiker Makanan">
+            <div class="info">
+                <h3>🍕 Stiker Makanan Imut</h3>
+                <p>Koleksi stiker makanan lucu yang bikin ngiler! Cocok buat planner.</p>
+                <div class="price">Rp 15.000</div>
+            </div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80" alt="Stiker Aesthetic">
+            <div class="info">
+                <h3>🌸 Stiker Aesthetic</h3>
+                <p>Desain aesthetic dengan warna pastel. Hits banget buat laptop!</p>
+                <div class="price">Rp 13.000</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== GALERI ===== -->
+<section id="gallery" style="background: #f4fcf6;">
+    <h2>📸 Galeri Foto</h2>
+    <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" alt="Koleksi stiker">
+        <img src="https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&q=80" alt="Stiker di laptop">
+        <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&q=80" alt="Stiker dipajang">
+        <img src="https://images.unsplash.com/photo-1628684040265-d35478a675c1?w=400&q=80" alt="Stiker di botol">
+        <img src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?w=400&q=80" alt="Stiker lucu koleksi">
+        <img src="https://images.unsplash.com/photo-1614030424754-24d0eebd46b2?w=400&q=80" alt="Stiker berwarna-warni">
+    </div>
+</section>
+
+<!-- ===== TESTIMONI ===== -->
+<section id="testimonials" class="testimonials">
+    <h2>💬 Kata Mereka</h2>
+    <div class="testi-grid">
+        <div class="testi-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Stikernya lucu banget! Kualitas cetaknya bagus, nggak gampang pudar. Aku pesan lagi buat temen-temen!"</p>
+            <div class="name">— Rina</div>
+        </div>
+        <div class="testi-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Aku suka banget sama desain aesthetic-nya. Cepet sampai juga! Recomended banget 👍"</p>
+            <div class="name">— Dinda</div>
+        </div>
+        <div class="testi-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Buat hiasan laptop jadi makin cantik! Harganya murah tapi kualitasnya excellent. Makasih Happy Stickers!"</p>
+            <div class="name">— Andi</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== KONTAK & ORDER ===== -->
+<section id="contact">
+    <h2>📞 Kontak & Cara Order</h2>
+    <div class="contact-flex">
+        <div class="info">
+            <p>📧 <strong>Email:</strong> happystickers@email.com</p>
+            <p>📱 <strong>WhatsApp:</strong> 0812-3456-7890</p>
+            <p>📷 <strong>Instagram:</strong> @happystickers</p>
+            <p><strong>Cara Order:</strong></p>
+            <ol style="margin-left: 1.2rem; color: #3e5a3e;">
+                <li>Pilih stiker yang kamu suka</li>
+                <li>Chat via WhatsApp dengan foto stiker</li>
+                <li>Sebutkan jumlah & alamat</li>
+                <li>Transfer pembayaran</li>
+                <li>Stiker dikirim ke rumahmu! 🎉</li>
+            </ol>
+            <a href="https://wa.me/6281234567890" class="btn" target="_blank">💬 Order via WhatsApp</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1596526131083-e8e3cd7b9ef5?w=400&q=80" alt="Cara order stiker">
+    </div>
+</section>
+
+<!-- ===== PENGIRIMAN ===== -->
+<section id="shipping" style="background: #f4fcf6;">
+    <h2>🚚 Informasi Pengiriman</h2>
+    <div class="shipping-grid">
+        <div class="shipping-item">
+            <div class="icon">📦</div>
+            <h3>JNE / J&T</h3>
+            <p>Sampai 2-4 hari kerja</p>
+        </div>
+        <div class="shipping-item">
+            <div class="icon">🆓</div>
+            <h3>Gratis Ongkir</h3>
+            <p>Min. belanja Rp 50.000</p>
+        </div>
+        <div class="shipping-item">
+            <div class="icon">🔒</div>
+            <h3>Packing Aman</h3>
+            <p>Dibungkus anti penyok</p>
+        </div>
+        <div class="shipping-item">
+            <div class="icon">🏠</div>
+            <h3>COD Tersedia</h3>
+            <p>Bayar di tempat (area tertentu)</p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+    <h2>❓ Pertanyaan Umum (FAQ)</h2>
+    <div class="faq-list">
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Apakah stikernya tahan air?
+                <span class="toggle">+</span>
+            </button>
+            <div class="faq-answer">Iya! Stiker kami menggunakan bahan vinyl premium yang anti air dan tahan lama. Cocok untuk botol minum atau laptop.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Berapa lama proses pembuatan?
+                <span class="toggle">+</span>
+            </button>
+            <div class="faq-answer">1-2 hari kerja untuk produksi, lalu dikirim via ekspedisi. Estimasi sampai 2-4 hari kerja.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Bisa custom desain sendiri?
+                <span class="toggle">+</span>
+            </button>
+            <div class="faq-answer">Bisa banget! Hubungi kami via WhatsApp untuk pesanan custom. Minimal pemesanan 10 lembar.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Pembayaran lewat apa aja?
+                <span class="toggle">+</span>
+            </button>
+            <div class="faq-answer">Transfer Bank (BCA, Mandiri, BRI), GoPay, OVO, dan DANA. Semua aman & terpercaya.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>😊 <strong>Happy Stickers</strong> — Stiker Lucu Buat Harimu 🌟</p>
+    <p>© 2026 Happy Stickers. Dibuat dengan ❤️ oleh Sari</p>
+    <div class="social">
+        <a href="#">📷</a>
+        <a href="#">📱</a>
+        <a href="#">📧</a>
+    </div>
+</footer>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+    function toggleFaq(btn) {
+        btn.classList.toggle('active');
+        const answer = btn.nextElementSibling;
+        answer.classList.toggle('show');
+        const toggle = btn.querySelector('.toggle');
+        if (answer.classList.contains('show')) {
+            toggle.textContent = '−';
+        } else {
+            toggle.textContent = '+';
+        }
+    }
+    // Tutup menu mobile klik di luar
+    document.addEventListener('click', function(e) {
+        const nav = document.querySelector('header nav');
+        const toggle = document.querySelector('.menu-toggle');
+        if (!e.target.closest('header') && nav.classList.contains('show')) {
+            nav.classList.remove('show');
+        }
+    });
+</script>
+</body>
+</html>
