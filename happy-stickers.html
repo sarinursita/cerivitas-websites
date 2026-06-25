@@ -10,19 +10,19 @@
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0faf2;
-            color: #2d3e2d;
+            background: #fef6f9;
+            color: #4a2e3b;
             line-height: 1.7;
         }
         a { text-decoration: none; color: inherit; }
 
-        /* ===== HIJAU MINT PALETTE ===== */
+        /* ===== PINK MANIS PALETTE ===== */
         :root {
-            --mint-light: #e8f5e9;
-            --mint-medium: #a5d6a7;
-            --mint-primary: #66bb6a;
-            --mint-dark: #2e7d32;
-            --mint-accent: #00c853;
+            --pink-light: #fce4ec;
+            --pink-medium: #f8bbd0;
+            --pink-primary: #ec407a;
+            --pink-dark: #c2185b;
+            --pink-accent: #e91e63;
             --white: #ffffff;
             --shadow: 0 8px 32px rgba(0,0,0,0.08);
             --radius: 16px;
@@ -30,7 +30,7 @@
 
         /* ===== HEADER ===== */
         header {
-            background: linear-gradient(135deg, #66bb6a 0%, #2e7d32 100%);
+            background: linear-gradient(135deg, #ec407a 0%, #c2185b 100%);
             color: white;
             padding: 1.5rem 5%;
             display: flex;
@@ -39,14 +39,14 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(46,125,50,0.3);
+            box-shadow: 0 4px 20px rgba(194,24,91,0.3);
         }
         header .logo {
             font-size: 1.7rem;
             font-weight: 800;
             letter-spacing: -0.5px;
         }
-        header .logo span { color: #c8e6c9; }
+        header .logo span { color: #f8bbd0; }
         header nav a {
             color: white;
             margin-left: 1.8rem;
@@ -66,7 +66,7 @@
 
         /* ===== HERO ===== */
         .hero {
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
             padding: 5rem 5% 4rem;
             display: flex;
             align-items: center;
@@ -78,14 +78,14 @@
         .hero-text h1 {
             font-size: 3rem;
             font-weight: 900;
-            color: #1b5e20;
+            color: #880e4f;
             line-height: 1.2;
             margin-bottom: 1rem;
             animation: fadeUp 0.8s ease;
         }
         .hero-text p {
             font-size: 1.15rem;
-            color: #336633;
+            color: #6a1b4a;
             max-width: 540px;
             animation: fadeUp 1s ease;
         }
@@ -93,19 +93,19 @@
             display: inline-block;
             margin-top: 1.8rem;
             padding: 1rem 2.5rem;
-            background: var(--mint-dark);
+            background: var(--pink-dark);
             color: white;
             font-weight: 700;
             font-size: 1.05rem;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(46,125,50,0.3);
+            box-shadow: 0 4px 15px rgba(194,24,91,0.3);
             transition: all 0.3s;
             animation: fadeUp 1.2s ease;
         }
         .hero-text .btn:hover {
-            background: #1b5e20;
+            background: #880e4f;
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(46,125,50,0.4);
+            box-shadow: 0 8px 25px rgba(194,24,91,0.4);
         }
         .hero-img {
             flex: 1;
@@ -127,7 +127,7 @@
         section h2 {
             font-size: 2.2rem;
             font-weight: 800;
-            color: #1b5e20;
+            color: #880e4f;
             text-align: center;
             margin-bottom: 2.5rem;
             position: relative;
@@ -137,7 +137,7 @@
             display: block;
             width: 60px;
             height: 4px;
-            background: var(--mint-primary);
+            background: var(--pink-primary);
             border-radius: 4px;
             margin: 0.6rem auto 0;
         }
@@ -171,16 +171,16 @@
         }
         .product-card .info h3 {
             font-size: 1.15rem;
-            color: #1b5e20;
+            color: #880e4f;
             margin-bottom: 0.4rem;
         }
         .product-card .info p {
-            color: #558b2f;
+            color: #6a1b4a;
             font-size: 0.95rem;
         }
         .product-card .info .price {
             font-weight: 800;
-            color: var(--mint-dark);
+            color: var(--pink-dark);
             font-size: 1.2rem;
             margin-top: 0.6rem;
         }
@@ -207,7 +207,7 @@
 
         /* ===== TESTIMONI ===== */
         .testimonials {
-            background: var(--mint-light);
+            background: var(--pink-light);
         }
         .testi-grid {
             display: grid;
@@ -221,16 +221,16 @@
             padding: 1.8rem;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            border-left: 5px solid var(--mint-primary);
+            border-left: 5px solid var(--pink-primary);
         }
         .testi-card p {
             font-style: italic;
-            color: #3e5a3e;
+            color: #4a2e3b;
             margin-bottom: 1rem;
         }
         .testi-card .name {
             font-weight: 700;
-            color: #1b5e20;
+            color: #880e4f;
         }
         .testi-card .stars {
             color: #ffb300;
@@ -290,8 +290,8 @@
             box-shadow: var(--shadow);
         }
         .shipping-item .icon { font-size: 2.5rem; margin-bottom: 0.6rem; }
-        .shipping-item h3 { color: #1b5e20; margin-bottom: 0.4rem; }
-        .shipping-item p { color: #558b2f; font-size: 0.95rem; }
+        .shipping-item h3 { color: #880e4f; margin-bottom: 0.4rem; }
+        .shipping-item p { color: #6a1b4a; font-size: 0.95rem; }
 
         /* ===== FAQ ===== */
         .faq-list {
@@ -309,7 +309,7 @@
             padding: 1.2rem 1.5rem;
             font-weight: 700;
             font-size: 1.05rem;
-            color: #1b5e20;
+            color: #880e4f;
             background: white;
             cursor: pointer;
             display: flex;
@@ -320,19 +320,19 @@
             width: 100%;
             text-align: left;
         }
-        .faq-question:hover { background: #f1fbe9; }
+        .faq-question:hover { background: #fdf2f6; }
         .faq-question .toggle { font-size: 1.4rem; transition: 0.3s; }
         .faq-question.active .toggle { transform: rotate(45deg); }
         .faq-answer {
             padding: 0 1.5rem 1.2rem;
-            color: #3e5a3e;
+            color: #4a2e3b;
             display: none;
         }
         .faq-answer.show { display: block; }
 
         /* ===== FOOTER ===== */
         footer {
-            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            background: linear-gradient(135deg, #c2185b, #880e4f);
             color: white;
             text-align: center;
             padding: 2.5rem 5%;
@@ -359,7 +359,7 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            header nav { display: none; flex-direction: column; background: #2e7d32; position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem 5%; }
+            header nav { display: none; flex-direction: column; background: #c2185b; position: absolute; top: 100%; left: 0; width: 100%; padding: 1rem 5%; }
             header nav.show { display: flex; }
             header nav a { margin: 0.6rem 0; }
             .menu-toggle { display: block; }
@@ -373,7 +373,7 @@
 
 <!-- ===== HEADER ===== -->
 <header>
-    <div class="logo">😊 <span>Happy</span> Stickers</div>
+    <div class="logo">😊 <span>Happy</span> Stickers 🎀</div>
     <button class="menu-toggle" onclick="document.querySelector('header nav').classList.toggle('show')">☰</button>
     <nav>
         <a href="#products">Katalog</a>
@@ -388,12 +388,12 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
     <div class="hero-text">
-        <h1>Stiker Lucu<br>Buat Harimu 🌟</h1>
+        <h1>Stiker Imut<br>Bikin Ceria 🌸</h1>
         <p>Happy Stickers adalah toko stiker online yang menjual berbagai stiker lucu dan unik. Cocok untuk menghias laptop, botol minum, atau planner kamu. Semua desain original dan dibuat dengan kualitas cetak terbaik!</p>
         <a href="#products" class="btn">🛍️ Lihat Koleksi</a>
     </div>
     <div class="hero-img">
-        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=600&q=80" alt="Stiker lucu koleksi Happy Stickers">
+        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=600&q=80" alt="Koleksi stiker lucu Happy Stickers">
     </div>
 </section>
 
@@ -402,34 +402,34 @@
     <h2>🛍️ Katalog Produk</h2>
     <div class="products-grid">
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400&q=80" alt="Stiker Kucing Lucu">
+            <img src="https://images.unsplash.com/photo-1596854407944-bf87f85f5ad2?w=400&q=80" alt="Stiker Kucing Lucu">
             <div class="info">
                 <h3>🐱 Stiker Kucing Lucu</h3>
-                <p>Stiker kucing imut dengan ekspresi gemas. Anti air & tahan lama!</p>
+                <p>Si Meong imut dengan ekspresi gemoy! Anti air & tahan lama.</p>
                 <div class="price">Rp 12.000</div>
             </div>
         </div>
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&q=80" alt="Stiker Hello">
+            <img src="https://images.unsplash.com/photo-1602516314806-77f69b13441c?w=400&q=80" alt="Stiker Hello & Quotes">
             <div class="info">
                 <h3>☀️ Stiker Hello & Quotes</h3>
-                <p>Stiker kata-kata positif untuk mood booster harianmu.</p>
+                <p>Kata-kata manis yang bikin harimu makin ceria!</p>
                 <div class="price">Rp 10.000</div>
             </div>
         </div>
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&q=80" alt="Stiker Makanan">
+            <img src="https://images.unsplash.com/photo-1567254790682-9b9073e050ab?w=400&q=80" alt="Stiker Makanan Imut">
             <div class="info">
                 <h3>🍕 Stiker Makanan Imut</h3>
-                <p>Koleksi stiker makanan lucu yang bikin ngiler! Cocok buat planner.</p>
+                <p>Donat, kue, pizza versi mini yang bikin ngiler! Lucu banget.</p>
                 <div class="price">Rp 15.000</div>
             </div>
         </div>
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80" alt="Stiker Aesthetic">
+            <img src="https://images.unsplash.com/photo-1618172193763-c511deb635ca?w=400&q=80" alt="Stiker Aesthetic Pink">
             <div class="info">
                 <h3>🌸 Stiker Aesthetic</h3>
-                <p>Desain aesthetic dengan warna pastel. Hits banget buat laptop!</p>
+                <p>Desain pink manis & aesthetic. Hits banget buat laptop kamu!</p>
                 <div class="price">Rp 13.000</div>
             </div>
         </div>
@@ -437,15 +437,15 @@
 </section>
 
 <!-- ===== GALERI ===== -->
-<section id="gallery" style="background: #f4fcf6;">
+<section id="gallery" style="background: #fef0f5;">
     <h2>📸 Galeri Foto</h2>
     <div class="gallery-grid">
-        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" alt="Koleksi stiker">
-        <img src="https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&q=80" alt="Stiker di laptop">
-        <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=400&q=80" alt="Stiker dipajang">
-        <img src="https://images.unsplash.com/photo-1628684040265-d35478a675c1?w=400&q=80" alt="Stiker di botol">
-        <img src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?w=400&q=80" alt="Stiker lucu koleksi">
-        <img src="https://images.unsplash.com/photo-1614030424754-24d0eebd46b2?w=400&q=80" alt="Stiker berwarna-warni">
+        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" alt="Koleksi stiker lucu">
+        <img src="https://images.unsplash.com/photo-1589118949245-7d38baf380d6?w=400&q=80" alt="Stiker di laptop pink">
+        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&q=80" alt="Stiker lucu seni">
+        <img src="https://images.unsplash.com/photo-1628684040265-d35478a675c1?w=400&q=80" alt="Stiker di botol minum">
+        <img src="https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?w=400&q=80" alt="Stiker imut koleksi">
+        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&q=80" alt="Stiker pink gemas">
     </div>
 </section>
 
@@ -460,7 +460,7 @@
         </div>
         <div class="testi-card">
             <div class="stars">⭐⭐⭐⭐⭐</div>
-            <p>"Aku suka banget sama desain aesthetic-nya. Cepet sampai juga! Recomended banget 👍"</p>
+            <p>"Aku suka banget sama desain pink-nya. Cepet sampai juga! Recomended banget 👍"</p>
             <div class="name">— Dinda</div>
         </div>
         <div class="testi-card">
@@ -480,7 +480,7 @@
             <p>📱 <strong>WhatsApp:</strong> 0812-3456-7890</p>
             <p>📷 <strong>Instagram:</strong> @happystickers</p>
             <p><strong>Cara Order:</strong></p>
-            <ol style="margin-left: 1.2rem; color: #3e5a3e;">
+            <ol style="margin-left: 1.2rem; color: #6a1b4a;">
                 <li>Pilih stiker yang kamu suka</li>
                 <li>Chat via WhatsApp dengan foto stiker</li>
                 <li>Sebutkan jumlah & alamat</li>
@@ -489,12 +489,12 @@
             </ol>
             <a href="https://wa.me/6281234567890" class="btn" target="_blank">💬 Order via WhatsApp</a>
         </div>
-        <img src="https://images.unsplash.com/photo-1596526131083-e8e3cd7b9ef5?w=400&q=80" alt="Cara order stiker">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80" alt="Ilustrasi cara order stiker">
     </div>
 </section>
 
 <!-- ===== PENGIRIMAN ===== -->
-<section id="shipping" style="background: #f4fcf6;">
+<section id="shipping" style="background: #fef0f5;">
     <h2>🚚 Informasi Pengiriman</h2>
     <div class="shipping-grid">
         <div class="shipping-item">
@@ -557,7 +557,7 @@
 
 <!-- ===== FOOTER ===== -->
 <footer>
-    <p>😊 <strong>Happy Stickers</strong> — Stiker Lucu Buat Harimu 🌟</p>
+    <p>😊 <strong>Happy Stickers</strong> 🎀 — Stiker Lucu Buat Harimu 🌸</p>
     <p>© 2026 Happy Stickers. Dibuat dengan ❤️ oleh Sari</p>
     <div class="social">
         <a href="#">📷</a>
