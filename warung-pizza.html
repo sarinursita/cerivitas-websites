@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warung Pizza — Pizza Homemade Enak!</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1a1a1a;
+            background: #fff;
+            line-height: 1.6;
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== COLORS ===== */
+        :root {
+            --primary: #c0392b;
+            --primary-dark: #a93226;
+            --primary-light: #e74c3c;
+            --accent: #f39c12;
+            --bg-light: #fff5f5;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --white: #fff;
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+            --radius: 16px;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 14px;
+            padding-bottom: 14px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo span { font-size: 1.1rem; }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+            padding: 4px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #fff5f5 0%, #fde8e8 50%, #fce4e4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-content {
+            animation: fadeInUp 0.8s ease;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--primary-dark);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 .highlight {
+            color: var(--accent);
+            display: block;
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(192,57,43,0.3);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(192,57,43,0.4);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        .hero-image {
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .hero-image img {
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 90px 0; }
+        .section-title {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+        }
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+        .section-title p {
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-size: 1.05rem;
+        }
+
+        /* ===== MENU ===== */
+        .menu {
+            background: var(--bg-light);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .menu-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease both;
+        }
+        .menu-card:nth-child(2) { animation-delay: 0.1s; }
+        .menu-card:nth-child(3) { animation-delay: 0.2s; }
+        .menu-card:nth-child(4) { animation-delay: 0.3s; }
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        .menu-card img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+        }
+        .menu-card-body {
+            padding: 24px;
+        }
+        .menu-card-body h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        .menu-card-body p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        .menu-card-body .price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .menu-card-body .price small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        /* ===== TENTANG ===== */
+        .about .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+        }
+        .about-text h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            color: var(--primary-dark);
+        }
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .about-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 32px;
+        }
+        .about-stats .stat h4 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+        .about-stats .stat p {
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* ===== CARA PESAN ===== */
+        .how-to-order {
+            background: var(--bg-light);
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+        }
+        .step {
+            text-align: center;
+            padding: 36px 24px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.6s ease both;
+        }
+        .step:nth-child(2) { animation-delay: 0.1s; }
+        .step:nth-child(3) { animation-delay: 0.2s; }
+        .step:nth-child(4) { animation-delay: 0.3s; }
+        .step:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+        .step h4 { margin-bottom: 8px; color: var(--primary-dark); }
+        .step p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* ===== TESTIMONI ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            animation: fadeInUp 0.6s ease both;
+        }
+        .testimonial-card:nth-child(2) { animation-delay: 0.15s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+        .testimonial-card .stars {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+        .testimonial-card p {
+            color: var(--text-dark);
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+        .testimonial-card .author {
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        .testimonial-card .author small {
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        /* ===== KONTAK ===== */
+        .contact {
+            background: var(--bg-light);
+        }
+        .contact .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .contact-info h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+        }
+        .contact-info p { color: var(--text-muted); margin-bottom: 24px; }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .contact-form {
+            background: var(--white);
+            padding: 36px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact-form .btn { width: 100%; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 0;
+        }
+        footer p { opacity: 0.85; font-size: 0.9rem; margin-bottom: 8px; }
+        footer .footer-brand {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero .container,
+            .about .container,
+            .contact .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero {
+                padding: 120px 0 60px;
+                min-height: auto;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-content h1 .highlight { display: inline; }
+            .hero-content p { max-width: 100%; }
+            .section-title h2 { font-size: 1.8rem; }
+            .about-stats { gap: 24px; }
+        }
+        @media (max-width: 700px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px 24px;
+                gap: 16px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero-content h1 { font-size: 1.8rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .contact .container { grid-template-columns: 1fr; }
+            section { padding: 60px 0; }
+            .about-stats { flex-direction: column; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                🍕 <span>Warung Pizza</span>
+            </a>
+            <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Buka menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#order">Cara Pesan</a></li>
+                <li><a href="#testimonials">Testimoni</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>
+                    Pizza Homemade
+                    <span class="highlight">Bikin Kenyang & Bahagia!</span>
+                </h1>
+                <p>Warung Pizza jual pizza homemade dengan topping melimpah, harga ramah di kantong. Delivery & take away.</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn btn-primary">Lihat Menu 🍕</a>
+                    <a href="#contact" class="btn btn-outline">Hubungi Kami</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img
+                    src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80"
+                    alt="Pizza homemade lezat dari Warung Pizza"
+                    loading="eager"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MENU ===== -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>🍕 Menu Kami</h2>
+                <p>Semua pizza kami buat fresh setiap hari dengan bahan berkualitas</p>
+            </div>
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80" alt="Pizza Margherita" loading="lazy" />
+                    <div class="menu-card-body">
+                        <h3>Pizza Margherita</h3>
+                        <p>Mozzarella, tomat segar, basil — klasik Italia favorit semua orang.</p>
+                        <div class="price">Rp 35K <small>/ medium</small></div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1458642849426-cfb724f15ef7?w=600&q=80" alt="Pizza Pepperoni" loading="lazy" />
+                    <div class="menu-card-body">
+                        <h3>Pizza Pepperoni</h3>
+                        <p>Pepperoni melimpah, keju mozzarella meleleh — juara sejati!</p>
+                        <div class="price">Rp 40K <small>/ medium</small></div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Pizza Vegetarian" loading="lazy" />
+                    <div class="menu-card-body">
+                        <h3>Pizza Vegetarian</h3>
+                        <p>Paprika, jamur, zaitun, bawang — segar dan sehat!</p>
+                        <div class="price">Rp 38K <small>/ medium</small></div>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <img src="https://images.unsplash.com/photo-1566843972142-a7fcb70de55a?w=600&q=80" alt="Pizza Special" loading="lazy" />
+                    <div class="menu-card-body">
+                        <h3>Pizza Spesial Warung</h3>
+                        <p>Signature recipe — daging sapi, ayam, sosis, smoked beef. WAJIB COBA!</p>
+                        <div class="price">Rp 50K <small>/ medium</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TENTANG ===== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Suasana Warung Pizza" loading="lazy" />
+            </div>
+            <div class="about-text">
+                <div class="section-title" style="text-align:left; margin-bottom: 24px;">
+                    <h2 style="text-align:left;">Tentang Warung Pizza</h2>
+                </div>
+                <h3>Cerita dari Dapur Sari 🍕</h3>
+                <p>Warung Pizza berdiri dari kecintaan Sari pada pizza homemade. Berawal dari dapur kecil, Sari meracik pizza dengan resep turun-temurun — dough yang empuk, topping melimpah, dan saus tomat spesial buatan sendiri.</p>
+                <p>Sekarang Warung Pizza melayani delivery & take away untuk kamu yang ingin pizza enak tanpa harus keluar banyak uang. Semua pizza dibuat fresh setiap hari, no frozen, no msg!</p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h4>50+</h4>
+                        <p>Pizza Terjual</p>
+                    </div>
+                    <div class="stat">
+                        <h4>4.9</h4>
+                        <p>Rating Pelanggan</p>
+                    </div>
+                    <div class="stat">
+                        <h4>🍕</h4>
+                        <p>Homemade</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CARA PESAN ===== -->
+    <section class="how-to-order" id="order">
+        <div class="container">
+            <div class="section-title">
+                <h2>🛵 Cara Pesan</h2>
+                <p>Mudah banget! Ikuti langkah-langkah ini</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h4>Pilih Menu</h4>
+                    <p>Lihat menu di atas, tentukan pizza favoritmu!</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">📱</div>
+                    <h4>Hubungi Kami</h4>
+                    <p>Chat via WhatsApp atau telepon untuk order.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">🛵</div>
+                    <h4>Kami Antar</h4>
+                    <p>Pesanan diantar langsung ke tempatmu — cepat & hangat!</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">😋</div>
+                    <h4>Nikmati!</h4>
+                    <p>Buka kotaknya, dan selamat menikmati pizza homemade! 🍕</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONI ===== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>💬 Kata Mereka</h2>
+                <p>Apa kata pelanggan setia Warung Pizza?</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Pizzanya enak banget! Toppingnya banyak, doughnya empuk. Anak-anak suka banget. Recommended!"</p>
+                    <div class="author">Bunda Dini <small>— Pelanggan Setia</small></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Harga ramah di kantong tapi kualitas juara. Pizza Spesial Warung favorit gue! Pengiriman cepat."</p>
+                    <div class="author">Rizky <small>— Pelanggan Delivery</small></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Homemade beneran, beda sama pizza frozen. Saus tomatnya homemade, rasanya otentik Italia! 🍕"</p>
+                    <div class="author">Mbak Rara <small>— Food Blogger</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KONTAK ===== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-info">
+                <div class="section-title" style="text-align:left; margin-bottom: 24px;">
+                    <h2 style="text-align:left;">📞 Hubungi Kami</h2>
+                </div>
+                <h3>Ada pertanyaan atau mau order?</h3>
+                <p>Jangan ragu untuk menghubungi kami! Kami siap melayani kamu dari Senin-Sabtu, jam 10:00 - 21:00.</p>
+                <div class="contact-detail">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <strong>WhatsApp</strong><br>
+                        <span>0812-3456-7890</span>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <strong>Email</strong><br>
+                        <span>warungpizza@sari.id</span>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Lokasi</strong><br>
+                        <span>Jl. Merdeka No. 123, Jakarta</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 style="color:var(--primary-dark); margin-bottom: 20px;">✉️ Kirim Pesan</h3>
+                <form onsubmit="event.preventDefault(); alert('Terima kasih! Pesanmu sudah terkirim ke Warung Pizza 🍕');">
+                    <input type="text" placeholder="Nama kamu" required>
+                    <input type="email" placeholder="Email kamu" required>
+                    <textarea placeholder="Tulis pesan atau pesanan kamu di sini..." required></textarea>
+                    <button type="submit" class="btn btn-primary">Kirim Pesan ✨</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <div class="footer-brand">🍕 Warung Pizza</div>
+            <p>Pizza homemade enak, harga merakyat. Delivery & take away.</p>
+            <p>Pemilik: Sari &copy; 2026 Warung Pizza</p>
+        </div>
+    </footer>
+
+    <!-- ===== CLOSE MOBILE MENU ON CLICK ===== -->
+    <script>
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
