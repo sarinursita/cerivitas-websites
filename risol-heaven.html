@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Risol Heaven 🥟</title>
+  <style>
+    /* ============================================ */
+    /* Risol Heaven — Website Usaha                  */
+    /* Coding Workshop Cerivitas                     */
+    /* ============================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+    /* 🟠 Tema Oren */
+    :root {
+      --primary: #ff7a00;
+      --primary-dark: #e06a00;
+      --primary-light: #fff0e0;
+      --bg: #fffcf7;
+      --text: #2d2d2d;
+      --shadow: 0 8px 30px rgba(255, 122, 0, 0.15);
+    }
+
+    /* === NAVIGASI === */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: white; backdrop-filter: blur(10px);
+      padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+    nav .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+    nav .logo span { color: var(--text); }
+    nav a { text-decoration: none; color: #555; margin-left: 20px; font-weight: 500; transition: 0.3s; }
+    nav a:hover { color: var(--primary); }
+    .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+    @media (max-width: 700px) {
+      nav .links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: var(--shadow); }
+      nav .links.show { display: flex; }
+      nav a { margin: 8px 0; }
+      .menu-toggle { display: block; }
+    }
+
+    /* === HERO === */
+    .hero {
+      display: flex; align-items: center; gap: 40px; max-width: 1100px; margin: auto; padding: 60px 30px;
+      animation: fadeIn 1s ease;
+    }
+    .hero-text { flex: 1; }
+    .hero-text h1 { font-size: 2.8rem; color: var(--primary); margin-bottom: 15px; }
+    .hero-text h1 span { color: var(--text); }
+    .hero-text p { font-size: 1.15rem; color: #666; margin-bottom: 25px; }
+    .btn {
+      display: inline-block; background: var(--primary); color: white; padding: 14px 32px;
+      border-radius: 50px; text-decoration: none; font-weight: 700; transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(255,122,0,0.3);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(255,122,0,0.4); }
+    .hero-img { flex: 1; }
+    .hero-img img { width: 100%; border-radius: 20px; box-shadow: var(--shadow); }
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; text-align: center; }
+      .hero-text h1 { font-size: 2rem; }
+    }
+
+    /* === SECTION === */
+    section { max-width: 1100px; margin: auto; padding: 60px 30px; }
+    section h2 { font-size: 2rem; text-align: center; margin-bottom: 40px; color: var(--primary); }
+    section h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--primary); margin: 10px auto; border-radius: 2px; }
+
+    /* === TENTANG === */
+    .tentang-content { display: flex; gap: 40px; align-items: center; animation: slideUp 0.8s ease; }
+    .tentang-content img { width: 45%; border-radius: 20px; box-shadow: var(--shadow); }
+    .tentang-content p { font-size: 1.1rem; color: #555; }
+    @media (max-width: 700px) { .tentang-content { flex-direction: column; } .tentang-content img { width: 100%; } }
+
+    /* === MENU (CARDS) === */
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px;
+    }
+    .card {
+      background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: 0.3s; animation: slideUp 0.6s ease backwards;
+    }
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 12px 35px rgba(255,122,0,0.2); }
+    .card img { width: 100%; height: 200px; object-fit: cover; }
+    .card-body { padding: 20px; }
+    .card-body h3 { color: var(--primary); margin-bottom: 8px; }
+    .card-body p { color: #666; font-size: 0.95rem; }
+    .card-body .harga { font-weight: 700; color: var(--primary-dark); margin-top: 10px; font-size: 1.1rem; }
+
+    /* === CARA PESAN === */
+    .order-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+    }
+    .step {
+      background: var(--primary-light); padding: 25px; border-radius: 16px; text-align: center;
+      transition: 0.3s; animation: slideUp 0.6s ease backwards;
+    }
+    .step:hover { transform: scale(1.03); }
+    .step .num {
+      width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 800;
+      margin: 0 auto 12px;
+    }
+    .step h4 { margin-bottom: 6px; }
+    .step p { color: #666; font-size: 0.9rem; }
+
+    /* === KONTAK === */
+    .kontak-wrapper { display: flex; gap: 40px; animation: slideUp 0.8s ease; }
+    .kontak-info { flex: 1; }
+    .kontak-info p { margin-bottom: 12px; font-size: 1.05rem; }
+    .kontak-info i { color: var(--primary); margin-right: 8px; }
+    .shopee-btn {
+      display: inline-block; background: #ee4d2d; color: white; padding: 12px 28px;
+      border-radius: 50px; text-decoration: none; font-weight: 700; margin-top: 10px;
+      transition: 0.3s;
+    }
+    .shopee-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(238,77,45,0.3); }
+    .kontak-map { flex: 1; }
+    .kontak-map img { width: 100%; border-radius: 16px; box-shadow: var(--shadow); }
+    @media (max-width: 700px) { .kontak-wrapper { flex-direction: column; } }
+
+    /* === FOOTER === */
+    footer {
+      background: var(--primary-dark); color: white; text-align: center; padding: 30px;
+      margin-top: 20px;
+    }
+    footer p { margin: 5px 0; opacity: 0.9; font-size: 0.95rem; }
+    footer .love { color: #ff6b6b; }
+
+    /* === ANIMASI === */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🧭 NAVIGASI -->
+<nav>
+  <div class="logo">Risol<span> Heaven</span> 🥟</div>
+  <div class="menu-toggle" onclick="document.querySelector('.links').classList.toggle('show')">☰</div>
+  <div class="links">
+    <a href="#home">Beranda</a>
+    <a href="#tentang">Tentang</a>
+    <a href="#menu">Menu</a>
+    <a href="#pesan">Cara Pesan</a>
+    <a href="#kontak">Kontak</a>
+  </div>
+</nav>
+
+<!-- 🏠 HERO / BERANDA -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h1>Risol <span>Heaven</span> 🥟</h1>
+    <p>Surganya risol! Kami jual berbagai varian risol lezat — mulai dari Risol Rogut, Risol Mayo, Risol Bolognese, dan masih banyak lagi. Tersedia di <strong>Shopee Food</strong>!</p>
+    <a href="#menu" class="btn">Lihat Menu 🍽️</a>
+  </div>
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&q=80" alt="Risol Heaven - Risol Lezat" />
+  </div>
+</section>
+
+<!-- 📖 TENTANG -->
+<section id="tentang">
+  <h2>Tentang Risol Heaven</h2>
+  <div class="tentang-content">
+    <img src="https://images.unsplash.com/photo-1604909052743-94e838986d24?w=600&q=80" alt="Koki Risol Heaven" />
+    <div>
+      <p><strong>Risol Heaven</strong> didirikan oleh <strong>Sari</strong> dengan misi menyajikan risol berkualitas dengan rasa yang bikin nagih! 🥟</p>
+      <p style="margin-top:15px;">Dari dapur rumahan yang bersih dan penuh cinta, kami menyajikan risol dengan bahan-bahan segar dan resep spesial. Tersedia di <strong>Shopee Food</strong> — tinggal pesan, sampai di rumah! 🚀</p>
+    </div>
+  </div>
+</section>
+
+<!-- 🥟 MENU -->
+<section id="menu">
+  <h2>Menu Risol Kami</h2>
+  <div class="menu-grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80" alt="Risol Rogut" />
+      <div class="card-body">
+        <h3>🥟 Risol Rogut</h3>
+        <p>Isian daging cincang, wortel, kentang — gurih dan mantap!</p>
+        <p class="harga">Rp 5.000</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="Risol Mayo" />
+      <div class="card-body">
+        <h3>🥟 Risol Mayo</h3>
+        <p>Perpaduan telur, mayones, dan smoky beef — creamy abis!</p>
+        <p class="harga">Rp 6.000</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&q=80" alt="Risol Bolognese" />
+      <div class="card-body">
+        <h3>🥟 Risol Bolognese</h3>
+        <p>Saus bolognese homemade, keju mozzarella — Italian vibe!</p>
+        <p class="harga">Rp 7.000</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=400&q=80" alt="Rosol Varian Lain" />
+      <div class="card-body">
+        <h3>✨ Varian Lainnya</h3>
+        <p>Cek Shopee Food untuk varian rasa spesial setiap minggunya!</p>
+        <p class="harga">Bervariasi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🛵 CARA PESAN -->
+<section id="pesan">
+  <h2>Cara Pesan</h2>
+  <div class="order-steps">
+    <div class="step">
+      <div class="num">1</div>
+      <h4>Buka Shopee Food</h4>
+      <p>Buka aplikasi Shopee Food di HP kamu</p>
+    </div>
+    <div class="step">
+      <div class="num">2</div>
+      <h4>Cari "Risol Heaven"</h4>
+      <p>Ketik "Risol Heaven" di kolom pencarian</p>
+    </div>
+    <div class="step">
+      <div class="num">3</div>
+      <h4>Pilih Menu</h4>
+      <p>Pilih risol favorit kamu dan atur jumlahnya</p>
+    </div>
+    <div class="step">
+      <div class="num">4</div>
+      <h4>Pesan & Nikmati!</h4>
+      <p>Bayar online, tunggu antar — risol siap dinikmati! 🎉</p>
+    </div>
+  </div>
+</section>
+
+<!-- 📞 KONTAK -->
+<section id="kontak">
+  <h2>Kontak & Lokasi</h2>
+  <div class="kontak-wrapper">
+    <div class="kontak-info">
+      <p>📞 <strong>WhatsApp:</strong> 0812-3456-7890</p>
+      <p>📧 <strong>Email:</strong> risolheaven@gmail.com</p>
+      <p>📍 <strong>Lokasi:</strong> Jakarta, Indonesia</p>
+      <p>🛵 <strong>Delivery:</strong> Shopee Food</p>
+      <a href="https://shopee.co.id/food" target="_blank" class="shopee-btn">
+        🛒 Pesan di Shopee Food
+      </a>
+    </div>
+    <div class="kontak-map">
+      <img src="https://images.unsplash.com/photo-1559336190-d7c4c6e3d12f?w=600&q=80" alt="Lokasi Risol Heaven" />
+    </div>
+  </div>
+</section>
+
+<!-- 🦶 FOOTER -->
+<footer>
+  <p>🥟 <strong>Risol Heaven</strong> — Surganya Risol!</p>
+  <p>Dibuat dengan <span class="love">❤️</span> oleh <strong>Sari</strong></p>
+  <p style="font-size:0.8rem; opacity:0.7;">© 2026 Risol Heaven. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
