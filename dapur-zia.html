@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dapur Zia — Ayam Geprek Level 1-100</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #1a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(26, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #ff2d2d;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-logo span {
+            color: #ff2d2d;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 90vh;
+            align-items: center;
+            padding: 2rem 4rem;
+            gap: 3rem;
+            background: linear-gradient(135deg, #2d0a0a 0%, #1a0a0a 50%, #3d1a00 100%);
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #ff2d2d;
+            color: #fff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .hero-text h1 span {
+            color: #ff2d2d;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff2d2d, #cc0000);
+            color: #fff;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 45, 45, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #ffd700;
+            color: #1a0a0a;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            animation: fadeIn 1.2s ease;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(255, 45, 45, 0.25);
+        }
+
+        /* Section Common */
+        section {
+            padding: 5rem 4rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Menu Section */
+        #menu {
+            background: #1f0f0f;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: #2a1515;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #3a2020;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 45, 45, 0.2);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-card-body {
+            padding: 1.5rem;
+        }
+
+        .menu-card-body h3 {
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-level {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .level-mild {
+            background: #4caf50;
+            color: #fff;
+        }
+        .level-medium {
+            background: #ff9800;
+            color: #fff;
+        }
+        .level-hot {
+            background: #ff2d2d;
+            color: #fff;
+        }
+        .level-extreme {
+            background: #6a0dad;
+            color: #fff;
+        }
+
+        .menu-card-body p {
+            color: #bbb;
+            margin-bottom: 1rem;
+        }
+
+        .menu-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ff2d2d;
+        }
+
+        /* About */
+        #about {
+            background: #1a0a0a;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-content img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: #ccc;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* Gallery */
+        #gallery {
+            background: #1f0f0f;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Contact */
+        #contact {
+            background: #1a0a0a;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #2a1515;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid #3a2020;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: #1f0f0f;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item h4 {
+            color: #ffd700;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-item p {
+            color: #bbb;
+        }
+
+        /* FAQ */
+        #faq {
+            background: #1f0f0f;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #2a1515;
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1rem;
+            border: 1px solid #3a2020;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: #ff2d2d;
+        }
+
+        .faq-item h4 {
+            color: #ffd700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            color: #bbb;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0404;
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid #ff2d2d;
+        }
+
+        footer p {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        footer .footer-heart {
+            color: #ff2d2d;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .level-meter {
+            display: flex;
+            gap: 3px;
+            margin: 0.5rem 0;
+        }
+
+        .level-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #444;
+        }
+
+        .level-dot.filled {
+            background: #ff2d2d;
+        }
+
+        /* Mobile Nav */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(26, 10, 10, 0.98);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+                border-bottom: 2px solid #ff2d2d;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                margin: 0 auto 2rem auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-image img {
+                max-width: 300px;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">Dapur<span>Zia</span></div>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <div class="hero-badge">🔥 BEST SELLER</div>
+            <h1>Ayam Geprek<br><span>Level 1-100</span></h1>
+            <p>Dari yang cuma anget sampe yang bikin kamu mimpi ketemu leluhur! Berani coba level berapa?</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn-primary">🍗 Lihat Menu</a>
+                <a href="#contact" class="btn-secondary">📞 Pesan Sekarang</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=80" alt="Ayam Geprek Dapur Zia">
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2 class="section-title">🍗 Menu Geprek</h2>
+        <p class="section-subtitle">Pilih level keberanianmu. Dari yang santai sampe yang bikin ketar-ketir!</p>
+
+        <div class="menu-grid">
+            <!-- Level 1-5 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1562967914-608f82629710?w=600&q=80" alt="Geprek Ringan">
+                <div class="menu-card-body">
+                    <h3>Geprek Pemula</h3>
+                    <span class="menu-level level-mild">Level 1-5 🌿</span>
+                    <div class="level-meter">
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot"></div>
+                        <div class="level-dot"></div>
+                        <div class="level-dot"></div>
+                        <div class="level-dot"></div>
+                    </div>
+                    <p>Buat yang baru mulai. Pedesnya cuma ngingetin doang, nggak bikin nangis.</p>
+                    <div class="menu-price">Rp 18.000</div>
+                </div>
+            </div>
+
+            <!-- Level 6-20 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="Geprek Sedang">
+                <div class="menu-card-body">
+                    <h3>Geprek Menengah</h3>
+                    <span class="menu-level level-medium">Level 6-20 🌶️</span>
+                    <div class="level-meter">
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot"></div>
+                        <div class="level-dot"></div>
+                    </div>
+                    <p>Udah mulai kerasa. Hidung dikit-dikit meler, tapi masih enak!</p>
+                    <div class="menu-price">Rp 20.000</div>
+                </div>
+            </div>
+
+            <!-- Level 21-50 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1604908176997-9650daafa4fa?w=600&q=80" alt="Geprek Pedas">
+                <div class="menu-card-body">
+                    <h3>Geprek Pemberani</h3>
+                    <span class="menu-level level-hot">Level 21-50 🔥</span>
+                    <div class="level-meter">
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot"></div>
+                    </div>
+                    <p>Hidung meler, mata berkaca-kaca, tapi rasa nagih! Butuh es teh manis di samping.</p>
+                    <div class="menu-price">Rp 22.000</div>
+                </div>
+            </div>
+
+            <!-- Level 51-80 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=600&q=80" alt="Geprek Ekstrem">
+                <div class="menu-card-body">
+                    <h3>Geprek Nekat</h3>
+                    <span class="menu-level level-extreme">Level 51-80 💀</span>
+                    <div class="level-meter">
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                    </div>
+                    <p>Lidah mati rasa. Muka merah padam. Kamu pasti nangis, tapi bilangnya "keringetan".</p>
+                    <div class="menu-price">Rp 25.000</div>
+                </div>
+            </div>
+
+            <!-- Level 81-100 -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Geprek Maut">
+                <div class="menu-card-body">
+                    <h3>Geprek Leluhur</h3>
+                    <span class="menu-level level-extreme">Level 81-100 ☠️</span>
+                    <div class="level-meter">
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                    </div>
+                    <p>Level di mana kamu mulai lihat siluet leluhur melambai dari kejauhan. Disclaimer: tanggung sendiri!</p>
+                    <div class="menu-price">Rp 30.000</div>
+                </div>
+            </div>
+
+            <!-- Paket Komplit -->
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80" alt="Paket Komplit">
+                <div class="menu-card-body">
+                    <h3>Paket Komplit</h3>
+                    <span class="menu-level level-hot">+ Nasi + Es Teh 🔥</span>
+                    <div class="level-meter">
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot filled"></div>
+                        <div class="level-dot"></div>
+                    </div>
+                    <p>Ayam geprek level pilihanmu + nasi hangat + es teh manis. Komplit dan puas!</p>
+                    <div class="menu-price">Rp 28.000 - 38.000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">👩‍🍳 Tentang Zia</h2>
+        <p class="section-subtitle">Cerita di balik Dapur Zia</p>
+        <div class="about-content">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80" alt="Dapur Zia">
+            <div class="about-text">
+                <h3>Halo, aku Zia!</h3>
+                <p>Dapur Zia lahir dari kecintaan aku sama makanan pedas. Semua berawal dari iseng-iseng bikin ayam geprek buat temen-temen, eh ternyata mereka ketagihan!</p>
+                <p>Sekarang Dapur Zia hadir buat kamu yang pengen sensasi ayam geprek dengan level pedas yang bisa disesuaiin — dari level 1 yang cuma anget-anget sampe level 100 yang bikin kamu ngerasa "hidup cuma sekali".</p>
+                <p>Semua ayam geprek dibuat fresh, pakai bahan berkualitas, dan yang pasti: <strong>dibuat dengan cinta</strong> ❤️🔥</p>
+                <a href="#contact" class="btn-primary" style="margin-top:1rem;">Pesan Sekarang!</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <h2 class="section-title">🖼️ Galeri</h2>
+        <p class="section-subtitle">Yang bikin ngiler sebelum makan</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=80" alt="Ayam Geprek 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="Ayam Geprek 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1604908176997-9650daafa4fa?w=600&q=80" alt="Ayam Geprek 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=600&q=80" alt="Ayam Geprek 4">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Ayam Geprek 5">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&q=80" alt="Ayam Geprek 6">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">📞 Kontak & Cara Pesan</h2>
+        <p class="section-subtitle">Yuk, langsung pesan aja!</p>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <h4>WhatsApp</h4>
+                    <p>0812-3456-7890</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📸</div>
+                    <h4>Instagram</h4>
+                    <p>@dapurzia</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h4>Lokasi</h4>
+                    <p>Jl. Pedas Manis No. 10</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <h4>Jam Buka</h4>
+                    <p>10.00 - 21.00 WIB</p>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:2rem; color:#aaa;">
+                DM atau WhatsApp langsung ya! 🚀<br>
+                <span style="font-size:0.9rem;">Bisa juga pesan lewat GoFood & GrabFood — cari <strong>Dapur Zia</strong></span>
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2 class="section-title">❓ FAQ</h2>
+        <p class="section-subtitle">Pertanyaan yang sering ditanya</p>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h4>🔥 Level 100 tuh sepedas apa sih?</h4>
+                <p>Anggep aja kayak mulut kamu lagi battle sama naga api. Serius deh, level 50 aja udah bikin kebanyakan orang nyerah. Cobain aja, tapi siapin susu ya!</p>
+            </div>
+            <div class="faq-item">
+                <h4>🍗 Bisa pilih level bebas nggak?</h4>
+                <p>Bisa banget! Kamu bebas pilih level pedas berapa aja dari 1 sampe 100. Mau tiap hari naik level juga silahkan!</p>
+            </div>
+            <div class="faq-item">
+                <h4>📦 Bisa delivery nggak?</h4>
+                <p>Bisa! Kita ada di GoFood dan GrabFood. Cari aja "Dapur Zia" di aplikasi kamu.</p>
+            </div>
+            <div class="faq-item">
+                <h4>💸 Harga udah termasuk nasi belum?</h4>
+                <p>Harga di menu itu ayam geprek aja. Kalo mau pake nasi + es teh, pilih Paket Komplit. Lebih hemat!</p>
+            </div>
+            <div class="faq-item">
+                <h4>🤧 Kalo nggak kuat pedes gimana?</h4>
+                <p>Tenang! Mulai aja dari level 1 dulu. Nggak ada paksaan buat langsung ke level tinggi. Semua orang punya journey pedasnya masing-masing 😄</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 <strong style="color:#ffd700;">Dapur Zia</strong> — Dibuat dengan <span class="footer-heart">❤️</span> oleh Zia</p>
+        <p style="font-size:0.8rem; margin-top:0.3rem;">Ayam Geprek Level 1-100 | Berani Coba Level Berapa?</p>
+    </footer>
+
+    <!-- Scroll Reveal -->
+    <script>
+        const reveals = document.querySelectorAll('.menu-card, .gallery-item, .faq-item, .contact-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        reveals.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Close mobile nav on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('show');
+            });
+        });
+    </script>
+
+</body>
+</html>
