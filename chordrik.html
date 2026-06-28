@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChordRik - Cari Chord Gitar Hits!</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #0d0d1a;
+      color: #e0e0e0;
+      line-height: 1.7;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --blue: #4FC3F7;
+      --blue-light: #81D4FA;
+      --blue-dark: #0288D1;
+      --black: #0d0d1a;
+      --dark-card: #14142a;
+      --dark-hover: #1e1e3a;
+      --text: #e0e0e0;
+      --text-muted: #a0a0b8;
+      --radius: 16px;
+      --shadow: 0 8px 32px rgba(0,0,0,0.4);
+      --transition: 0.3s ease;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(13,13,26,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(79,195,247,0.15);
+      transition: var(--transition);
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo span { color: var(--blue); }
+    .logo-icon { font-size: 1.8rem; }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--blue);
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 26px; height: 3px;
+      background: #fff;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 24px 60px;
+      background: linear-gradient(135deg, #0d0d1a 0%, #1a1a35 50%, #0d0d1a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(79,195,247,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text {
+      flex: 1;
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero-text h1 span { color: var(--blue); }
+    .hero-text p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #0d0d1a;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-primary:hover {
+      background: var(--blue-light);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(79,195,247,0.3);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: 2px solid rgba(79,195,247,0.4);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-secondary:hover {
+      border-color: var(--blue);
+      background: rgba(79,195,247,0.08);
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      flex: 1;
+      min-width: 280px;
+      animation: fadeIn 1s ease 0.3s forwards;
+      opacity: 0;
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transform: perspective(800px) rotateY(-4deg);
+      transition: var(--transition);
+    }
+    .hero-image img:hover {
+      transform: perspective(800px) rotateY(0deg);
+    }
+
+    /* ===== SEARCH SECTION ===== */
+    .search-section {
+      padding: 60px 24px;
+      background: var(--dark-card);
+    }
+    .search-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .search-inner h2 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .search-inner p {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .search-box {
+      display: flex;
+      gap: 0;
+      max-width: 580px;
+      margin: 0 auto;
+      border-radius: 50px;
+      overflow: hidden;
+      border: 2px solid rgba(79,195,247,0.2);
+      background: #1a1a35;
+      transition: var(--transition);
+    }
+    .search-box:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 20px rgba(79,195,247,0.15);
+    }
+    .search-box input {
+      flex: 1;
+      padding: 16px 22px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+    }
+    .search-box input::placeholder { color: #666; }
+    .search-box button {
+      padding: 16px 28px;
+      background: var(--blue);
+      color: #0d0d1a;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .search-box button:hover { background: var(--blue-light); }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .section-title h2 span { color: var(--blue); }
+    .section-title p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ===== CATEGORIES ===== */
+    .categories {
+      padding: 80px 24px;
+      background: #0d0d1a;
+    }
+    .categories-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .cat-card {
+      background: var(--dark-card);
+      border-radius: var(--radius);
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid rgba(79,195,247,0.06);
+    }
+    .cat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+      border-color: rgba(79,195,247,0.2);
+      background: var(--dark-hover);
+    }
+    .cat-icon {
+      font-size: 2.8rem;
+      margin-bottom: 12px;
+    }
+    .cat-card h3 {
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .cat-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== CHORD HITS ===== */
+    .chord-hits {
+      padding: 80px 24px;
+      background: var(--dark-card);
+    }
+    .chord-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .chord-card {
+      background: #1a1a35;
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(79,195,247,0.06);
+    }
+    .chord-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+      border-color: rgba(79,195,247,0.15);
+    }
+    .chord-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .chord-card-body {
+      padding: 20px;
+    }
+    .chord-card-body h3 {
+      font-size: 1.15rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .chord-card-body .artist {
+      color: var(--blue);
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+    .chord-card-body .chord-preview {
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+      background: rgba(79,195,247,0.05);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+    .chord-tag {
+      display: inline-block;
+      background: rgba(79,195,247,0.12);
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+    .btn-chord {
+      display: inline-block;
+      margin-top: 10px;
+      background: transparent;
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid rgba(79,195,247,0.3);
+      padding: 8px 20px;
+      border-radius: 50px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-chord:hover {
+      background: var(--blue);
+      color: #0d0d1a;
+      border-color: var(--blue);
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      padding: 80px 24px;
+      background: #0d0d1a;
+    }
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .about-image {
+      flex: 1;
+      min-width: 280px;
+    }
+    .about-image img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .about-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    .about-text h2 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .about-text h2 span { color: var(--blue); }
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .about-text .owner {
+      font-weight: 700;
+      color: var(--blue);
+      font-size: 1.15rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #08081a;
+      padding: 40px 24px 24px;
+      border-top: 1px solid rgba(79,195,247,0.06);
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .footer-logo span { color: var(--blue); }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .footer-links a:hover { color: var(--blue); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(13,13,26,0.98);
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid rgba(79,195,247,0.15);
+      }
+      .nav-links.active { display: flex; }
+      .hamburger { display: flex; }
+
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-text p { margin: 0 auto 28px; }
+      .hero-buttons { justify-content: center; }
+      .hero-image img { transform: none; }
+      .hero-image img:hover { transform: none; }
+
+      .about-inner { flex-direction: column; text-align: center; }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <nav>
+      <div class="logo">
+        <span class="logo-icon">🎸</span>
+        Chord<span>Rik</span>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Beranda</a></li>
+        <li><a href="#search">Cari</a></li>
+        <li><a href="#categories">Kategori</a></li>
+        <li><a href="#chords">Chord Hits</a></li>
+        <li><a href="#about">Tentang</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Cari Chord Gitar <span>Gampang & Cepat</span> 🎸</h1>
+        <p>Tempatnya chord-chord lagu hits terbaru! Dari pemula sampai amateur, semua bisa main gitar dengan ChordRik.</p>
+        <div class="hero-buttons">
+          <a href="#chords" class="btn-primary">🎵 Lihat Chord Hits</a>
+          <a href="#search" class="btn-secondary">🔍 Cari Chord</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&q=80"
+          alt="Gitar Akustik"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEARCH SECTION ===== -->
+  <section class="search-section" id="search">
+    <div class="search-inner fade-up">
+      <h2>🔍 Cari Chord Lagu</h2>
+      <p>Ketik judul lagu atau nama artis favoritmu</p>
+      <div class="search-box">
+        <input type="text" placeholder="Contoh: Lathi, Nadin Amizah, etc..." />
+        <button type="button">Cari</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORIES ===== -->
+  <section class="categories" id="categories">
+    <div class="section-title fade-up">
+      <h2>📂 <span>Kategori</span> Lagu</h2>
+      <p>Pilih genre favoritmu dan mulai main gitar!</p>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card fade-up">
+        <div class="cat-icon">🇮🇩</div>
+        <h3>Pop Indonesia</h3>
+        <p>Chord lagu-lagu Indonesia hits</p>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-icon">🌍</div>
+        <h3>Pop Barat</h3>
+        <p>Lagu barat terpopuler</p>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-icon">🤘</div>
+        <h3>Rock</h3>
+        <p>Rock klasik sampai modern</p>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-icon">🎸</div>
+        <h3>Akustik</h3>
+        <p>Lagu santai yang enak dipetik</p>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-icon">💔</div>
+        <h3>Galau</h3>
+        <p>Lagu sedih buat ngenes-ngenes</p>
+      </div>
+      <div class="cat-card fade-up">
+        <div class="cat-icon">🎤</div>
+        <h3>KPop</h3>
+        <p>Chord lagu Korea favorit</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHORD HITS ===== -->
+  <section class="chord-hits" id="chords">
+    <div class="section-title fade-up">
+      <h2>🎵 <span>Chord Hits</span> Terbaru</h2>
+      <p>Kumpulan chord lagu yang lagi viral dan banyak dicari</p>
+    </div>
+    <div class="chord-grid">
+      <!-- Card 1 -->
+      <div class="chord-card fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80"
+          alt="Musisi bernyanyi"
+        />
+        <div class="chord-card-body">
+          <h3>Lathi</h3>
+          <p class="artist">Weird Genius feat. Sara Fajira</p>
+          <div class="chord-preview">[Intro] Am F C G</div>
+          <span class="chord-tag">Pop Indonesia</span><br />
+          <button class="btn-chord">Lihat Chord</button>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="chord-card fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80"
+          alt="Penampilan panggung"
+        />
+        <div class="chord-card-body">
+          <h3>Runtuh</h3>
+          <p class="artist">Feby Putri & Fiersa Besari</p>
+          <div class="chord-preview">[Intro] C G Am Em F</div>
+          <span class="chord-tag">Pop Indonesia</span><br />
+          <button class="btn-chord">Lihat Chord</button>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="chord-card fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=600&q=80"
+          alt="Gitar listrik"
+        />
+        <div class="chord-card-body">
+          <h3>Happier Than Ever</h3>
+          <p class="artist">Billie Eilish</p>
+          <div class="chord-preview">[Intro] C#m G#m A E</div>
+          <span class="chord-tag">Pop Barat</span><br />
+          <button class="btn-chord">Lihat Chord</button>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="chord-card fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&q=80"
+          alt="Suasana studio musik"
+        />
+        <div class="chord-card-body">
+          <h3>Kisah Sempurna</h3>
+          <p class="artist">Mahalini</p>
+          <div class="chord-preview">[Intro] G D Em C</div>
+          <span class="chord-tag">Pop Indonesia</span><br />
+          <button class="btn-chord">Lihat Chord</button>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="chord-card fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=600&q=80"
+          alt="Musisi jalanan"
+        />
+        <div class="chord-card-body">
+          <h3>Heat Waves</h3>
+          <p class="artist">Glass Animals</p>
+          <div class="chord-preview">[Intro] Am G C F</div>
+          <span class="chord-tag">Pop Barat</span><br />
+          <button class="btn-chord">Lihat Chord</button>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="chord-card fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&q=80"
+          alt="Konser musik"
+        />
+        <div class="chord-card-body">
+          <h3>Asmalibrasi</h3>
+          <p class="artist">Soegi Bornean</p>
+          <div class="chord-preview">[Intro] G Dm F C</div>
+          <span class="chord-tag">Akustik</span><br />
+          <button class="btn-chord">Lihat Chord</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="about-inner">
+      <div class="about-image fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&q=80"
+          alt="Tentang ChordRik"
+        />
+      </div>
+      <div class="about-text fade-up">
+        <h2>Tentang <span>ChordRik</span> 🎸</h2>
+        <p>
+          <strong>ChordRik</strong> adalah website tempat kamu mencari chord gitar lagu-lagu hits terbaru. 
+          Dibuat khusus buat pemain gitar dari pemula sampai amateur yang pengen cepat main lagu favorit tanpa ribet!
+        </p>
+        <p>
+          Semua chord disusun rapi per kategori, lengkap dengan lirik dan diagram chord yang gampang dipahami.
+        </p>
+        <p class="owner">✧ Ditemukan oleh <strong>Alaric Keven Achazia</strong> ✧</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        🎸 Chord<span>Rik</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#hero">Beranda</a></li>
+        <li><a href="#search">Cari</a></li>
+        <li><a href="#categories">Kategori</a></li>
+        <li><a href="#chords">Chord Hits</a></li>
+        <li><a href="#about">Tentang</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 ChordRik by Alaric Keven Achazia. Semua chord untuk belajar. 🎶
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    // Close nav on link click (mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    // Scroll reveal animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Search simulation
+    document.querySelector('.search-box button').addEventListener('click', () => {
+      const input = document.querySelector('.search-box input');
+      const val = input.value.trim();
+      if (val) {
+        alert('🔍 Mencari chord untuk: "' + val + '"\n\nFitur pencarian akan segera aktif! 🚀');
+      } else {
+        alert('✏️ Ketik judul lagu atau artis dulu ya!');
+      }
+    });
+    document.querySelector('.search-box input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.querySelector('.search-box button').click();
+    });
+
+    // Chord buttons
+    document.querySelectorAll('.btn-chord').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const title = this.closest('.chord-card-body').querySelector('h3').textContent;
+        alert('🎸 Chord "' + title + '" akan segera ditampilkan!\nHalaman chord detail masih dalam pengembangan 🚧');
+      });
+    });
+  </script>
+</body>
+</html>
