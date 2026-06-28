@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bukit Emas nun Jauh — Petualangan Tatang</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2d2d2d;
+      background: #f9f6f0;
+      scroll-behavior: smooth;
+    }
+
+    /* Sticky Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 2rem;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    nav .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 68px;
+    }
+
+    nav .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #2e7d32, #e67e22, #1565c0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #444;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #2e7d32, #e67e22);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #2e7d32;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
+    }
+
+    .menu-toggle span {
+      width: 26px;
+      height: 3px;
+      background: #444;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 3rem;
+      animation: fadeIn 1s ease;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #2e7d32 0%, #e67e22 50%, #1565c0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .hero-text .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, #e67e22, #d35400);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(230, 126, 34, 0.35);
+    }
+
+    .hero-text .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(230, 126, 34, 0.45);
+    }
+
+    .hero-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      animation: slideUp 0.8s ease;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .hero-image:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Section Common */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    section .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #2d2d2d;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #888;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Tentang Section */
+    .tentang {
+      background: #fff;
+    }
+
+    .tentang-grid {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .tentang-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .tentang-image img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tentang-text {
+      flex: 1;
+    }
+
+    .tentang-text h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #2e7d32;
+    }
+
+    .tentang-text p {
+      color: #666;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* Cerita Section */
+    .cerita {
+      background: linear-gradient(135deg, #f0f7e6 0%, #e8f0fe 100%);
+    }
+
+    .cerita-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .cerita-content h3 {
+      font-size: 1.8rem;
+      color: #2e7d32;
+      margin-bottom: 1.5rem;
+    }
+
+    .cerita-content p {
+      color: #555;
+      line-height: 1.9;
+      font-size: 1.08rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cerita-content .highlight {
+      background: linear-gradient(135deg, #2e7d32, #1565c0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    /* Bukit Emas Section */
+    .bukit-emas {
+      background: #fff;
+    }
+
+    .bukit-emas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .bukit-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      background: #fff;
+    }
+
+    .bukit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    .bukit-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .bukit-card .card-body {
+      padding: 1.5rem;
+    }
+
+    .bukit-card .card-body h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #2d2d2d;
+    }
+
+    .bukit-card .card-body p {
+      color: #777;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .bukit-card .card-body .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.8rem;
+    }
+
+    .badge-green {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .badge-orange {
+      background: #fdebd0;
+      color: #e67e22;
+    }
+
+    .badge-blue {
+      background: #e3f2fd;
+      color: #1565c0;
+    }
+
+    /* Galeri Section */
+    .galeri {
+      background: linear-gradient(135deg, #e8f0fe 0%, #f0f7e6 100%);
+    }
+
+    .galeri-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .galeri-item {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .galeri-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .galeri-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .galeri-item .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+      padding: 1.5rem;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .galeri-item:hover .overlay {
+      opacity: 1;
+    }
+
+    /* Kontak Section */
+    .kontak {
+      background: #fff;
+    }
+
+    .kontak-wrapper {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .kontak-wrapper p {
+      color: #888;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .kontak-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .kontak-form input,
+    .kontak-form textarea {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border 0.3s ease;
+      outline: none;
+      background: #fafafa;
+    }
+
+    .kontak-form input:focus,
+    .kontak-form textarea:focus {
+      border-color: #2e7d32;
+      background: #fff;
+    }
+
+    .kontak-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .kontak-form button {
+      padding: 16px 36px;
+      background: linear-gradient(135deg, #1565c0, #0d47a1);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(21, 101, 192, 0.35);
+    }
+
+    .kontak-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(21, 101, 192, 0.45);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #ccc;
+      padding: 3rem 2rem 1.5rem;
+    }
+
+    footer .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    footer .footer-brand h4 {
+      font-size: 1.3rem;
+      background: linear-gradient(135deg, #2e7d32, #e67e22, #1565c0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    footer .footer-brand p {
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    footer .footer-links h5 {
+      color: #fff;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    footer .footer-links ul {
+      list-style: none;
+    }
+
+    footer .footer-links ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    footer .footer-links ul li a {
+      color: #999;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    footer .footer-links ul li a:hover {
+      color: #e67e22;
+    }
+
+    footer .footer-bottom {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid #333;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 4rem;
+        min-height: auto;
+      }
+
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero-image img {
+        height: 300px;
+      }
+
+      .tentang-grid {
+        flex-direction: column;
+      }
+
+      .bukit-emas-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .galeri-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      nav ul li a {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 1rem 2rem;
+        gap: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        display: none;
+      }
+
+      nav ul.open {
+        display: flex;
+      }
+
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .hero-image img {
+        height: 220px;
+      }
+
+      .galeri-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+
+      .cerita-content {
+        padding: 1.5rem;
+      }
+
+      section {
+        padding: 3rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">🏔️ Bukit Emas</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="navMenu">
+        <li><a href="#hero">Beranda</a></li>
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#cerita">Cerita</a></li>
+        <li><a href="#bukit-emas">Bukit Emas</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-text">
+      <h1>Bukit Emas<br/>nun Jauh</h1>
+      <p>Ikuti petualangan <strong>Tatang</strong> — seorang anak pemberani yang nekat menjelajahi hutan belantara demi mencari Bukit Emas untuk mengubah nasib keluarganya.</p>
+      <a href="#cerita" class="btn">Mulai Baca Cerita 🏔️</a>
+    </div>
+    <div class="hero-image">
+      <img
+        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80"
+        alt="Pemandangan gunung dan bukit hijau"
+      />
+    </div>
+  </section>
+
+  <!-- Tentang Section -->
+  <section class="tentang" id="tentang">
+    <div class="container">
+      <h2 class="section-title">👤 Tentang Penulis</h2>
+      <p class="section-subtitle">Kenalan sama orang di balik cerita petualangan Tatang.</p>
+      <div class="tentang-grid">
+        <div class="tentang-image">
+          <img
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+            alt="Pemandangan alam matahari terbenam"
+          />
+        </div>
+        <div class="tentang-text">
+          <h3>Halo, aku Ambo Dwi! 👋</h3>
+          <p>
+            Aku suka bikin cerita-cerita petualangan yang seru dan penuh makna.
+            <strong>"Bukit Emas nun Jauh"</strong> adalah cerita tentang keberanian, harapan, dan cinta keluarga.
+            <br><br>
+            Tatang adalah karakter favoritku — dia mengajarkan kita bahwa mimpi besar bisa dikejar meski dari tempat yang paling sederhana.
+            <br><br>
+            Selamat membaca, dan semoga kamu ikut merasakan serunya petualangan! ✨
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cerita Section -->
+  <section class="cerita" id="cerita">
+    <div class="container">
+      <h2 class="section-title">📖 Cerita Petualangan</h2>
+      <p class="section-subtitle">Ikuti perjalanan Tatang mencari Bukit Emas nun Jauh.</p>
+      <div class="cerita-content">
+        <h3>🏔️ Bab 1: Awal Petualangan</h3>
+        <p>
+          Di sebuah desa kecil di kaki gunung, hiduplah seorang anak bernama <strong>Tatang</strong>.
+          Keluarganya sangat miskin. Rumah mereka beratapkan dedaunan, dan setiap hari Tatang harus berjalan jauh hanya untuk mencari air.
+        </p>
+        <p>
+          Suatu malam, sang nenek bercerita tentang <span class="highlight">Bukit Emas nun Jauh</span> — sebuah tempat misterius di balik pegunungan, di mana tanahnya dikatakan berkilauan seperti emas.
+          Konon, siapa pun yang menemukannya akan mendapatkan kekayaan yang cukup untuk tujuh turunan.
+        </p>
+        <p>
+          Tatang memandang ke luar jendela. Di kejauhan, puncak gunung tertutup kabut tipis.
+          Hatinya berdegup kencang. <em>"Aku harus ke sana,"</em> bisiknya.
+        </p>
+        <p>
+          Keesokan paginya, tanpa sepatu, hanya bermodalkan bekal seadanya dan peta usang peninggalan kakeknya, Tatang melangkah ke hutan.
+          Petualangan besarnya pun dimulai... 🌄
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bukit Emas Section -->
+  <section class="bukit-emas" id="bukit-emas">
+    <div class="container">
+      <h2 class="section-title">🏔️ Lokasi Bukit Emas</h2>
+      <p class="section-subtitle">Tempat-tempat misterius yang akan dijelajahi Tatang dalam perjalanannya.</p>
+      <div class="bukit-emas-grid">
+        <div class="bukit-card fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
+            alt="Hutan lebat"
+          />
+          <div class="card-body">
+            <h4>🌲 Hutan Ajaib</h4>
+            <p>Hutan lebat yang penuh teka-teki. Konon pepohonan di sini bisa berbicara pada mereka yang berhati tulus.</p>
+            <span class="badge badge-green">Hutan</span>
+          </div>
+        </div>
+        <div class="bukit-card fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80"
+            alt="Sungai pegunungan"
+          />
+          <div class="card-body">
+            <h4>🌊 Sungai Keberanian</h4>
+            <p>Sungai deras yang membelah lembah. Tatang harus menyeberanginya untuk melanjutkan perjalanan.</p>
+            <span class="badge badge-blue">Sungai</span>
+          </div>
+        </div>
+        <div class="bukit-card fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80"
+            alt="Lembah hijau"
+          />
+          <div class="card-body">
+            <h4>🌿 Lembah Harapan</h4>
+            <p>Lembah luas dengan padang rumput emas. Tempat peristirahatan terakhir sebelum mencapai puncak.</p>
+            <span class="badge badge-green">Lembah</span>
+          </div>
+        </div>
+        <div class="bukit-card fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80"
+            alt="Langit berbintang"
+          />
+          <div class="card-body">
+            <h4>⭐ Puncak Bintang</h4>
+            <p>Puncak tertinggi tempat Bukit Emas nun Jauh bersembunyi. Hanya yang berani dan tulus yang bisa sampai.</p>
+            <span class="badge badge-orange">Puncak</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeri Section -->
+  <section class="galeri" id="galeri">
+    <div class="container">
+      <h2 class="section-title">🖼️ Galeri Alam</h2>
+      <p class="section-subtitle">Pemandangan indah dari dunia petualangan Tatang.</p>
+      <div class="galeri-grid">
+        <div class="galeri-item fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
+            alt="Matahari terbenam di pegunungan"
+          />
+          <div class="overlay">🌅 Senja di Pegunungan</div>
+        </div>
+        <div class="galeri-item fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800&q=80"
+            alt="Puncak gunung bersalju"
+          />
+          <div class="overlay">🏔️ Puncak yang Menantang</div>
+        </div>
+        <div class="galeri-item fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=800&q=80"
+            alt="Air terjun di hutan"
+          />
+          <div class="overlay">🌊 Air Terjun Misterius</div>
+        </div>
+        <div class="galeri-item fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=800&q=80"
+            alt="Lembah berkabut"
+          />
+          <div class="overlay">🌫️ Lembah Kabut</div>
+        </div>
+        <div class="galeri-item fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80"
+            alt="Pegunungan hijau"
+          />
+          <div class="overlay">🌲 Bukit Emas nun Jauh</div>
+        </div>
+        <div class="galeri-item fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80"
+            alt="Padang rumput luas"
+          />
+          <div class="overlay">🌾 Padang Rumput Emas</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontak Section -->
+  <section class="kontak" id="kontak">
+    <div class="container">
+      <h2 class="section-title">✉️ Kirim Pesan</h2>
+      <p class="section-subtitle">Punya komentar atau mau kasih semangat ke Tatang? Tulis di sini!</p>
+      <div class="kontak-wrapper">
+        <p>💬 Ambo Dwi senang baca pesan dari pembaca setia!</p>
+        <form class="kontak-form">
+          <input type="text" placeholder="Nama kamu" required />
+          <input type="email" placeholder="Email (opsional)" />
+          <textarea placeholder="Pesan untuk Tatang atau Ambo Dwi..." required></textarea>
+          <button type="submit">Kirim Pesan 🚀</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <h4>🏔️ Bukit Emas nun Jauh</h4>
+        <p>Petualangan Tatang — Cerita karya Ambo Dwi</p>
+      </div>
+      <div class="footer-links">
+        <h5>Navigasi</h5>
+        <ul>
+          <li><a href="#hero">Beranda</a></li>
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#cerita">Cerita</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h5>Lainnya</h5>
+        <ul>
+          <li><a href="#bukit-emas">Bukit Emas</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Bukit Emas nun Jauh — Dibuat dengan ❤️ oleh Ambo Dwi untuk para petualang cilik
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Menu toggle mobile
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('navMenu');
+
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    // Tutup menu saat link diklik
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+      });
+    });
+
+    // Scroll animation — fade in elemen
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.2,
+    });
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
