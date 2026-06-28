@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerita Misteri — Kumpulan Cerita Misteri Sari</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #FFF8E1;
+            color: #3E2723;
+            line-height: 1.7;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(62, 39, 35, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 14px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+        }
+        nav .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFECB3;
+            letter-spacing: 1px;
+        }
+        nav .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        nav .nav-links a {
+            color: #FFECB3;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+        nav .nav-links a:hover {
+            color: #FFD54F;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: #FFECB3;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 85vh;
+            background: linear-gradient(135deg, #4E342E 0%, #3E2723 40%, #5D4037 100%);
+            padding: 60px 24px;
+            gap: 60px;
+        }
+        .hero-text {
+            flex: 1;
+            max-width: 520px;
+            animation: fadeInUp 1s ease;
+        }
+        .hero-text h1 {
+            font-size: 3rem;
+            color: #FFECB3;
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #D7CCC8;
+            margin-bottom: 28px;
+        }
+        .hero-text .btn {
+            display: inline-block;
+            background: #8D6E63;
+            color: #FFF8E1;
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .hero-text .btn:hover {
+            background: #A1887F;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+        }
+        .hero-image {
+            flex: 1;
+            max-width: 480px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .hero-image img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #4E342E;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #8D6E63;
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #6D4C41;
+            margin-bottom: 48px;
+            font-style: italic;
+        }
+
+        /* ===== STORY CARDS ===== */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .story-card {
+            background: #F5F0E1;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(62,39,35,0.12);
+            transition: all 0.35s;
+        }
+        .story-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(62,39,35,0.2);
+        }
+        .story-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .story-card .card-body {
+            padding: 22px;
+        }
+        .story-card h3 {
+            color: #4E342E;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+        .story-card p {
+            color: #5D4037;
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+        }
+        .story-card .badge {
+            display: inline-block;
+            background: #8D6E63;
+            color: #FFF8E1;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-section {
+            background: linear-gradient(180deg, #EFEBE0 0%, #FFF8E1 100%);
+        }
+        .about-content {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #4E342E;
+            margin-bottom: 16px;
+        }
+        .about-text p {
+            color: #5D4037;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+        .about-image {
+            flex: 1;
+            max-width: 380px;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(62,39,35,0.13);
+            transition: all 0.35s;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(62,39,35,0.22);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-section {
+            background: #EFEBE0;
+        }
+        .faq-list {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: #FFF8E1;
+            border-radius: 12px;
+            padding: 22px 28px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(62,39,35,0.08);
+            transition: all 0.3s;
+        }
+        .faq-item:hover {
+            box-shadow: 0 6px 22px rgba(62,39,35,0.14);
+            transform: translateX(4px);
+        }
+        .faq-item h4 {
+            color: #4E342E;
+            margin-bottom: 6px;
+            font-size: 1.1rem;
+        }
+        .faq-item p {
+            color: #6D4C41;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-info h3 {
+            font-size: 1.6rem;
+            color: #4E342E;
+            margin-bottom: 14px;
+        }
+        .contact-info p {
+            color: #5D4037;
+            margin-bottom: 8px;
+        }
+        .contact-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #D7CCC8;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #F5F0E1;
+            color: #3E2723;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #8D6E63;
+        }
+        .contact-form textarea {
+            height: 130px;
+            resize: vertical;
+        }
+        .contact-form button {
+            background: #5D4037;
+            color: #FFF8E1;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .contact-form button:hover {
+            background: #795548;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(62,39,35,0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #3E2723;
+            color: #D7CCC8;
+            text-align: center;
+            padding: 36px 24px;
+            font-size: 0.9rem;
+        }
+        footer .heart {
+            color: #E57373;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                min-height: auto;
+                padding: 50px 20px;
+                gap: 30px;
+            }
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-image { max-width: 100%; }
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-image { max-width: 280px; }
+            .contact-container {
+                flex-direction: column;
+            }
+            .hamburger { display: flex; }
+            .nav-links {
+                display: none !important;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(62,39,35,0.97);
+                padding: 20px;
+                gap: 16px;
+                text-align: center;
+            }
+            .nav-links.open {
+                display: flex !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav>
+    <div class="nav-inner">
+        <div class="logo">🔍 Cerita Misteri</div>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#cerita">Cerita</a></li>
+            <li><a href="#tentang">Tentang</a></li>
+            <li><a href="#galeri">Galeri</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="beranda">
+    <div class="hero-text">
+        <h1>Cerita Misteri</h1>
+        <p>Selamat datang di dunia penuh teka-teki. Kumpulan cerita misteri yang akan membawamu ke dalam petualangan gelap, penuh rahasia, dan kejutan tak terduga.</p>
+        <a href="#cerita" class="btn">🔎 Jelajahi Cerita</a>
+    </div>
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Detective vintage workspace">
+    </div>
+</section>
+
+<!-- ===== CERITA ===== -->
+<section id="cerita">
+    <h2 class="section-title">📖 Kumpulan Cerita</h2>
+    <p class="section-subtitle">Pilih cerita misteri favoritmu dan mulailah petualangan...</p>
+    <div class="stories-grid">
+        <div class="story-card reveal">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&q=80" alt="Rumah tua misterius">
+            <div class="card-body">
+                <h3>🏚️ Rumah di Ujung Jalan</h3>
+                <p>Sebuah rumah tua yang sudah lama ditinggalkan menyimpan rahasia kelam. Setiap malam, terdengar suara aneh dari dalam...</p>
+                <span class="badge">Misteri</span>
+            </div>
+        </div>
+        <div class="story-card reveal">
+            <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=600&q=80" alt="Hutan berkabut">
+            <div class="card-body">
+                <h3>🌫️ Kabut di Hutan Larangan</h3>
+                <p>Lima sahabat memasuki hutan terlarang. Hanya empat yang kembali. Apa yang terjadi di dalam kabut tebal itu?</p>
+                <span class="badge">Thriller</span>
+            </div>
+        </div>
+        <div class="story-card reveal">
+            <img src="https://images.unsplash.com/photo-1533669955142-6a73332af4db?w=600&q=80" alt="Surat kuno">
+            <div class="card-body">
+                <h3>✉️ Surat dari Masa Lalu</h3>
+                <p>Rina menemukan surat di loteng neneknya. Surat itu ditulis 50 tahun lalu... dan ditujukan untuk Rina sendiri.</p>
+                <span class="badge">Supernatural</span>
+            </div>
+        </div>
+        <div class="story-card reveal">
+            <img src="https://images.unsplash.com/photo-1586769852044-692d6e3703f0?w=600&q=80" alt="Jam antik">
+            <div class="card-body">
+                <h3>⏰ Detik yang Terhenti</h3>
+                <p>Jam antik di ruang tamu berhenti tepat di pukul 03:15 setiap malam. Seorang detektif muda mulai menyelidiki.</p>
+                <span class="badge">Detektif</span>
+            </div>
+        </div>
+        <div class="story-card reveal">
+            <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=600&q=80" alt="Kastil tua">
+            <div class="card-body">
+                <h3>🏰 Rahasia Kastil Hitam</h3>
+                <p>Kastil megah di atas bukit ternyata menyembunyikan lorong rahasia. Petualangan seru menanti di dalamnya!</p>
+                <span class="badge">Petualangan</span>
+            </div>
+        </div>
+        <div class="story-card reveal">
+            <img src="https://images.unsplash.com/photo-1518098268026-4e89f1d2cd8e?w=600&q=80" alt="Cahaya misterius">
+            <div class="card-body">
+                <h3>👻 Tamu Tak Diundang</h3>
+                <p>Setiap malam Jumat, pintu depan terbuka sendiri. Keluarga Adi harus menghadapi kenyataan bahwa rumah mereka... berpenghuni.</p>
+                <span class="badge">Horor</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TENTANG SAYA ===== -->
+<div class="about-section" id="tentang">
+    <section>
+        <h2 class="section-title">👤 Tentang Saya</h2>
+        <p class="section-subtitle">Kenalan dengan penulis di balik cerita misteri ini</p>
+        <div class="about-content">
+            <div class="about-text reveal">
+                <h3>Halo, aku Sari!</h3>
+                <p>Aku adalah penulis dan pencinta cerita misteri sejak kecil. Dari hobi membaca buku detektif, aku mulai menulis cerita-cerita penuh teka-teki buatanku sendiri.</p>
+                <p>Setiap cerita di sini lahir dari imajinasi, rasa penasaran, dan kecintaanku pada dunia gelap yang penuh rahasia. Aku percaya setiap misteri punya jawabannya — tinggal seberapa berani kita mencarinya.</p>
+                <p>📚 <strong>Motto:</strong> <em>"Di balik setiap bayangan, ada cerita yang menunggu untuk diceritakan."</em></p>
+            </div>
+            <div class="about-image reveal">
+                <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?w=500&q=80" alt="Vintage writing desk">
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===== GALERI ===== -->
+<section id="galeri">
+    <h2 class="section-title">🖼️ Galeri Misteri</h2>
+    <p class="section-subtitle">Suasana dan tempat yang menginspirasi cerita-cerita misteri</p>
+    <div class="gallery-grid">
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="Inspirasi misteri 1">
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=500&q=80" alt="Inspirasi misteri 2">
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1505682634904-d7c8d95cdc50?w=500&q=80" alt="Inspirasi misteri 3">
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1533669955142-6a73332af4db?w=500&q=80" alt="Inspirasi misteri 4">
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=500&q=80" alt="Inspirasi misteri 5">
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=500&q=80" alt="Inspirasi misteri 6">
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<div class="faq-section" id="faq">
+    <section>
+        <h2 class="section-title">❓ FAQ</h2>
+        <p class="section-subtitle">Pertanyaan yang sering ditanyakan</p>
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <h4>🔍 Apakah semua cerita di sini original?</h4>
+                <p>Ya! Semua cerita ditulis sendiri oleh Sari. Murni dari imajinasi dan ide original.</p>
+            </div>
+            <div class="faq-item reveal">
+                <h4>📅 Seberapa sering cerita baru ditambahkan?</h4>
+                <p>Cerita baru diunggah setiap dua minggu sekali. Pantau terus ya!</p>
+            </div>
+            <div class="faq-item reveal">
+                <h4>🎁 Apakah websitenya gratis?</h4>
+                <p>Tentu saja! Semua cerita bisa kamu baca secara gratis. Enjoy!</p>
+            </div>
+            <div class="faq-item reveal">
+                <h4>✍️ Bolehkah aku mengirimkan ide cerita?</h4>
+                <p>Boleh banget! Kirim aja lewat halaman Kontak. Siapa tahu idemu jadi cerita berikutnya!</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===== KONTAK ===== -->
+<section id="kontak">
+    <h2 class="section-title">📞 Kontak</h2>
+    <p class="section-subtitle">Punya pertanyaan, ide cerita, atau sekadar mau say hi?</p>
+    <div class="contact-container">
+        <div class="contact-info reveal">
+            <h3>Hubungi Sari</h3>
+            <p>📧 <strong>Email:</strong> sari.ceritamisteri@email.com</p>
+            <p>📍 <strong>Lokasi:</strong> Indonesia</p>
+            <p>📱 <strong>Instagram:</strong> @ceritamisteri.sari</p>
+            <p style="margin-top: 16px;">Jangan ragu untuk kirim pesan ya! Aku senang banget dengar dari pembaca. ❤️</p>
+        </div>
+        <form class="contact-form reveal" onsubmit="alert('Pesan terkirim! 🎉 (Ini demo ya)'); return false;">
+            <input type="text" placeholder="Nama kamu..." required>
+            <input type="email" placeholder="Email kamu..." required>
+            <textarea placeholder="Tulis pesanmu di sini..." required></textarea>
+            <button type="submit">📨 Kirim Pesan</button>
+        </form>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>🔍 <strong>Cerita Misteri</strong> — Karya <strong>Sari</strong></p>
+    <p style="margin-top: 8px;">Dibuat dengan <span class="heart">❤️</span> &amp; imajinasi tak terbatas</p>
+    <p style="margin-top: 4px; font-size: 0.8rem;">© 2026 Cerita Misteri. All rights reserved.</p>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+    // Mobile menu toggle
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+    revealElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
