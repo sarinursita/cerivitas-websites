@@ -372,10 +372,11 @@
       font-family: 'Courier New', monospace;
       color: var(--text-muted);
       font-size: 0.85rem;
-      margin-bottom: 14px;
+      margin-bottom: 8px;
       background: rgba(79,195,247,0.05);
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 8px;
+      min-height: 40px;
     }
     .chord-tag {
       display: inline-block;
@@ -386,9 +387,68 @@
       padding: 4px 12px;
       border-radius: 50px;
     }
+
+    /* ---- Transpose Controls ---- */
+    .transpose-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .transpose-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .transpose-btn {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(79,195,247,0.3);
+      background: transparent;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .transpose-btn:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #0d0d1a;
+    }
+    .transpose-btn:active {
+      transform: scale(0.9);
+    }
+    .transpose-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--blue);
+      min-width: 32px;
+      text-align: center;
+      font-family: 'Courier New', monospace;
+    }
+    .transpose-reset {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
+      transition: var(--transition);
+    }
+    .transpose-reset:hover {
+      border-color: rgba(79,195,247,0.3);
+      color: var(--blue);
+    }
+
     .btn-chord {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 8px;
       background: transparent;
       color: var(--blue);
       font-weight: 600;
@@ -649,7 +709,14 @@
         <div class="chord-card-body">
           <h3>Lathi</h3>
           <p class="artist">Weird Genius feat. Sara Fajira</p>
-          <div class="chord-preview">[Intro] Am F C G</div>
+          <div class="chord-preview" data-original="[Intro] Am F C G">[Intro] Am F C G</div>
+          <div class="transpose-controls">
+            <span class="transpose-label">Transpose</span>
+            <button class="transpose-btn" data-dir="-1">−</button>
+            <span class="transpose-value" data-transpose="0">0</span>
+            <button class="transpose-btn" data-dir="1">+</button>
+            <button class="transpose-reset">↺</button>
+          </div>
           <span class="chord-tag">Pop Indonesia</span><br />
           <button class="btn-chord">Lihat Chord</button>
         </div>
@@ -663,7 +730,14 @@
         <div class="chord-card-body">
           <h3>Runtuh</h3>
           <p class="artist">Feby Putri & Fiersa Besari</p>
-          <div class="chord-preview">[Intro] C G Am Em F</div>
+          <div class="chord-preview" data-original="[Intro] C G Am Em F">[Intro] C G Am Em F</div>
+          <div class="transpose-controls">
+            <span class="transpose-label">Transpose</span>
+            <button class="transpose-btn" data-dir="-1">−</button>
+            <span class="transpose-value" data-transpose="0">0</span>
+            <button class="transpose-btn" data-dir="1">+</button>
+            <button class="transpose-reset">↺</button>
+          </div>
           <span class="chord-tag">Pop Indonesia</span><br />
           <button class="btn-chord">Lihat Chord</button>
         </div>
@@ -677,7 +751,14 @@
         <div class="chord-card-body">
           <h3>Happier Than Ever</h3>
           <p class="artist">Billie Eilish</p>
-          <div class="chord-preview">[Intro] C#m G#m A E</div>
+          <div class="chord-preview" data-original="[Intro] C#m G#m A E">[Intro] C#m G#m A E</div>
+          <div class="transpose-controls">
+            <span class="transpose-label">Transpose</span>
+            <button class="transpose-btn" data-dir="-1">−</button>
+            <span class="transpose-value" data-transpose="0">0</span>
+            <button class="transpose-btn" data-dir="1">+</button>
+            <button class="transpose-reset">↺</button>
+          </div>
           <span class="chord-tag">Pop Barat</span><br />
           <button class="btn-chord">Lihat Chord</button>
         </div>
@@ -691,7 +772,14 @@
         <div class="chord-card-body">
           <h3>Kisah Sempurna</h3>
           <p class="artist">Mahalini</p>
-          <div class="chord-preview">[Intro] G D Em C</div>
+          <div class="chord-preview" data-original="[Intro] G D Em C">[Intro] G D Em C</div>
+          <div class="transpose-controls">
+            <span class="transpose-label">Transpose</span>
+            <button class="transpose-btn" data-dir="-1">−</button>
+            <span class="transpose-value" data-transpose="0">0</span>
+            <button class="transpose-btn" data-dir="1">+</button>
+            <button class="transpose-reset">↺</button>
+          </div>
           <span class="chord-tag">Pop Indonesia</span><br />
           <button class="btn-chord">Lihat Chord</button>
         </div>
@@ -705,7 +793,14 @@
         <div class="chord-card-body">
           <h3>Heat Waves</h3>
           <p class="artist">Glass Animals</p>
-          <div class="chord-preview">[Intro] Am G C F</div>
+          <div class="chord-preview" data-original="[Intro] Am G C F">[Intro] Am G C F</div>
+          <div class="transpose-controls">
+            <span class="transpose-label">Transpose</span>
+            <button class="transpose-btn" data-dir="-1">−</button>
+            <span class="transpose-value" data-transpose="0">0</span>
+            <button class="transpose-btn" data-dir="1">+</button>
+            <button class="transpose-reset">↺</button>
+          </div>
           <span class="chord-tag">Pop Barat</span><br />
           <button class="btn-chord">Lihat Chord</button>
         </div>
@@ -719,7 +814,14 @@
         <div class="chord-card-body">
           <h3>Asmalibrasi</h3>
           <p class="artist">Soegi Bornean</p>
-          <div class="chord-preview">[Intro] G Dm F C</div>
+          <div class="chord-preview" data-original="[Intro] G Dm F C">[Intro] G Dm F C</div>
+          <div class="transpose-controls">
+            <span class="transpose-label">Transpose</span>
+            <button class="transpose-btn" data-dir="-1">−</button>
+            <span class="transpose-value" data-transpose="0">0</span>
+            <button class="transpose-btn" data-dir="1">+</button>
+            <button class="transpose-reset">↺</button>
+          </div>
           <span class="chord-tag">Akustik</span><br />
           <button class="btn-chord">Lihat Chord</button>
         </div>
@@ -743,7 +845,7 @@
           Dibuat khusus buat pemain gitar dari pemula sampai amateur yang pengen cepat main lagu favorit tanpa ribet!
         </p>
         <p>
-          Semua chord disusun rapi per kategori, lengkap dengan lirik dan diagram chord yang gampang dipahami.
+          Semua chord disusun rapi per kategori, dilengkapi fitur <strong>transpose</strong> biar kamu bisa naik-turunin nada sesuai suara atau kenyamananmu!
         </p>
         <p class="owner">✧ Ditemukan oleh <strong>Alaric Keven Achazia</strong> ✧</p>
       </div>
@@ -771,48 +873,132 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script>
-    // Hamburger toggle
+    // ——— HAMBURGER ———
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-    // Close nav on link click (mobile)
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
 
-    // Scroll reveal animation
+    // ——— SCROLL REVEAL ———
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.15 });
-
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Search simulation
+    // ——— SEARCH ———
     document.querySelector('.search-box button').addEventListener('click', () => {
-      const input = document.querySelector('.search-box input');
-      const val = input.value.trim();
-      if (val) {
-        alert('🔍 Mencari chord untuk: "' + val + '"\n\nFitur pencarian akan segera aktif! 🚀');
-      } else {
-        alert('✏️ Ketik judul lagu atau artis dulu ya!');
-      }
+      const val = document.querySelector('.search-box input').value.trim();
+      if (val) alert('🔍 Mencari chord untuk: "' + val + '"\n\nFitur pencarian akan segera aktif! 🚀');
+      else alert('✏️ Ketik judul lagu atau artis dulu ya!');
     });
     document.querySelector('.search-box input').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') document.querySelector('.search-box button').click();
     });
 
-    // Chord buttons
+    // ——— CHORD BUTTONS ———
     document.querySelectorAll('.btn-chord').forEach(btn => {
       btn.addEventListener('click', function() {
         const title = this.closest('.chord-card-body').querySelector('h3').textContent;
         alert('🎸 Chord "' + title + '" akan segera ditampilkan!\nHalaman chord detail masih dalam pengembangan 🚧');
       });
+    });
+
+    // ——— TRANSPOSE ENGINE ———
+    const NOTES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+    const NOTES_FLAT = ['C','Db','D','Eb','E','F','Gb','G','Ab','A','Bb','B'];
+
+    // Regex: matches chord root like C, C#, D, D#, E, F, F#, G, G#, A, A#, B, Bb, Db, Eb, Gb, Ab, Bb
+    // followed by optional suffix (m, maj7, 7, m7, dim, aug, sus4, etc.)
+    // But we need to be careful to not match things inside [brackets] like [Intro]
+    function transposeChord(chord, semitones) {
+      // Match chord root: optional b/# then letter A-G, then optional b/#
+      const match = chord.match(/^([A-G](?:#|b)?)(.*)$/);
+      if (!match) return chord;
+      
+      let root = match[1];
+      const suffix = match[2]; // e.g., m, 7, m7, dim, aug, sus4, etc.
+      
+      // Find index of root in NOTES or NOTES_FLAT
+      let idx = NOTES.indexOf(root);
+      if (idx === -1) {
+        // Try flat notation: Db -> C#, Eb -> D#, Gb -> F#, Ab -> G#, Bb -> A#
+        const flatMap = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#' };
+        if (flatMap[root]) {
+          root = flatMap[root];
+          idx = NOTES.indexOf(root);
+        }
+      }
+      if (idx === -1) return chord; // shouldn't happen
+      
+      const newIdx = ((idx + semitones) % 12 + 12) % 12;
+      return NOTES[newIdx] + suffix;
+    }
+
+    function transposeText(text, semitones) {
+      // Replace chord patterns while preserving brackets [Intro], [Chorus], etc.
+      // Split by word boundaries, spaces, and brackets
+      let result = text;
+      
+      // Match words that look like chords (starts with A-G, optional #/b, followed by optional chord suffix)
+      const chordRegex = /\b([A-G](?:#|b)?)(m|maj|min|dim|aug|sus|add|[0-9])?\b/g;
+      
+      // But we need to exclude words inside [...] brackets from transposition
+      // Strategy: process bracket content separately
+      const parts = result.split(/(\[[^\]]*\])/g);
+      for (let i = 0; i < parts.length; i++) {
+        // If not a bracket part, transpose the chord words
+        if (!parts[i].startsWith('[')) {
+          parts[i] = parts[i].replace(/\b([A-G](?:#|b)?)(m|maj|min|dim|aug|sus|add|[0-9])?\b/g, (match, root, suffix) => {
+            // Only transpose if it looks like a chord (single root note or root+suffix)
+            // But don't transpose regular words that happen to match like "Am" in "Saya Amat Senang"
+            // We'll trust the context since chord previews are mostly chord sequences
+            return transposeChord(match, semitones);
+          });
+        }
+      }
+      return parts.join('');
+    }
+
+    // Attach transpose controls
+    document.querySelectorAll('.transpose-controls').forEach(ctrl => {
+      const preview = ctrl.closest('.chord-card-body').querySelector('.chord-preview');
+      const valueEl = ctrl.querySelector('.transpose-value');
+      const resetBtn = ctrl.querySelector('.transpose-reset');
+
+      ctrl.querySelectorAll('.transpose-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const dir = parseInt(this.dataset.dir);
+          const current = parseInt(valueEl.dataset.transpose);
+          const newVal = current + dir;
+          
+          // Allow up to ±11 semitones
+          if (Math.abs(newVal) > 11) return;
+          
+          // Get original text
+          const original = preview.dataset.original;
+          
+          // Transpose from original with new value
+          const transposed = transposeText(original, newVal);
+          
+          preview.textContent = transposed;
+          valueEl.textContent = newVal > 0 ? '+' + newVal : newVal;
+          valueEl.dataset.transpose = newVal;
+        });
+      });
+
+      // Reset
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          const original = preview.dataset.original;
+          preview.textContent = original;
+          valueEl.textContent = '0';
+          valueEl.dataset.transpose = '0';
+        });
+      }
     });
   </script>
 </body>
