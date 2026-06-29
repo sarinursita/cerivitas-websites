@@ -1,0 +1,867 @@
+<!--
+Title: The Kingdom of Staria
+Author: Shinoa Hoshiyume
+Icon: 🌟
+Desc: Website tentang kerajaan yang diperintah oleh 6 pangeran mahkota. Persaudaraan bukan dengan darah, tapi hubungan spesial antar sesama.
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Kingdom of Staria — Shinoa Hoshiyume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5EFE0;
+    --cream-dark: #E8DCC8;
+    --brown: #6B4F3C;
+    --brown-light: #8B7355;
+    --gold: #C9A96E;
+    --gold-light: #E0C99A;
+    --dark: #2C1810;
+    --text: #3E2723;
+    --text-light: #6D4C41;
+    --shadow: rgba(44, 24, 16, 0.15);
+    --card-bg: #FAF6EE;
+    --border: #D4C5A9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  /* ── Navigation ── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(245, 239, 224, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 20px var(--shadow); }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-links a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.875rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: var(--gold-light);
+    color: var(--dark);
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* ── Sections ── */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: 1px;
+  }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0.75rem auto 1.5rem;
+  }
+  .section-sub {
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 3rem;
+  }
+
+  /* ── Hero / Beranda ── */
+  #beranda {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+    max-width: 100%;
+  }
+
+  .hero-inner {
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 2rem;
+    text-align: center;
+  }
+
+  .hero-star {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: twinkle 2s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.15); }
+  }
+
+  .hero-inner h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--dark), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-inner .tagline {
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-inner .author {
+    font-size: 0.9rem;
+    color: var(--brown-light);
+    margin-bottom: 2rem;
+  }
+
+  /* ── The Book ── */
+  .book-container {
+    perspective: 1200px;
+    margin: 2rem auto 3rem;
+    max-width: 680px;
+    cursor: pointer;
+  }
+
+  .book {
+    position: relative;
+    background: linear-gradient(145deg, var(--card-bg), var(--cream-dark));
+    border: 2px solid var(--gold);
+    border-radius: 4px 16px 16px 4px;
+    padding: 2.5rem 3rem;
+    box-shadow:
+      4px 4px 20px var(--shadow),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .book.open {
+    transform: rotateY(-8deg) scale(1.02);
+    box-shadow:
+      8px 8px 30px var(--shadow),
+      inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+
+  .book-spine {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    bottom: -2px;
+    width: 18px;
+    background: linear-gradient(90deg, var(--gold), var(--brown-light), var(--gold));
+    border-radius: 4px 0 0 4px;
+  }
+
+  .book-ribbon {
+    position: absolute;
+    top: 20px;
+    right: -6px;
+    width: 24px;
+    height: 40px;
+    background: var(--gold);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 2px 2px 6px var(--shadow);
+  }
+
+  .book-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+  .book h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .book p {
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 0.95rem;
+    text-align: center;
+    max-width: 450px;
+  }
+
+  .book-hint {
+    margin-top: 1.2rem;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .book:hover .book-hint { opacity: 1; }
+
+  .book-content {
+    display: none;
+    margin-top: 1.5rem;
+    text-align: left;
+    width: 100%;
+    animation: fadeIn 0.5s ease;
+  }
+  .book.open .book-content { display: block; }
+  .book.open .book-preview { display: none; }
+  .book.open .book-hint { display: none; }
+  .book.open .book-icon { display: none; }
+
+  .book-content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+    color: var(--dark);
+  }
+  .book-content p {
+    font-style: normal;
+    text-align: justify;
+    margin-bottom: 0.75rem;
+  }
+  .book-content .continue-reading {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--gold);
+    font-style: italic;
+    cursor: pointer;
+    border-bottom: 1px dashed var(--gold);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn-scroll {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--gold);
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 30px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+    border: 1px solid var(--gold);
+    margin-top: 1.5rem;
+  }
+  .btn-scroll:hover {
+    background: transparent;
+    color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4);
+  }
+
+  .scroll-down {
+    margin-top: 2rem;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  .scroll-down a {
+    color: var(--brown-light);
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+
+  /* ── Karakter ── */
+  .characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .char-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s;
+    box-shadow: 0 2px 10px var(--shadow);
+  }
+  .char-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 30px var(--shadow);
+    border-color: var(--gold);
+  }
+
+  .char-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 1rem;
+    border: 2px solid var(--gold);
+    transition: all 0.4s;
+  }
+  .char-card:hover .char-avatar {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px var(--gold-light);
+  }
+
+  .char-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .char-role {
+    font-size: 0.8rem;
+    color: var(--gold);
+    font-style: italic;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .char-short {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .char-detail {
+    display: none;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    text-align: left;
+    animation: fadeIn 0.4s ease;
+  }
+  .char-detail.show { display: block; }
+
+  .char-detail p {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+
+  .char-detail .trait {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--dark);
+    padding: 0.2rem 0.7rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin: 0.2rem;
+    font-family: 'Lora', serif;
+  }
+
+  /* ── Galeri ── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: all 0.4s;
+    background: var(--card-bg);
+  }
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 24px var(--shadow);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s;
+  }
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  .gallery-caption {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ── Kontak ── */
+  .contact-wrapper {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 10px var(--shadow);
+  }
+
+  .contact-wrapper .big-emoji {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-wrapper p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 2rem;
+    background: var(--gold);
+    color: var(--dark);
+    text-decoration: none;
+    border-radius: 30px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border: 1px solid var(--gold);
+  }
+  .contact-btn:hover {
+    background: transparent;
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  footer .footer-star {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+
+    .nav-links {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background: rgba(245, 239, 224, 0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem;
+      gap: 0.25rem;
+      transform: translateY(-120%);
+      transition: transform 0.4s ease;
+    }
+    .nav-links.open { transform: translateY(0); }
+
+    section { padding: 4rem 1.25rem; }
+
+    .hero-inner h1 { font-size: 2.2rem; }
+
+    .book { padding: 1.5rem; }
+    .book h3 { font-size: 1.2rem; }
+
+    .characters-grid { grid-template-columns: 1fr; }
+
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+
+    .section-title { font-size: 1.8rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-inner h1 { font-size: 1.8rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .book { padding: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#beranda" class="nav-logo">✦ Staria<span>.</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#beranda" class="active">🏠 Beranda</a></li>
+      <li><a href="#cerita">📖 Cerita</a></li>
+      <li><a href="#karakter">👑 Karakter</a></li>
+      <li><a href="#galeri">🖼️ Galeri</a></li>
+      <li><a href="#kontak">✉️ Kontak</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Beranda -->
+<section id="beranda">
+  <div class="hero-inner">
+    <div class="hero-star">🌟</div>
+    <h1>The Kingdom of Staria</h1>
+    <p class="tagline">"Persaudaraan bukan dengan darah. Tapi hubungan spesial antar sesama."</p>
+    <p class="author">— by Shinoa Hoshiyume</p>
+
+    <!-- The Interactive Book -->
+    <div class="book-container" onclick="toggleBook()">
+      <div class="book" id="storyBook">
+        <div class="book-spine"></div>
+        <div class="book-ribbon"></div>
+        <div class="book-icon">📖</div>
+        <h3>Prolog</h3>
+        <p class="book-preview">Di langit yang dipenuhi bintang, ada sebuah kerajaan yang tak terlihat oleh mata biasa...</p>
+        <p class="book-hint">✦ Klik untuk membaca ✦</p>
+        <div class="book-content" id="bookContent">
+          <h4>Prolog — The Kingdom of Staria</h4>
+          <p>Di langit yang dipenuhi bintang, ada sebuah kerajaan yang tak terlihat oleh mata biasa. Kerajaan itu bernama Staria — tempat di mana cahaya bintang menjadi sumber kehidupan, dan takhta diisi bukan oleh satu, melainkan enam pangeran mahkota.</p>
+          <p>Mereka tidak terikat oleh darah. Tapi oleh ikatan yang lebih dalam — hubungan spesial yang hanya bisa dimengerti oleh mereka yang percaya bahwa persaudaraan sejati lahir dari hati, bukan dari garis keturunan.</p>
+          <p>Enam pangeran. Enam takdir. Satu kerajaan yang bersinar di antara bintang-bintang.</p>
+          <p style="text-align:center; margin-top:1rem; font-style:italic; color:var(--gold);">✦ Bersambung... ✦</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="#cerita" class="btn-scroll">Mulai Berpetualang →</a>
+    <div class="scroll-down"><a href="#cerita">⬇</a></div>
+  </div>
+</section>
+
+<!-- Cerita -->
+<section id="cerita">
+  <h2 class="section-title">📖 Cerita</h2>
+  <p class="section-sub">Baca kisah-kisah dari Kerajaan Staria</p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem;">
+    <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:16px; padding:1.5rem; box-shadow:0 2px 10px var(--shadow); transition:all 0.3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor=''">
+      <div style="font-size:2rem; margin-bottom:0.75rem;">👑</div>
+      <h3 style="font-size:1.1rem; margin-bottom:0.5rem;">Mahkota Pertama</h3>
+      <p style="color:var(--text-light); font-size:0.9rem;">Kisah awal mula enam pangeran ditemukan dan bagaimana mereka mulai membangun persaudaraan di bawah cahaya bintang.</p>
+      <p style="margin-top:0.75rem; color:var(--gold); font-style:italic; font-size:0.85rem;">Akan datang...</p>
+    </div>
+    <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:16px; padding:1.5rem; box-shadow:0 2px 10px var(--shadow); transition:all 0.3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor=''">
+      <div style="font-size:2rem; margin-bottom:0.75rem;">🌙</div>
+      <h3 style="font-size:1.1rem; margin-bottom:0.5rem;">Malam Bintang Jatuh</h3>
+      <p style="color:var(--text-light); font-size:0.9rem;">Saat bintang jatuh menghiasi langit Staria, sebuah rahasia lama terungkap yang mengubah segalanya.</p>
+      <p style="margin-top:0.75rem; color:var(--gold); font-style:italic; font-size:0.85rem;">Akan datang...</p>
+    </div>
+    <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:16px; padding:1.5rem; box-shadow:0 2px 10px var(--shadow); transition:all 0.3s;" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='var(--gold)'" onmouseout="this.style.transform='';this.style.borderColor=''">
+      <div style="font-size:2rem; margin-bottom:0.75rem;">⚔️</div>
+      <h3 style="font-size:1.1rem; margin-bottom:0.5rem;">Ikatan Tak Terlihat</h3>
+      <p style="color:var(--text-light); font-size:0.9rem;">Persaudaraan diuji ketika bayangan dari luar Staria mengancam kedamaian kerajaan.</p>
+      <p style="margin-top:0.75rem; color:var(--gold); font-style:italic; font-size:0.85rem;">Akan datang...</p>
+    </div>
+  </div>
+</section>
+
+<!-- Karakter -->
+<section id="karakter">
+  <h2 class="section-title">👑 Karakter</h2>
+  <p class="section-sub">Enam pangeran mahkota — klik untuk mengenal mereka</p>
+
+  <div class="characters-grid" id="charGrid">
+    <!-- Karakter 1 -->
+    <div class="char-card" onclick="toggleChar(this)">
+      <div class="char-avatar">🌞</div>
+      <h3>Pangeran Aelion</h3>
+      <p class="char-role">Pangeran Sulung • Cahaya</p>
+      <p class="char-short">"Terang tak selalu berarti panas — kadang, cahaya adalah kehangatan yang kamu butuhkan."</p>
+      <div class="char-detail">
+        <p><strong>✧ Umur:</strong> 19 tahun</p>
+        <p><strong>✧ Sifat:</strong> Bijaksana, lembut, pelindung</p>
+        <p><strong>✧ Cerita:</strong> Pangeran pertama yang ditemukan, penjaga cahaya Staria. Aelion selalu berusaha menjadi jembatan di antara saudara-saudaranya. Meskipun yang tertua, ia tidak pernah merasa paling hebat — justru dari mereka semua ia belajar arti kebersamaan.</p>
+        <p><strong>✧ Hubungan:</strong> Yang paling dekat dengan seluruh pangeran, seperti lem yang merekatkan mereka semua.</p>
+        <div><span class="trait">bijaksana</span><span class="trait">lembut</span><span class="trait">pemersatu</span></div>
+      </div>
+    </div>
+
+    <!-- Karakter 2 -->
+    <div class="char-card" onclick="toggleChar(this)">
+      <div class="char-avatar">🌙</div>
+      <h3>Pangeran Lyrion</h3>
+      <p class="char-role">Pangeran Kedua • Malam</p>
+      <p class="char-short">"Malam bukanlah gelap — itu hanya cara bintang untuk bersinar lebih terang."</p>
+      <div class="char-detail">
+        <p><strong>✧ Umur:</strong> 18 tahun</p>
+        <p><strong>✧ Sifat:</strong> Pendiam, misterius, setia</p>
+        <p><strong>✧ Cerita:</strong> Pangeran dari bayang-bayang, Lyrion jarang berbicara tapi selalu ada di saat yang tepat. Ia lebih suka mengamati daripada menjadi pusat perhatian, namun saat saudaranya butuh — ia adalah yang pertama bergerak tanpa keraguan.</p>
+        <p><strong>✧ Hubungan:</strong> Sangat dekat dengan Aurelian, karena mereka saling melengkapi seperti malam dan fajar.</p>
+        <div><span class="trait">pendiam</span><span class="trait">setia</span><span class="trait">misterius</span></div>
+      </div>
+    </div>
+
+    <!-- Karakter 3 -->
+    <div class="char-card" onclick="toggleChar(this)">
+      <div class="char-avatar">🌊</div>
+      <h3>Pangeran Thalion</h3>
+      <p class="char-role">Pangeran Ketiga • Lautan</p>
+      <p class="char-short">"Tenang di permukaan, dalam di kedalaman — begitulah cara lautan mengajarkan kesabaran."</p>
+      <div class="char-detail">
+        <p><strong>✧ Umur:</strong> 18 tahun</p>
+        <p><strong>✧ Sifat:</strong> Tenang, empati, penyelaras</p>
+        <p><strong>✧ Cerita:</strong> Memiliki kemampuan menenangkan situasi dengan kata-katanya yang lembut. Thalion adalah pendengar terbaik di antara mereka — tempat semua pangeran mencurahkan isi hati tanpa takut dihakimi.</p>
+        <p><strong>✧ Hubungan:</strong> Menjadi penengah saat terjadi perselisihan, semua pangeran percaya padanya.</p>
+        <div><span class="trait">tenang</span><span class="trait">empati</span><span class="trait">penyabar</span></div>
+      </div>
+    </div>
+
+    <!-- Karakter 4 -->
+    <div class="char-card" onclick="toggleChar(this)">
+      <div class="char-avatar">🔥</div>
+      <h3>Pangeran Kaelen</h3>
+      <p class="char-role">Pangeran Keempat • Api</p>
+      <p class="char-short">"Api bukan untuk menghancurkan — api adalah semangat yang tak pernah padam."</p>
+      <div class="char-detail">
+        <p><strong>✧ Umur:</strong> 17 tahun</p>
+        <p><strong>✧ Sifat:</strong> Bersemangat, impulsif, berani</p>
+        <p><strong>✧ Cerita:</strong> Yang paling bersemangat di antara mereka. Kaelen sering bertindak dulu baru berpikir, tapi semangatnya yang membara sering menjadi dorongan yang mereka butuhkan untuk bergerak maju.</p>
+        <p><strong>✧ Hubungan:</strong> Suka menggoda Aurelian, tapi diam-diam sangat melindungi adik-adiknya.</p>
+        <div><span class="trait">berani</span><span class="trait">semangat</span><span class="trait">impulsif</span></div>
+      </div>
+    </div>
+
+    <!-- Karakter 5 -->
+    <div class="char-card" onclick="toggleChar(this)">
+      <div class="char-avatar">🍃</div>
+      <h3>Pangeran Aurelian</h3>
+      <p class="char-role">Pangeran Kelima • Angin</p>
+      <p class="char-short">"Kebebasan bukan berarti pergi — terkadang, kebebasan berarti memilih untuk tetap tinggal."</p>
+      <div class="char-detail">
+        <p><strong>✧ Umur:</strong> 16 tahun</p>
+        <p><strong>✧ Sifat:</strong> Bebas, ceria, lincah</p>
+        <p><strong>✧ Cerita:</strong> Pangeran paling muda kedua, jiwa bebas yang selalu membuat yang lain tersenyum. Aurelian adalah pengingat bahwa di tengah tugas kerajaan, mereka tetaplah anak-anak yang perlu bermain dan tertawa.</p>
+        <p><strong>✧ Hubungan:</strong> Paling dekat dengan Lyrion — ia satu-satunya yang bisa membuat pangeran malam itu tersenyum dengan mudah.</p>
+        <div><span class="trait">ceria</span><span class="trait">bebas</span><span class="trait">lincah</span></div>
+      </div>
+    </div>
+
+    <!-- Karakter 6 -->
+    <div class="char-card" onclick="toggleChar(this)">
+      <div class="char-avatar">🌱</div>
+      <h3>Pangeran Selene</h3>
+      <p class="char-role">Pangeran Bungsu • Tumbuh</p>
+      <p class="char-short">"Hal terkecil sekalipun bisa tumbuh menjadi sesuatu yang indah — seperti cinta, seperti keluarga."</p>
+      <div class="char-detail">
+        <p><strong>✧ Umur:</strong> 15 tahun</p>
+        <p><strong>✧ Sifat:</strong> Lembut, penuh rasa ingin tahu, penyayang</p>
+        <p><strong>✧ Cerita:</strong> Yang termuda dan termanis di antara mereka. Selene adalah hati dari Staria — dengan kebaikannya yang tulus, ia mengingatkan para pangeran bahwa kekuatan sejati bukanlah pedang atau sihir, tapi cinta dan pengertian.</p>
+        <p><strong>✧ Hubungan:</strong> Semua pangeran melindunginya, tapi ia lebih kuat dari yang mereka kira.</p>
+        <div><span class="trait">lembut</span><span class="trait">ingin tahu</span><span class="trait">penyayang</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Galeri -->
+<section id="galeri">
+  <h2 class="section-title">🖼️ Galeri</h2>
+  <p class="section-sub">Pemandangan dari sudut-sudut Istana Staria</p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=600&q=80" alt="Istana Staria di malam hari" loading="lazy">
+      <div class="gallery-caption">✦ Istana Staria saat malam, diterangi cahaya bintang</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80" alt="Pemandangan pegunungan Staria" loading="lazy">
+      <div class="gallery-caption">✦ Pegunungan di perbatasan Staria</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="Aula istana" loading="lazy">
+      <div class="gallery-caption">✦ Aula utama Istana Staria</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80" alt="Langit berbintang Staria" loading="lazy">
+      <div class="gallery-caption">✦ Langit Staria — bintang-bintang yang tak pernah padam</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1470071459604-7b8ec44ffd0e?w=600&q=80" alt="Taman kerajaan" loading="lazy">
+      <div class="gallery-caption">✦ Taman kerajaan Staria yang selalu mekar</div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?w=600&q=80" alt="Peta Staria" loading="lazy">
+      <div class="gallery-caption">✦ Peta Kerajaan Staria</div>
+    </div>
+  </div>
+</section>
+
+<!-- Kontak -->
+<section id="kontak">
+  <h2 class="section-title">✉️ Kontak</h2>
+  <p class="section-sub">Ingin menjelajahi Staria lebih dalam?</p>
+
+  <div class="contact-wrapper">
+    <div class="big-emoji">🌟</div>
+    <p>
+      Punya pertanyaan tentang The Kingdom of Staria?<br>
+      Ingin berbagi cerita atau request karakter favoritmu?<br>
+      Jangan ragu untuk menghubungi!
+
+    </p>
+    <a href="mailto:shinoa@staria.kingdom" class="contact-btn">
+      ✉️ Kirim Pesan
+    </a>
+    <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--brown-light);">
+      "Setiap bintang yang bersinar adalah cerita yang menunggumu."
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-star">🌟</div>
+  <p>&copy; 2026 <span>The Kingdom of Staria</span> by Shinoa Hoshiyume</p>
+  <p>Dibuat dengan sepenuh hati ✨</p>
+</footer>
+
+<script>
+  // ── Hamburger Menu ──
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+
+  // ── Scroll Nav ──
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+
+    const sections = document.querySelectorAll('section[id]');
+    const scrollY = window.scrollY + 100;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+      const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+      if (link) {
+        link.classList.toggle('active', scrollY >= top && scrollY < top + height);
+      }
+    });
+  });
+
+  // ── Toggle Book ──
+  function toggleBook() {
+    document.getElementById('storyBook').classList.toggle('open');
+  }
+
+  // ── Toggle Character Detail ──
+  function toggleChar(card) {
+    const detail = card.querySelector('.char-detail');
+    const isOpen = detail.classList.contains('show');
+    // Close all first (accordion style)
+    document.querySelectorAll('.char-detail.show').forEach(d => d.classList.remove('show'));
+    if (!isOpen) {
+      detail.classList.add('show');
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+</script>
+</body>
+</html>
