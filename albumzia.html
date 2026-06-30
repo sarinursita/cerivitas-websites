@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>albumzia.com — Zia Fithraturrahmah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Great+Vibes&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #05000a;
+      color: #e8e0f0;
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse 70% 60% at 20% 30%, rgba(88, 28, 135, 0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 50% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 40% at 10% 70%, rgba(168, 85, 247, 0.10) 0%, transparent 40%),
+        radial-gradient(ellipse 50% 40% at 90% 60%, rgba(30, 64, 175, 0.10) 0%, transparent 40%);
+      background-color: #05000a;
+    }
+    .stars { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .star { position: absolute; width: var(--size,2px); height: var(--size,2px); background: #fff; border-radius: 50%; animation: twinkle var(--duration,3s) ease-in-out infinite alternate; animation-delay: var(--delay,0s); left: var(--x,50%); top: var(--y,50%); opacity: var(--opacity,0.4); box-shadow: 0 0 var(--glow,2px) rgba(255,255,255,0.3); }
+    .star.bright { width: var(--size,3px); height: var(--size,3px); box-shadow: 0 0 var(--glow,6px) rgba(255,255,255,0.6), 0 0 var(--glow2,10px) rgba(139,92,246,0.2); }
+    @keyframes twinkle { 0% { opacity: var(--opacity,0.2); transform: scale(0.8); } 100% { opacity: var(--opacity-max,0.9); transform: scale(1.1); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+    :root { --purple-900: #1a0f2e; --purple-800: #2d1b4e; --purple-500: #8b5cf6; --purple-400: #a78bfa; --purple-300: #c4b5fd; --purple-200: #ddd6fe; --blue-500: #3b82f6; --blue-400: #60a5fa; --blue-300: #93c5fd; --glass: rgba(255,255,255,0.05); --glass-border: rgba(255,255,255,0.08); }
+
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navbar */
+    nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 0, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(139, 92, 246, 0.1); padding: 16px 0; }
+    nav .container { display: flex; align-items: center; justify-content: center; }
+    .nav-logo { font-size: 1.4rem; font-weight: 800; background: linear-gradient(135deg, var(--purple-400), var(--blue-400)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* Hero */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 40px;
+    }
+    .hero-content { animation: fadeInUp 1s ease forwards; max-width: 600px; }
+    .hero-content .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.15));
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      font-size: 0.85rem;
+      color: var(--purple-300);
+      margin-bottom: 20px;
+    }
+    .hero-content h1 {
+      font-size: 4.2rem;
+      font-weight: 400;
+      font-family: 'Great Vibes', cursive;
+      background: linear-gradient(135deg, #fff 30%, var(--purple-300) 60%, var(--blue-300) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      line-height: 1.2;
+      min-height: 1.4em;
+    }
+    .hero-content h1 .cursor {
+      display: inline-block;
+      width: 4px;
+      height: 0.9em;
+      background: var(--purple-400);
+      margin-left: 4px;
+      vertical-align: baseline;
+      animation: blink 0.8s step-end infinite;
+      border-radius: 2px;
+    }
+    .hero-content h1 .cursor.hidden {
+      animation: none;
+      opacity: 0;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .hero-content .subhead {
+      font-size: 1.3rem;
+      color: var(--purple-200);
+      font-family: 'Dancing Script', cursive;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .hero-content .tagline {
+      font-size: 1rem;
+      color: var(--purple-400);
+      font-family: 'Dancing Script', cursive;
+      font-weight: 400;
+    }
+
+    /* ========== DAILY QUOTE ========== */
+    .daily-quote {
+      text-align: center;
+      padding: 0 24px 48px;
+      max-width: 650px;
+      margin: 0 auto;
+      animation: fadeInUp 1.2s ease forwards;
+      animation-delay: 1.8s;
+      opacity: 0;
+    }
+    .daily-quote .quote-card {
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 24px;
+      padding: 32px 36px;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+    .daily-quote .quote-card:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      box-shadow: 0 8px 40px rgba(139, 92, 246, 0.08);
+    }
+    .daily-quote .quote-mark {
+      font-size: 2.5rem;
+      color: var(--purple-500);
+      opacity: 0.3;
+      position: absolute;
+      top: 8px;
+      left: 20px;
+      font-family: serif;
+      line-height: 1;
+    }
+    .daily-quote .quote-text {
+      font-size: 1.15rem;
+      color: var(--purple-200);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+    }
+    .daily-quote .quote-author {
+      font-size: 0.85rem;
+      color: var(--blue-400);
+      font-weight: 500;
+    }
+    .daily-quote .quote-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--purple-400);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    /* Section Cards Grid */
+    .section-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 750px;
+      margin: 0 auto;
+      padding-bottom: 80px;
+    }
+    .section-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 32px 20px 28px;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple-500), var(--blue-500));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .section-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(139, 92, 246, 0.3);
+      box-shadow: 0 16px 48px rgba(139, 92, 246, 0.15);
+      background: rgba(255, 255, 255, 0.07);
+    }
+    .section-card:hover::before { opacity: 1; }
+    .section-card .card-icon { font-size: 2.6rem; transition: transform 0.4s ease; }
+    .section-card:hover .card-icon { transform: scale(1.15); }
+    .section-card .card-title { font-size: 1rem; font-weight: 600; color: #fff; }
+    .section-card .card-desc { font-size: 0.8rem; color: var(--purple-300); }
+    .section-card .card-arrow { font-size: 1.1rem; color: var(--blue-400); opacity: 0; transform: translateX(-10px); transition: all 0.4s ease; }
+    .section-card:hover .card-arrow { opacity: 1; transform: translateX(0); }
+
+    /* Footer */
+    footer { background: var(--purple-900); border-top: 1px solid rgba(139, 92, 246, 0.1); padding: 30px 0 20px; text-align: center; }
+    footer p { color: var(--purple-400); font-size: 0.85rem; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 2.4rem; }
+      .section-cards { grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
+      .section-card { padding: 24px 16px 20px; }
+    }
+    @media (max-width: 480px) {
+      .section-cards { grid-template-columns: 1fr; max-width: 280px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="starsContainer"></div>
+
+  <nav>
+    <div class="container">
+      <span class="nav-logo">✦ albumzia</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="badge">✦ Welcome to my universe</span>
+      <h1><span id="typedText"></span><span class="cursor" id="cursor">|</span></h1>
+      <p class="subhead">A place where you can get to know me and my creativity</p>
+      <p class="tagline">~ Zia Fithraturrahmah ~</p>
+    </div>
+  </section>
+
+  <!-- ========== DAILY QUOTE ========== -->
+  <div class="daily-quote" id="dailyQuote">
+    <div class="quote-card">
+      <span class="quote-label">✦ Quote Hari Ini</span>
+      <span class="quote-mark">"</span>
+      <p class="quote-text" id="quoteText">Loading...</p>
+      <p class="quote-author" id="quoteAuthor">—</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section-cards">
+      <a href="tentang.html" class="section-card">
+        <span class="card-icon">📖</span>
+        <span class="card-title">Tentang Saya</span>
+        <span class="card-desc">Kenali aku lebih dekat</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a href="skills.html" class="section-card">
+        <span class="card-icon">⚡</span>
+        <span class="card-title">Skills</span>
+        <span class="card-desc">Keahlian dan bakatku</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a href="galeri.html" class="section-card">
+        <span class="card-icon">🖼️</span>
+        <span class="card-title">Galeri</span>
+        <span class="card-desc">Karya dan momen</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a href="proyek.html" class="section-card">
+        <span class="card-icon">📖</span>
+        <span class="card-title">Proyek</span>
+        <span class="card-desc">Proyek tulisanku</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a href="thoughts.html" class="section-card">
+        <span class="card-icon">💭</span>
+        <span class="card-title">My Thoughts</span>
+        <span class="card-desc">Catatan dan inspirasi</span>
+        <span class="card-arrow">→</span>
+      </a>
+      <a href="updates.html" class="section-card">
+        <span class="card-icon">📡</span>
+        <span class="card-title">Updates</span>
+        <span class="card-desc">Kabar terbaruku</span>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 albumzia.com — Dibuat dengan 💜 oleh Zia Fithraturrahmah</p>
+    </div>
+  </footer>
+
+  <script>
+    function createStars() {
+      const container = document.getElementById('starsContainer');
+      for (let i = 0; i < 180; i++) {
+        const star = document.createElement('div');
+        star.className = 'star' + (i % 5 === 0 ? ' bright' : '');
+        const size = i % 5 === 0 ? (2 + Math.random() * 2) : (1 + Math.random() * 1.5);
+        star.style.setProperty('--size', size + 'px');
+        star.style.setProperty('--glow', (size * (2 + Math.random() * 4)) + 'px');
+        if (i % 5 === 0) star.style.setProperty('--glow2', (size * 4) + 'px');
+        star.style.setProperty('--x', Math.random() * 100 + '%');
+        star.style.setProperty('--y', Math.random() * 100 + '%');
+        star.style.setProperty('--duration', (2 + Math.random() * 4) + 's');
+        star.style.setProperty('--delay', (Math.random() * 5) + 's');
+        star.style.setProperty('--opacity', (0.1 + Math.random() * 0.3));
+        star.style.setProperty('--opacity-max', (0.4 + Math.random() * 0.6));
+        container.appendChild(star);
+      }
+    }
+    createStars();
+
+    // Typewriter effect
+    function typeWriter() {
+      const text = "Hi, I'm Zia ✨";
+      const el = document.getElementById('typedText');
+      const cursor = document.getElementById('cursor');
+      let i = 0;
+      const speed = 80;
+      function type() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        } else {
+          cursor.classList.add('hidden');
+        }
+      }
+      setTimeout(type, 600);
+    }
+    typeWriter();
+
+    // Daily Quotes
+    const quotes = [
+      { text: "Menulis adalah cara terbaik untuk berbicara tanpa diganggu.", author: "— Zia" },
+      { text: "The scariest moment is always just before you start.", author: "— Stephen King" },
+      { text: "Kreativitas itu seperti otot — makin dilatih, makin kuat.", author: "— Zia" },
+      { text: "Start writing, no matter what. The water does not flow until the faucet is turned on.", author: "— Louis L'Amour" },
+      { text: "Setiap cerita dimulai dari satu kata pertama.", author: "— Zia" },
+      { text: "You can make anything by writing.", author: "— C.S. Lewis" },
+      { text: "Tidak ada yang mustahil — kata itu sendiri berkata 'I'm possible'!", author: "— Audrey Hepburn" },
+      { text: "Jangan takut dengan halaman kosong. Itu adalah kanvas untuk imajinasimu.", author: "— Zia" },
+      { text: "Imagination is more important than knowledge.", author: "— Albert Einstein" },
+      { text: "Hari ini adalah halaman baru. Tulislah cerita yang indah.", author: "— Zia" }
+    ];
+
+    function showDailyQuote() {
+      // Use date to pick same quote all day
+      const today = new Date();
+      const dayIndex = today.getDate() + today.getMonth() * 31;
+      const quote = quotes[dayIndex % quotes.length];
+      document.getElementById('quoteText').textContent = '\u201C' + quote.text + '\u201D';
+      document.getElementById('quoteAuthor').textContent = quote.author;
+    }
+    showDailyQuote();
+  </script>
+</body>
+</html>
