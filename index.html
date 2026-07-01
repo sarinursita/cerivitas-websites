@@ -1,124 +1,87 @@
-<!-- Title: Cerivitas Websites
-Author: Max
-Icon: 🌐
-Desc: Agent Adventure Coding Workshop - Hasil website peserta -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agent Adventure — Coding Workshop 🚀</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<title>Cerivitas Websites — Hasil Workshop Agent Adventure</title>
 <style>
-:root { --bg:#0f0f23; --card-bg:#1a1a3e; --text:#e0e0ff; --accent:#ffd700; --accent2:#7ec8e3; --border:rgba(255,255,255,0.06); }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
-.container { max-width:900px; margin:0 auto; padding:2rem 1.5rem 4rem; }
-h1 { font-size:2.2rem; font-weight:800; background:linear-gradient(135deg,var(--accent),#ff7eb3); -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; margin-bottom:0.3rem; }
-.subtitle { color:#888; font-size:0.85rem; margin-bottom:1.5rem; }
-.search-box { width:100%; padding:0.6rem 1rem; border-radius:10px; background:var(--card-bg); border:1px solid var(--border); color:var(--text); font-family:'Inter',sans-serif; font-size:0.9rem; margin-bottom:1.5rem; outline:none; }
-.search-box:focus { border-color:var(--accent2); }
-.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem; }
-.card { background:var(--card-bg); border:1px solid var(--border); border-radius:14px; padding:1.2rem; cursor:pointer; transition:0.3s; position:relative; overflow:hidden; text-decoration:none; color:var(--text); }
-.card:hover { border-color:var(--accent); transform:translateY(-3px); box-shadow:0 8px 30px rgba(255,215,0,0.1); }
-.card-icon { font-size:1.8rem; margin-bottom:0.5rem; }
-.card-title { font-weight:700; font-size:1rem; margin-bottom:0.2rem; }
-.card-author { color:#888; font-size:0.8rem; }
-.card-desc { color:#666; font-size:0.75rem; margin-top:0.3rem; line-height:1.4; }
-.card-link { margin-top:0.5rem; font-size:0.7rem; color:#555; }
-.card:hover .card-link { color:var(--accent); }
-#loading { text-align:center; padding:4rem 0; color:#888; }
-.footer { text-align:center; margin-top:3rem; color:#444; font-size:0.75rem; }
-.count { color:#666; font-size:0.8rem; margin-bottom:1rem; }
+body { font-family:'Inter','Segoe UI',sans-serif; background:#fef6fb; color:#5d3a5c; min-height:100vh; }
+.header { background: linear-gradient(135deg,#f48fb1,#ce93d8); color:#fff; padding:2rem 1.2rem; text-align:center; }
+.header h1 { font-size:1.8rem; margin-bottom:0.3rem; }
+.header p { opacity:.9; font-size:.9rem; }
+.container { max-width:900px; margin:0 auto; padding:1.5rem 1rem; }
+.date-group { margin-bottom:2rem; }
+.date-group h2 { font-size:1.2rem; color:#ce93d8; border-bottom:2px solid #fce4ec; padding-bottom:.5rem; margin-bottom:1rem; }
+.website-list { display:grid; gap:.7rem; }
+.website-card { background:#fff0f5; border:1px solid rgba(100,70,120,0.12); border-radius:12px; padding:1rem; transition: transform .2s, box-shadow .2s; }
+.website-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(100,70,120,0.1); }
+.website-card a { text-decoration:none; color:#5d3a5c; display:flex; align-items:center; gap:.8rem; }
+.website-card .emoji { font-size:1.5rem; }
+.website-card .title { font-weight:600; font-size:.95rem; }
+.website-card .title small { font-weight:400; color:#9e7a9e; font-size:.8rem; display:block; margin-top:.2rem; }
+.website-card:hover .title { color:#f48fb1; }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>🌐 Coding Workshop</h1>
-  <p class="subtitle">Agent Adventure Summer 2026 — Cerivitas</p>
-  <input class="search-box" id="search" placeholder="🔍 Cari website..." oninput="filter()">
-  <div class="count" id="count">Memuat...</div>
-  <div id="loading">Memuat...</div>
-  <div class="grid" id="grid"></div>
-  <p class="footer">Dibuat dengan ❤️ oleh peserta workshop</p>
+<div class="header">
+  <h1>🌟 Cerivitas Websites</h1>
+  <p>Hasil karya peserta Agent Adventure Workshop</p>
 </div>
-<script>
-const REPO = 'sarinursita/cerivitas-websites';
-const RAW = 'https://raw.githubusercontent.com/' + REPO + '/main/';
-const COLORS = ['#ff6b6b','#feca57','#48dbfb','#ff9ff3','#54a0ff','#5f27cd','#01a3a4','#f368e0','#ee5a24','#0abde3','#10ac84','#ff6348'];
-const ICONS = ['🌐','🚀','🎨','💻','🎮','📱','⚡','🌟','🎯','💡','🔥','🌈'];
+<div class="container">
 
-async function loadWebsites() {
-  const resp = await fetch('https://api.github.com/repos/' + REPO + '/contents/');
-  const items = await resp.json();
-  const htmlFiles = items.filter(i => i.type==='file' && i.name.endsWith('.html') && i.name!=='index.html');
+<div class="date-group">
+<h2>📅 Selasa, 30 Jun 2026</h2>
+<div class="website-list">
+  <div class="website-card">
+    <a href="albumzia.html">
+      <span class="emoji">🎵</span>
+      <div class="title">Album Zia<small>Karya Zia</small></div>
+    </a>
+  </div>
+</div>
+</div>
 
-  const websites = [];
-  for (const [i, f] of htmlFiles.entries()) {
-    let meta = { file: f.name, title: '', author: '', icon: ICONS[i % ICONS.length], desc: '' };
+<div class="date-group">
+<h2>📅 Senin, 29 Jun 2026</h2>
+<div class="website-list">
+  <div class="website-card">
+    <a href="the-kingdom-of-staria.html">
+      <span class="emoji">👑</span>
+      <div class="title">The Kingdom of Staria<small>Dunia fantasi interaktif</small></div>
+    </a>
+  </div>
+</div>
+</div>
 
-    // Try to fetch and parse metadata comment
-    try {
-      const content = await fetch(RAW + f.name);
-      const text = await content.text();
-      // Parse <!-- ... --> block at the start
-      const commentMatch = text.match(/<!--([\s\S]*?)-->/);
-      if (commentMatch) {
-        const lines = commentMatch[1].split('\n').map(l => l.trim()).filter(Boolean);
-        lines.forEach(l => {
-          const [, key, val] = l.match(/^(\w+):\s*(.+)$/) || [];
-          if (key === 'Title') meta.title = val;
-          if (key === 'Author') meta.author = val;
-          if (key === 'Icon') meta.icon = val;
-          if (key === 'Desc') meta.desc = val;
-        });
-      }
-    } catch(e) {}
+<div class="date-group">
+<h2>📅 Minggu, 28 Jun 2026 — PAID Workshop</h2>
+<div class="website-list">
+  <div class="website-card"><a href="bukit-emas-nun-jauh.html"><span class="emoji">⛰️</span><div class="title">Bukit Emas nun Jauh<small>Petualangan Tatang</small></div></a></div>
+  <div class="website-card"><a href="cerita-misteri.html"><span class="emoji">👻</span><div class="title">Cerita Misteri<small>Cerita horor interaktif</small></div></a></div>
+  <div class="website-card"><a href="chordrik.html"><span class="emoji">🎸</span><div class="title">Chordrik<small>Transposisi chord gitar</small></div></a></div>
+  <div class="website-card"><a href="dapur-zia.html"><span class="emoji">🍗</span><div class="title">Dapur Zia<small>Ayam Geprek Level 1-100</small></div></a></div>
+  <div class="website-card"><a href="jarvis-misteri.html"><span class="emoji">🔍</span><div class="title">Jarvis Misteri<small>Game misteri interaktif</small></div></a></div>
+  <div class="website-card"><a href="mama-dina-cookies.html"><span class="emoji">🍪</span><div class="title">Mama Dina Cookies<small>Landing page bisnis kue</small></div></a></div>
+</div>
+</div>
 
-    // Fallback: generate name from filename
-    if (!meta.title) {
-      meta.title = f.name.replace('.html','').split('-').map(w => w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
-    }
-    websites.push(meta);
-  }
+<div class="date-group">
+<h2>📅 Sabtu, 27 Jun 2026 — FREE Workshop</h2>
+<div class="website-list">
+  <div class="website-card"><a href="risol-heaven.html"><span class="emoji">🥟</span><div class="title">Risol Heaven<small>Landing page bisnis kuliner</small></div></a></div>
+  <div class="website-card"><a href="seri-misteri-kiki.html"><span class="emoji">🐱</span><div class="title">Seri Misteri Kiki<small>Cerita misteri interaktif</small></div></a></div>
+  <div class="website-card"><a href="warung-pizza.html"><span class="emoji">🍕</span><div class="title">Warung Pizza<small>Landing page bisnis kuliner</small></div></a></div>
+</div>
+</div>
 
-  return websites;
-}
+<div class="date-group">
+<h2>📅 Jumat, 26 Jun 2026</h2>
+<div class="website-list">
+  <div class="website-card"><a href="happy-stickers.html"><span class="emoji">🎀</span><div class="title">Happy Stickers<small>Stiker lucu</small></div></a></div>
+</div>
+</div>
 
-let websites = [];
-async function init() {
-  websites = await loadWebsites();
-  document.getElementById('loading').style.display = 'none';
-  filter();
-}
-init();
-
-function filter() {
-  const q = document.getElementById('search').value.toLowerCase();
-  const grid = document.getElementById('grid');
-  const filtered = websites.filter(w =>
-    w.title.toLowerCase().includes(q) ||
-    w.author.toLowerCase().includes(q) ||
-    w.desc.toLowerCase().includes(q)
-  );
-
-  grid.innerHTML = filtered.map((w,i) => {
-    const color = COLORS[i % COLORS.length];
-    return `<a class="card" href="${w.file}">
-      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:${color};border-radius:14px 14px 0 0"></div>
-      <div style="padding-top:0.3rem">
-        <div class="card-icon">${w.icon}</div>
-        <div class="card-title">${w.title}</div>
-        ${w.author ? `<div class="card-author">oleh ${w.author}</div>` : ''}
-        ${w.desc ? `<div class="card-desc">${w.desc}</div>` : ''}
-        <div class="card-link">🌐 Lihat website →</div>
-      </div>
-    </a>`;
-  }).join('');
-
-  document.getElementById('count').textContent = `${filtered.length} website`;
-}
-</script>
+</div>
 </body>
 </html>
