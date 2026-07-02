@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🖼️ Galeri — albumzia.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #05000a; color: #e8e0f0; line-height: 1.7; position: relative; }
+    body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -2; background: radial-gradient(ellipse 70% 60% at 20% 30%, rgba(88, 28, 135, 0.25) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 80% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 50%), radial-gradient(ellipse 60% 50% at 50% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%); background-color: #05000a; }
+    .stars { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .star { position: absolute; width: var(--size,2px); height: var(--size,2px); background: #fff; border-radius: 50%; animation: twinkle var(--duration,3s) ease-in-out infinite alternate; animation-delay: var(--delay,0s); left: var(--x,50%); top: var(--y,50%); opacity: var(--opacity,0.4); box-shadow: 0 0 var(--glow,2px) rgba(255,255,255,0.3); }
+    .star.bright { width: var(--size,3px); height: var(--size,3px); box-shadow: 0 0 var(--glow,6px) rgba(255,255,255,0.6), 0 0 var(--glow2,10px) rgba(139,92,246,0.2); }
+    @keyframes twinkle { 0% { opacity: var(--opacity,0.2); transform: scale(0.8); } 100% { opacity: var(--opacity-max,0.9); transform: scale(1.1); } }
+    :root { --purple-900: #1a0f2e; --purple-800: #2d1b4e; --purple-700: #4a2d7a; --purple-600: #6b3fa0; --purple-500: #8b5cf6; --purple-400: #a78bfa; --purple-300: #c4b5fd; --purple-200: #ddd6fe; --blue-500: #3b82f6; --blue-400: #60a5fa; --blue-300: #93c5fd; --glass: rgba(255,255,255,0.05); --glass-border: rgba(255,255,255,0.08); --shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; height: auto; display: block; border-radius: 16px; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    .animate { animation: fadeInUp 0.8s ease forwards; }
+
+    nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 0, 10, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(139, 92, 246, 0.1); padding: 16px 0; }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 1.4rem; font-weight: 800; background: linear-gradient(135deg, var(--purple-400), var(--blue-400)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: var(--purple-300); font-weight: 500; padding: 8px 16px; border-radius: 50px; border: 1px solid rgba(139, 92, 246, 0.2); transition: all 0.3s; }
+    .nav-back:hover { color: #fff; border-color: var(--purple-400); background: rgba(139, 92, 246, 0.1); }
+
+    .page-header { padding-top: 120px; padding-bottom: 40px; text-align: center; }
+    .page-header h1 { font-size: 2.8rem; font-weight: 800; background: linear-gradient(135deg, var(--purple-300), var(--blue-300)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+    .page-header p { color: var(--purple-200); font-size: 1.1rem; }
+    .section-divider { width: 60px; height: 4px; background: linear-gradient(90deg, var(--purple-500), var(--blue-500)); border-radius: 4px; margin: 16px auto; }
+
+    .page-content { padding: 20px 0 80px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    .gallery-item { position: relative; border-radius: 20px; overflow: hidden; cursor: pointer; aspect-ratio: 4/3; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; background: linear-gradient(transparent, rgba(5, 0, 10, 0.85)); opacity: 0; transition: opacity 0.4s ease; }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay h4 { color: #fff; font-weight: 600; }
+    .gallery-overlay p { color: var(--purple-300); font-size: 0.9rem; }
+
+    footer { background: var(--purple-900); border-top: 1px solid rgba(139, 92, 246, 0.1); padding: 40px 0 20px; text-align: center; }
+    footer p { color: var(--purple-400); font-size: 0.85rem; }
+    footer a { color: var(--blue-400); }
+
+    @media (max-width: 768px) { .page-header h1 { font-size: 2rem; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); } }
+  </style>
+</head>
+<body>
+  <div class="stars" id="starsContainer"></div>
+  <nav>
+    <div class="container">
+      <a href="albumzia.html" class="nav-logo">✦ albumzia</a>
+      <a href="albumzia.html" class="nav-back">← Kembali</a>
+    </div>
+  </nav>
+
+  <section class="page-header animate">
+    <div class="container">
+      <h1>🖼️ Galeri</h1>
+      <p>Kumpulan momen dan karya dalam bingkai</p>
+      <div class="section-divider"></div>
+    </div>
+  </section>
+
+  <section class="page-content animate">
+    <div class="container">
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80" alt="Workspace" /><div class="gallery-overlay"><h4>Creative Workspace</h4><p>Meja kerja favoritku</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" alt="Digital" /><div class="gallery-overlay"><h4>Digital Universe</h4><p>Dunia digital dan teknologi</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80" alt="Coding" /><div class="gallery-overlay"><h4>Code & Create</h4><p>Menulis kode untuk masa depan</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600&q=80" alt="Nature" /><div class="gallery-overlay"><h4>Nature Escape</h4><p>Terinspirasi dari alam</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=600&q=80" alt="Art" /><div class="gallery-overlay"><h4>Art & Imagination</h4><p>Karya seni visual</p></div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Tech" /><div class="gallery-overlay"><h4>Future Tech</h4><p>Teknologi yang menginspirasi</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 albumzia.com — Dibuat dengan 💜 oleh <a href="albumzia.html">Zia Fithraturrahmah</a></p>
+    </div>
+  </footer>
+
+  <script>
+    function createStars() {
+      const container = document.getElementById('starsContainer');
+      for (let i = 0; i < 120; i++) {
+        const star = document.createElement('div');
+        star.className = 'star' + (i % 5 === 0 ? ' bright' : '');
+        const size = i % 5 === 0 ? (2 + Math.random() * 2) : (1 + Math.random() * 1.5);
+        star.style.setProperty('--size', size + 'px');
+        star.style.setProperty('--glow', (size * (2 + Math.random() * 4)) + 'px');
+        if (i % 5 === 0) star.style.setProperty('--glow2', (size * 4) + 'px');
+        star.style.setProperty('--x', Math.random() * 100 + '%');
+        star.style.setProperty('--y', Math.random() * 100 + '%');
+        star.style.setProperty('--duration', (2 + Math.random() * 4) + 's');
+        star.style.setProperty('--delay', (Math.random() * 5) + 's');
+        star.style.setProperty('--opacity', (0.1 + Math.random() * 0.3));
+        star.style.setProperty('--opacity-max', (0.4 + Math.random() * 0.6));
+        container.appendChild(star);
+      }
+    }
+    createStars();
+  </script>
+</body>
+</html>

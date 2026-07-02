@@ -35,6 +35,9 @@
     .star.bright { width: var(--size,3px); height: var(--size,3px); box-shadow: 0 0 var(--glow,6px) rgba(255,255,255,0.6), 0 0 var(--glow2,10px) rgba(139,92,246,0.2); }
     @keyframes twinkle { 0% { opacity: var(--opacity,0.2); transform: scale(0.8); } 100% { opacity: var(--opacity-max,0.9); transform: scale(1.1); } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes orbit { from { transform: rotate(0deg) translateX(var(--orbit-r)) rotate(0deg); } to { transform: rotate(360deg) translateX(var(--orbit-r)) rotate(-360deg); } }
+    @keyframes orbitRev { from { transform: rotate(0deg) translateX(var(--orbit-r)) rotate(0deg); } to { transform: rotate(-360deg) translateX(var(--orbit-r)) rotate(360deg); } }
+    @keyframes pulseSun { 0%,100% { box-shadow: 0 0 30px rgba(139,92,246,0.4), 0 0 60px rgba(59,130,246,0.2); transform: scale(1); } 50% { box-shadow: 0 0 50px rgba(139,92,246,0.6), 0 0 100px rgba(59,130,246,0.3); transform: scale(1.05); } }
 
     :root { --purple-900: #1a0f2e; --purple-800: #2d1b4e; --purple-500: #8b5cf6; --purple-400: #a78bfa; --purple-300: #c4b5fd; --purple-200: #ddd6fe; --blue-500: #3b82f6; --blue-400: #60a5fa; --blue-300: #93c5fd; --glass: rgba(255,255,255,0.05); --glass-border: rgba(255,255,255,0.08); }
 
@@ -46,16 +49,77 @@
     nav .container { display: flex; align-items: center; justify-content: center; }
     .nav-logo { font-size: 1.4rem; font-weight: 800; background: linear-gradient(135deg, var(--purple-400), var(--blue-400)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
+    /* ========== SOLAR SYSTEM ========== */
+    .solar-system {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 1px;
+      height: 1px;
+      z-index: 0;
+      pointer-events: none;
+      transform: translate(-50%, -45%);
+    }
+    .solar-sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px;
+      background: radial-gradient(circle, var(--purple-300), var(--purple-500) 40%, var(--blue-500));
+      border-radius: 50%;
+      animation: pulseSun 4s ease-in-out infinite;
+      z-index: 1;
+    }
+    .orbit-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px solid rgba(139, 92, 246, 0.08);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      animation: orbit var(--speed, 10s) linear infinite;
+      top: 50%;
+      left: 50%;
+      margin: calc(var(--size, 6px) / -2);
+      width: var(--size, 6px);
+      height: var(--size, 6px);
+      background: var(--color, var(--purple-400));
+      box-shadow: 0 0 var(--glow-s, 6px) var(--glow-c, rgba(139, 92, 246, 0.3));
+    }
+    .planet.rev { animation-name: orbitRev; }
+    .planet-1 { --orbit-r: 45px; --size: 4px; --speed: 8s; --color: #93c5fd; --glow-c: rgba(59,130,246,0.3); }
+    .planet-2 { --orbit-r: 70px; --size: 6px; --speed: 14s; --color: #c4b5fd; --glow-c: rgba(139,92,246,0.3); }
+    .planet-3 { --orbit-r: 100px; --size: 5px; --speed: 20s; --color: #f0abfc; --glow-c: rgba(192,132,252,0.25); }
+    .planet-4 { --orbit-r: 130px; --size: 7px; --speed: 26s; --color: #60a5fa; --glow-c: rgba(96,165,250,0.25); }
+    .planet-5 { --orbit-r: 160px; --size: 4px; --speed: 32s; --color: #ddd6fe; --glow-c: rgba(221,214,254,0.2); }
+    .planet-6 { --orbit-r: 185px; --size: 8px; --speed: 40s; --color: #a78bfa; --glow-c: rgba(167,139,250,0.2); }
+    .planet-6 { animation-name: orbitRev; }
+    .orbit-1 { width: 90px; height: 90px; }
+    .orbit-2 { width: 140px; height: 140px; }
+    .orbit-3 { width: 200px; height: 200px; }
+    .orbit-4 { width: 260px; height: 260px; }
+    .orbit-5 { width: 320px; height: 320px; }
+    .orbit-6 { width: 370px; height: 370px; }
+
     /* Hero */
     .hero {
-      min-height: 70vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 100px 24px 40px;
+      position: relative;
+      z-index: 1;
     }
-    .hero-content { animation: fadeInUp 1s ease forwards; max-width: 600px; }
+    .hero-content { animation: fadeInUp 1s ease forwards; max-width: 600px; position: relative; z-index: 2; }
     .hero-content .badge {
       display: inline-block;
       padding: 6px 18px;
@@ -169,14 +233,15 @@
       font-weight: 600;
     }
 
-    /* Section Cards Grid */
+    /* Section Cards Grid — Book Style */
     .section-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      max-width: 750px;
+      max-width: 800px;
       margin: 0 auto;
       padding-bottom: 80px;
+      perspective: 1400px;
     }
     .section-card {
       display: flex;
@@ -184,55 +249,122 @@
       align-items: center;
       gap: 10px;
       padding: 32px 20px 28px;
-      background: var(--glass);
+      background: linear-gradient(145deg, rgba(26, 15, 46, 0.7), rgba(45, 27, 78, 0.5));
       backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(139, 92, 246, 0.15);
+      border-radius: 16px;
       text-align: center;
       position: relative;
-      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
+    /* Book spine on the left */
     .section-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--purple-500), var(--blue-500));
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: linear-gradient(180deg, var(--purple-500), var(--blue-500));
+      border-radius: 16px 0 0 16px;
+      opacity: 0.5;
+      transition: opacity 0.4s ease, width 0.4s ease;
+    }
+    /* Folded page corner */
+    .section-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 30px 30px;
+      border-color: transparent transparent rgba(5, 0, 10, 0.4) transparent;
+      transition: border-width 0.4s ease;
+      pointer-events: none;
     }
     .section-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(139, 92, 246, 0.3);
-      box-shadow: 0 16px 48px rgba(139, 92, 246, 0.15);
-      background: rgba(255, 255, 255, 0.07);
+      transform: rotateY(-12deg) translateY(-6px) scale(1.02);
+      border-color: rgba(139, 92, 246, 0.35);
+      box-shadow: -8px 16px 48px rgba(139, 92, 246, 0.15), 0 8px 32px rgba(0, 0, 0, 0.3);
+      background: linear-gradient(145deg, rgba(26, 15, 46, 0.9), rgba(45, 27, 78, 0.7));
     }
-    .section-card:hover::before { opacity: 1; }
-    .section-card .card-icon { font-size: 2.6rem; transition: transform 0.4s ease; }
-    .section-card:hover .card-icon { transform: scale(1.15); }
-    .section-card .card-title { font-size: 1rem; font-weight: 600; color: #fff; }
-    .section-card .card-desc { font-size: 0.8rem; color: var(--purple-300); }
-    .section-card .card-arrow { font-size: 1.1rem; color: var(--blue-400); opacity: 0; transform: translateX(-10px); transition: all 0.4s ease; }
-    .section-card:hover .card-arrow { opacity: 1; transform: translateX(0); }
+    .section-card:hover::before {
+      opacity: 1;
+      width: 7px;
+      box-shadow: 2px 0 12px rgba(139, 92, 246, 0.2);
+    }
+    .section-card:hover::after {
+      border-width: 0 0 32px 32px;
+    }
+    .section-card .card-icon { font-size: 2.4rem; transition: transform 0.5s ease; position: relative; z-index: 1; }
+    .section-card:hover .card-icon { transform: scale(1.1) rotate(-3deg); }
+    .section-card .card-title { font-size: 1rem; font-weight: 700; color: #fff; position: relative; z-index: 1; }
+    .section-card .card-desc { font-size: 0.8rem; color: var(--purple-300); position: relative; z-index: 1; }
+    .section-card .card-arrow { font-size: 1.1rem; color: var(--blue-400); opacity: 0; transform: translateX(-10px); transition: all 0.4s ease; position: relative; z-index: 1; }
+    .section-card:hover .card-arrow { opacity: 1; transform: translateX(4px); }
+    /* Subtle page lines inside card */
+    .section-card .page-line {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.06), transparent);
+      pointer-events: none;
+    }
+    .section-card .page-line:nth-child(4) { top: 35%; }
+    .section-card .page-line:nth-child(5) { top: 55%; }
+    /* Grid positioning for 3 columns */
+    .section-card:nth-child(2):hover { transform: rotateY(-8deg) translateY(-6px) scale(1.02); }
+    .section-card:nth-child(3):hover { transform: rotateY(-8deg) translateY(-6px) scale(1.02); }
+    .section-card:nth-child(4):hover { transform: rotateY(8deg) translateY(-6px) scale(1.02); }
+    .section-card:nth-child(5):hover { transform: rotateY(8deg) translateY(-6px) scale(1.02); }
+    .section-card:nth-child(6):hover { transform: rotateY(8deg) translateY(-6px) scale(1.02); }
 
     /* Footer */
     footer { background: var(--purple-900); border-top: 1px solid rgba(139, 92, 246, 0.1); padding: 30px 0 20px; text-align: center; }
     footer p { color: var(--purple-400); font-size: 0.85rem; }
 
     /* Responsive */
+    @media (min-width: 769px) {
+      .section-card:last-child {
+        grid-column: 2;
+      }
+    }
     @media (max-width: 768px) {
       .hero-content h1 { font-size: 2.4rem; }
       .section-cards { grid-template-columns: repeat(2, 1fr); gap: 16px; padding-bottom: 60px; }
       .section-card { padding: 24px 16px 20px; }
     }
-    @media (max-width: 480px) {
-      .section-cards { grid-template-columns: 1fr; max-width: 280px; }
+    @media (max-width: 500px) {
+      .section-cards { grid-template-columns: 1fr; max-width: 300px; }
     }
   </style>
 </head>
 <body>
   <div class="stars" id="starsContainer"></div>
+
+  <!-- ========== SOLAR SYSTEM ========== -->
+  <div class="solar-system" id="solarSystem">
+    <div class="solar-sun"></div>
+    <div class="orbit-ring orbit-1"></div>
+    <div class="orbit-ring orbit-2"></div>
+    <div class="orbit-ring orbit-3"></div>
+    <div class="orbit-ring orbit-4"></div>
+    <div class="orbit-ring orbit-5"></div>
+    <div class="orbit-ring orbit-6"></div>
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    <div class="planet planet-3"></div>
+    <div class="planet planet-4"></div>
+    <div class="planet planet-5"></div>
+    <div class="planet planet-6"></div>
+  </div>
 
   <nav>
     <div class="container">
@@ -266,36 +398,56 @@
         <span class="card-title">Tentang Saya</span>
         <span class="card-desc">Kenali aku lebih dekat</span>
         <span class="card-arrow">→</span>
+        <span class="page-line"></span>
+        <span class="page-line"></span>
       </a>
       <a href="skills.html" class="section-card">
         <span class="card-icon">⚡</span>
         <span class="card-title">Skills</span>
         <span class="card-desc">Keahlian dan bakatku</span>
         <span class="card-arrow">→</span>
+        <span class="page-line"></span>
+        <span class="page-line"></span>
       </a>
       <a href="galeri.html" class="section-card">
         <span class="card-icon">🖼️</span>
         <span class="card-title">Galeri</span>
         <span class="card-desc">Karya dan momen</span>
         <span class="card-arrow">→</span>
+        <span class="page-line"></span>
+        <span class="page-line"></span>
       </a>
       <a href="proyek.html" class="section-card">
         <span class="card-icon">📖</span>
         <span class="card-title">Proyek</span>
         <span class="card-desc">Proyek tulisanku</span>
         <span class="card-arrow">→</span>
+        <span class="page-line"></span>
+        <span class="page-line"></span>
       </a>
       <a href="thoughts.html" class="section-card">
         <span class="card-icon">💭</span>
         <span class="card-title">My Thoughts</span>
         <span class="card-desc">Catatan dan inspirasi</span>
         <span class="card-arrow">→</span>
+        <span class="page-line"></span>
+        <span class="page-line"></span>
       </a>
       <a href="updates.html" class="section-card">
         <span class="card-icon">📡</span>
         <span class="card-title">Updates</span>
         <span class="card-desc">Kabar terbaruku</span>
         <span class="card-arrow">→</span>
+        <span class="page-line"></span>
+        <span class="page-line"></span>
+      </a>
+      <a href="blog.html" class="section-card">
+        <span class="card-icon">📝</span>
+        <span class="card-title">Blog Cerita</span>
+        <span class="card-desc">Cerpen, puisi & catatan</span>
+        <span class="card-arrow">→</span>
+        <span class="page-line"></span>
+        <span class="page-line"></span>
       </a>
     </div>
   </div>
