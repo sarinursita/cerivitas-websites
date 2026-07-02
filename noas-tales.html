@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noa's Tales — Zia.F</title>
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f3ff;
+      color: #1e1b4b;
+      line-height: 1.7;
+    }
+
+    /* ===== COLOR THEME ===== */
+    :root {
+      --blue: #3b82f6;
+      --blue-dark: #1e40af;
+      --blue-light: #dbeafe;
+      --purple: #8b5cf6;
+      --purple-dark: #5b21b6;
+      --purple-light: #ede9fe;
+      --gradient: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      --gradient-dark: linear-gradient(135deg, #1e40af, #5b21b6);
+      --glass: rgba(255, 255, 255, 0.15);
+      --shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+    .fade-in-delay-1 { animation-delay: 0.2s; opacity: 0; }
+    .fade-in-delay-2 { animation-delay: 0.4s; opacity: 0; }
+    .fade-in-delay-3 { animation-delay: 0.6s; opacity: 0; }
+
+    /* ===== STICKY NAV ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--gradient);
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+    }
+    nav .logo {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    nav .logo span {
+      color: #fde68a;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav ul li a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 5rem 2rem;
+    }
+    section:nth-child(even) {
+      background: #fff;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 90vh;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-text h1 {
+      font-size: 3.5rem;
+      color: #fff;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      animation: fadeIn 1s ease;
+    }
+    .hero-text h1 span {
+      color: #fde68a;
+    }
+    .hero-text p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      animation: fadeIn 1s ease 0.3s both;
+    }
+    .hero-text .btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--purple-dark);
+      padding: 0.9rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease 0.6s both;
+    }
+    .hero-text .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease 0.4s both;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-content img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .about-content h3 {
+      font-size: 1.8rem;
+      color: var(--blue-dark);
+      margin-bottom: 1rem;
+    }
+    .about-content p {
+      color: #4b5563;
+    }
+
+    /* ===== CARDS GRID ===== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(31, 38, 135, 0.1);
+      transition: 0.3s;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(31, 38, 135, 0.2);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
+    .card-body h4 {
+      font-size: 1.2rem;
+      color: var(--purple-dark);
+      margin-bottom: 0.5rem;
+    }
+    .card-body p {
+      color: #6b7280;
+      font-size: 0.95rem;
+    }
+
+    /* ===== FAQ ===== */
+    .faq-item {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 10px rgba(31, 38, 135, 0.08);
+      transition: 0.3s;
+    }
+    .faq-item:hover {
+      box-shadow: 0 4px 20px rgba(31, 38, 135, 0.15);
+    }
+    .faq-item h4 {
+      color: var(--blue-dark);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .faq-item p {
+      color: #6b7280;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-info h4 {
+      font-size: 1.3rem;
+      color: var(--purple-dark);
+      margin-bottom: 1rem;
+    }
+    .contact-info p {
+      color: #4b5563;
+      margin-bottom: 0.5rem;
+    }
+    .contact-info .social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .contact-info .social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+    .contact-info .social a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: 0.3s;
+      font-family: inherit;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--purple);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+    }
+    .contact-form textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    .contact-form button {
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .contact-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--gradient-dark);
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      padding: 2rem;
+    }
+    footer p {
+      font-size: 0.95rem;
+    }
+    footer span {
+      color: #fde68a;
+      font-weight: 600;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--gradient);
+        padding: 1rem 2rem;
+        gap: 0.8rem;
+      }
+      nav ul.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+      .hero-image {
+        order: -1;
+      }
+      .hero-image img {
+        max-height: 300px;
+        object-fit: cover;
+      }
+      .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="logo">✦ Noa's <span>Tales</span></div>
+    <button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
+    <ul>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#cerita">Cerita</a></li>
+      <li><a href="#karakter">Karakter</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-text">
+        <h1>Welcome to <span>Noa's Tales</span> ✨</h1>
+        <p>Sebuah tempat di mana ide-ide dari Zia.F berubah menjadi cerita, karakter, dan petualangan seru. Siap menjelajah?</p>
+        <a href="#cerita" class="btn">Mulai Baca Cerita →</a>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1510172951993-856a654f8c73?w=800&q=80"
+          alt="Dunia imajinasi Noa's Tales"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TENTANG ===== -->
+  <section id="tentang">
+    <div class="container">
+      <h2 class="section-title">📖 Tentang Noa's Tales</h2>
+      <p class="section-subtitle">Kenalan dulu sama dunia ini!</p>
+      <div class="about-content">
+        <img
+          src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&q=80"
+          alt="Menulis ide"
+        >
+        <div>
+          <h3>Hai, aku <span style="background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Zia.F</span> 👋</h3>
+          <p>
+            <strong>Noa's Tales</strong> adalah tempatku menuangkan semua ide kreatif yang ada di kepalaku.
+            Dari cerita petualangan seru, karakter-karakter unik, sampai ilustrasi-imajinasi liar —
+            semuanya ada di sini!<br><br>
+            Website ini dibuat untuk kamu yang suka menjelajah dunia imajinasi.
+            Setiap halaman punya cerita baru yang menunggu untuk ditemukan.
+            Yuk, lihat-lihat dan dapatkan inspirasimu! 🌟
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERITA ===== -->
+  <section id="cerita">
+    <div class="container">
+      <h2 class="section-title">🏰 Kumpulan Cerita</h2>
+      <p class="section-subtitle">Pilih cerita yang mau kamu baca!</p>
+      <div class="cards-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Petualangan pertama">
+          <div class="card-body">
+            <h4>✨ Petualangan di Negeri Awan</h4>
+            <p>Noa menemukan tangga menuju istana di atas awan. Apa yang akan ia temukan di sana?</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80" alt="Hutan misterius">
+          <div class="card-body">
+            <h4>🌲 Rahasia Hutan Berbisik</h4>
+            <p>Seekor rubah kecil membawa Noa ke hutan kuno yang bisa berbicara.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=80" alt="Bintang jatuh">
+          <div class="card-body">
+            <h4>⭐ Bintang Jatuh Terakhir</h4>
+            <p>Noa harus mengembalikan bintang ke langit sebelum fajar tiba.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KARAKTER ===== -->
+  <section id="karakter" style="background:#fff;">
+    <div class="container">
+      <h2 class="section-title">🦊 Karakter</h2>
+      <p class="section-subtitle">Kenalan dengan para tokoh di Noa's Tales!</p>
+      <div class="cards-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&q=80" alt="Karakter Noa">
+          <div class="card-body">
+            <h4>🐱 Noa</h4>
+            <p>Tokoh utama yang penasaran dan pemberani. Selalu siap untuk petualangan baru!</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=400&q=80" alt="Rubah ajaib">
+          <div class="card-body">
+            <h4>🦊 Kiko si Rubah</h4>
+            <p>Rubah ajaib yang bisa berbicara dan tahu jalan ke dunia paralel.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?w=400&q=80" alt="Burung hantu bijak">
+          <div class="card-body">
+            <h4>🦉 Om Oli</h4>
+            <p>Burung hantu tua yang bijak. Sumber pengetahuan dan teka-teki.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALERI ===== -->
+  <section id="galeri">
+    <div class="container">
+      <h2 class="section-title">🎨 Galeri Ilustrasi</h2>
+      <p class="section-subtitle">Kumpulan gambar yang bikin cerita makin hidup!</p>
+      <div class="cards-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" alt="Pemandangan fantasi">
+          <div class="card-body">
+            <h4>🌅 Matahari Terbenam di Pelangi</h4>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&q=80" alt="Alam">
+          <div class="card-body">
+            <h4>🌲 Hutan Ajaib</h4>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1504198266287-1659872e6590?w=400&q=80" alt="Gunung">
+          <div class="card-body">
+            <h4>🏔️ Puncak Impian</h4>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&q=80" alt="Hutan">
+          <div class="card-body">
+            <h4>🌿 Tempat Persembunyian Peri</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" style="background:#fff;">
+    <div class="container">
+      <h2 class="section-title">❓ FAQ</h2>
+      <p class="section-subtitle">Pertanyaan yang sering ditanyakan!</p>
+      <div class="faq-item">
+        <h4>Apa itu Noa's Tales?</h4>
+        <p>Noa's Tales adalah website kumpulan cerita, karakter, dan ide kreatif dari Zia.F. Semua cerita di sini original dan dibuat dengan imajinasi penuh!</p>
+      </div>
+      <div class="faq-item">
+        <h4>Apakah ceritanya bisa dibaca gratis?</h4>
+        <p>Tentu! Semua cerita di Noa's Tales bisa dibaca gratis kapan aja. Aku percaya imajinasi harus bisa dinikmati semua orang! 🌟</p>
+      </div>
+      <div class="faq-item">
+        <h4>Boleh request cerita atau karakter?</h4>
+        <p>Boleh banget! Kamu bisa kirim pesan lewat halaman Kontak. Siapa tahu ide kamu jadi cerita selanjutnya! 😊</p>
+      </div>
+      <div class="faq-item">
+        <h4>Kapan cerita baru rilis?</h4>
+        <p>Belum ada jadwal tetap, tapi Zia.F usahakan rutin nambah cerita baru. Pantau terus ya! 🚀</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KONTAK ===== -->
+  <section id="kontak">
+    <div class="container">
+      <h2 class="section-title">📬 Kontak</h2>
+      <p class="section-subtitle">Punya ide atau mau ngobrol? Kirim pesan ya!</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h4>📮 Hubungi Zia.F</h4>
+          <p>📍 Dari mana aja — ini dunia digital! 😄</p>
+          <p>✉️ <strong>zia.f@noastales.com</strong></p>
+          <p>💬 Balas dalam 1-2 hari</p>
+          <div class="social">
+            <a href="#" title="Instagram">📷</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="TikTok">🎵</a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form onsubmit="alert('Pesan terkirim! 🎉 (Ini contoh — nanti bisa dihubungkan ke email ya)'); return false;">
+            <input type="text" placeholder="Nama kamu" required>
+            <input type="email" placeholder="Email kamu" required>
+            <textarea placeholder="Pesan atau ide cerita..." required></textarea>
+            <button type="submit">Kirim Pesan ✨</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>✦ Noa's Tales — Dibuat dengan ❤️ oleh <span>Zia.F</span> ✦</p>
+    <p style="margin-top:0.5rem; font-size:0.85rem;">© 2025 Noa's Tales. Semua cerita original.</p>
+  </footer>
+
+</body>
+</html>
