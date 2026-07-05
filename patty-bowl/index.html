@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patty Bowl - Ricebowl Sehat, Tanpa Deep Fry</title>
+  <title>Patty Bowl — Sehat, High Protein, No Deep Fry</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --brand: #E8652E;
       --brand-dark: #C94D1A;
@@ -20,18 +19,14 @@
       --gray: #6B6560;
       --light-gray: #F0EDE8;
       --white: #FFFFFF;
-      --gold: #F5A623;
       --shadow: 0 4px 24px rgba(45,42,37,0.08);
     }
-
     body {
       font-family: 'Figtree', system-ui, sans-serif;
       color: var(--dark);
       background: var(--cream);
       line-height: 1.6;
     }
-
-    /* Nav */
     nav {
       background: var(--white);
       padding: 16px 24px;
@@ -43,36 +38,34 @@
       z-index: 100;
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
-
-    .logo {
-      font-weight: 900;
-      font-size: 1.5rem;
-      letter-spacing: -0.5px;
-    }
+    .logo { font-weight: 900; font-size: 1.4rem; letter-spacing: -0.5px; }
     .logo span { color: var(--brand); }
     .logo .bowl { color: var(--sage); font-weight: 800; }
-
     .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--gray);
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
+    .nav-links a { text-decoration: none; color: var(--gray); font-weight: 600; font-size: 0.85rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--brand); }
+    .btn {
+      display: inline-block;
+      background: var(--brand);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,101,46,0.3); }
+    .btn-sm { padding: 8px 20px; font-size: 0.85rem; }
 
     /* Hero */
     .hero {
       padding: 80px 24px 60px;
-      max-width: 1100px;
+      max-width: 1000px;
       margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 60px;
+      text-align: center;
     }
-    .hero-text { flex: 1; }
-    .hero-text .tagline {
+    .hero .tagline {
       color: var(--sage);
       font-weight: 700;
       font-size: 0.85rem;
@@ -80,182 +73,165 @@
       letter-spacing: 2px;
       margin-bottom: 12px;
     }
-    .hero-text h1 {
-      font-size: 3rem;
+    .hero h1 {
+      font-size: 2.8rem;
       font-weight: 900;
-      line-height: 1.1;
       letter-spacing: -1px;
       margin-bottom: 16px;
     }
-    .hero-text h1 span { color: var(--brand); }
-    .hero-text p {
+    .hero h1 span { color: var(--brand); }
+    .hero p {
       font-size: 1.1rem;
       color: var(--gray);
-      margin-bottom: 28px;
-      max-width: 480px;
-    }
-
-    .hero-visual {
-      flex: 1;
-      background: var(--sage-light);
-      border-radius: 24px;
-      padding: 40px;
-      text-align: center;
-      position: relative;
-    }
-    .hero-visual .emoji-bowl { font-size: 6rem; line-height: 1; }
-    .hero-visual .emoji-label {
-      margin-top: 8px;
-      font-weight: 700;
-      color: var(--sage);
-      font-size: 1.1rem;
-    }
-    .hero-visual .price-tag {
-      display: inline-block;
-      background: var(--brand);
-      color: white;
-      padding: 8px 20px;
-      border-radius: 100px;
-      font-weight: 800;
-      font-size: 1.3rem;
-      margin-top: 12px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--brand);
-      color: white;
-      padding: 14px 32px;
-      border-radius: 100px;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,101,46,0.3); }
-    .btn-outline {
-      background: transparent;
-      color: var(--brand);
-      border: 2px solid var(--brand);
-      margin-left: 12px;
-    }
-    .btn-outline:hover {
-      background: var(--brand);
-      color: white;
+      max-width: 600px;
+      margin: 0 auto 28px;
     }
 
     /* Section */
-    section { padding: 80px 24px; }
+    section { padding: 48px 24px; }
+    .container { max-width: 1000px; margin: 0 auto; }
     .section-title {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 800;
-      text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       letter-spacing: -0.5px;
     }
     .section-sub {
-      text-align: center;
       color: var(--gray);
-      max-width: 500px;
-      margin: 0 auto 48px;
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+      line-height: 1.7;
     }
 
-    .container { max-width: 1100px; margin: 0 auto; }
-
-    /* Menu Grid */
-    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .menu-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s;
-    }
-    .menu-card:hover { transform: translateY(-4px); }
-    .menu-card .emoji { font-size: 2.5rem; margin-bottom: 8px; }
-    .menu-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 4px; }
-    .menu-card .desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 16px; }
-    .menu-card .price { font-size: 1.4rem; font-weight: 900; color: var(--brand); }
-    .menu-card .price small { font-size: 0.75rem; font-weight: 400; color: var(--gray); }
-    .menu-card .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
-    .menu-card .tags span {
+    /* Product intro */
+    .product-intro {
       background: var(--sage-light);
-      color: var(--sage);
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
     }
+    .product-intro .emoji-big { font-size: 2.5rem; margin-bottom: 8px; }
+    .product-intro h3 { font-size: 1.3rem; font-weight: 800; }
+    .product-intro p { color: var(--gray); font-size: 0.95rem; margin-top: 6px; line-height: 1.6; }
 
-    .menu-card.featured {
-      border: 2px solid var(--brand);
-      position: relative;
+    /* Size sub-section */
+    .size-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0 12px;
     }
-    .menu-card.featured::after {
-      content: "BESTSELLER";
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--brand);
+    .size-header .emoji { font-size: 2rem; }
+    .size-header h4 { font-size: 1.1rem; font-weight: 800; }
+    .size-header .badge {
+      background: var(--sage);
       color: white;
-      padding: 4px 12px;
+      padding: 3px 10px;
       border-radius: 100px;
       font-size: 0.7rem;
       font-weight: 700;
       letter-spacing: 1px;
     }
-
-    .menu-section-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--sage);
-      margin: 40px 0 16px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .size-desc {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      line-height: 1.6;
     }
 
-    /* How it works */
-    .how-grid {
+    /* Cards */
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 32px;
-      text-align: center;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
     }
-    .how-step .icon {
-      font-size: 2.5rem;
-      background: var(--sage-light);
-      width: 72px;
-      height: 72px;
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+    .card .img-placeholder {
+      width: 100%;
+      height: 140px;
+      background: var(--light-gray);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
-      margin: 0 auto 16px;
+      color: var(--gray);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
     }
-    .how-step h4 { font-weight: 800; margin-bottom: 6px; }
-    .how-step p { font-size: 0.9rem; color: var(--gray); }
+    .card h5 { font-size: 0.95rem; font-weight: 800; }
+    .card .sub { font-size: 0.8rem; color: var(--gray); margin-bottom: 8px; }
+    .card .price { font-size: 1.3rem; font-weight: 900; color: var(--brand); }
+    .card .price small { font-size: 0.7rem; font-weight: 400; color: var(--gray); }
+    .card.featured {
+      border: 2px solid var(--brand);
+      position: relative;
+    }
+    .card.featured::after {
+      content: "BESTSELLER";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--brand);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+    .card .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+    .card .tags span {
+      background: var(--sage-light);
+      color: var(--sage);
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
 
-    /* Diskon Section */
+    /* Pricing table */
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      font-size: 0.85rem;
+    }
+    .pricing-table th {
+      background: var(--sage);
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 700;
+    }
+    .pricing-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .pricing-table tr:last-child td { border-bottom: none; }
+    .pricing-table .price-cell { font-weight: 800; color: var(--brand); }
+    .pricing-table .profit-cell { font-weight: 600; color: var(--sage); }
+
+    /* Promo */
     .promo-box {
       background: var(--white);
       border-radius: 20px;
-      padding: 40px;
+      padding: 32px;
       box-shadow: var(--shadow);
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
       text-align: center;
     }
-    .promo-tier .disc-pct {
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--brand);
-    }
-    .promo-tier .disc-min {
-      font-size: 0.85rem;
-      color: var(--gray);
-      margin-top: 4px;
-    }
+    .promo-tier .disc-pct { font-size: 2rem; font-weight: 900; color: var(--brand); }
+    .promo-tier .disc-min { font-size: 0.85rem; color: var(--gray); margin-top: 4px; line-height: 1.5; }
 
     /* Footer */
     footer {
@@ -268,14 +244,10 @@
     footer .logo .bowl { color: var(--sage); }
     footer p { font-size: 0.85rem; color: var(--gray); margin-top: 8px; }
 
-    /* Responsive */
     @media (max-width: 768px) {
-      .hero { flex-direction: column; padding: 40px 20px; gap: 32px; }
-      .hero-text h1 { font-size: 2.2rem; }
-      .hero-visual { padding: 24px; }
-      .hero-visual .emoji-bowl { font-size: 4rem; }
-      nav { padding: 12px 16px; }
-      .nav-links a { font-size: 0.8rem; }
+      .hero { padding: 40px 20px; }
+      .hero h1 { font-size: 2rem; }
+      .nav-links a:not(.btn) { display: none; }
     }
   </style>
 </head>
@@ -284,188 +256,286 @@
 <nav>
   <div class="logo"><span>Patty</span><span class="bowl">Bowl</span></div>
   <div class="nav-links">
-    <a href="#menu">Menu</a>
-    <a href="#how">Cara Pesan</a>
-    <a href="#promo">Promo</a>
-    <a href="#order" class="btn" style="padding:8px 20px; font-size:0.85rem;">Pesan</a>
+    <a href="#chicken">🥩 Chicken</a>
+    <a href="#eggtofu">🥚 Egg-Tofu</a>
+    <a href="#pricing">💰 Harga</a>
+    <a href="#promo">🔥 Promo</a>
+    <a href="#order" class="btn btn-sm">Pesan di Grab</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-text">
-    <div class="tagline">Ricebowl Sehat</div>
-    <h1><span>Pan-sear</span>, Bukan Deep Fry.<br>Protein Beneran.</h1>
-    <p>Patty ayam segar, pan-sear atau kukus — nggak digoreng tepung. Nasi hangat, sayuran segar, saus homemade. Makan kenyang tanpa rasa bersalah.</p>
-    <a href="#menu" class="btn">Lihat Menu</a>
-    <a href="https://grab.com" class="btn btn-outline" target="_blank">Pesan di Grab</a>
-  </div>
-  <div class="hero-visual">
-    <div class="emoji-bowl">🥩🥗</div>
-    <div class="emoji-label">Chicken Big Patty Bowl</div>
-    <div class="price-tag">Rp33.900</div>
-  </div>
+  <div class="tagline">🌿 Healthy Patty Bowl</div>
+  <h1><span>Sehat</span>, High Protein, <span>No Deep Fry</span></h1>
+  <p>Ricebowl dengan protein pilihan — di-pan-sear atau dikukus, bukan digoreng tepung. Nasi hangat, selada segar, saus homemade pilihan. Kenyang tanpa rasa bersalah.</p>
+  <a href="#chicken" class="btn">Lihat Menu</a>
 </section>
 
-<section id="menu" style="background: var(--white);">
+<!-- ===== CHICKEN ===== -->
+<section id="chicken">
   <div class="container">
-    <h2 class="section-title">📋 Menu Kami</h2>
-    <p class="section-sub">Dua lini protein, dua ukuran. Pilih sesuai selera dan kantong.</p>
 
-    <div class="menu-section-title">🥩 Chicken — Ayam Paha Giling + Wortel</div>
-    <div class="menu-grid">
-      <div class="menu-card featured">
-        <div class="emoji">🥩</div>
-        <h3>Chicken Big Patty Bowl</h3>
-        <div class="desc">1 patty besar pan-sear, nasi, acar, saus pilihan</div>
-        <div class="price">Rp33.900 <small>/ porsi</small></div>
+    <div class="product-intro">
+      <div class="emoji-big">🍗</div>
+      <h3>Chicken Patty Bowl</h3>
+      <p>Daging ayam fillet paha giling dicampur wortel parut dan bumbu, dibentuk jadi patty. Setiap porsi dapat nasi hangat, selada segar, patty pilihan, saus homemade pilihan (Cheesy / Salted Egg / Mentai / Teriyaki), dan sambal homemade.</p>
+    </div>
+
+    <!-- Big -->
+    <div class="size-header">
+      <span class="emoji">🥮</span>
+      <h4>Big Patty Bowl</h4>
+      <span class="badge">PAN-SEAR</span>
+    </div>
+    <p class="size-desc">Patty ukuran besar, dimasak dengan metode pan-sear — matang merata di luar, juicy di dalam. Disajikan dalam mangkok besar, porsi mengenyangkan.</p>
+
+    <div class="card-grid">
+      <div class="card featured">
+        <div class="img-placeholder">📸 Foto Single</div>
+        <h5>Chicken Big</h5>
+        <div class="sub">1 patty besar + nasi + selada + saus + sambal</div>
+        <div class="price">Rp33.900</div>
         <div class="tags"><span>Cheesy</span><span>Salted Egg</span><span>Mentai</span><span>Teriyaki</span></div>
       </div>
-      <div class="menu-card">
-        <div class="emoji">🥩🥩</div>
-        <h3>Paket Berdua</h3>
-        <div class="desc">2 Chicken Big, hemat Rp3.900</div>
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Paket 2</div>
+        <h5>Paket Berdua</h5>
+        <div class="sub">2 Chicken Big — hemat Rp3.900</div>
         <div class="price">Rp63.900</div>
       </div>
-      <div class="menu-card">
-        <div class="emoji">👨‍👩‍👧‍👧</div>
-        <h3>Paket Family</h3>
-        <div class="desc">4 Chicken Big, hemat Rp1.700</div>
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Paket 4</div>
+        <h5>Paket Family</h5>
+        <div class="sub">4 Chicken Big — cocok untuk keluarga</div>
         <div class="price">Rp133.900</div>
       </div>
     </div>
 
-    <div class="menu-section-title">🥚 Egg-Tofu — Telur + Tahu + Sayur</div>
-    <div class="menu-grid">
-      <div class="menu-card">
-        <div class="emoji">🥚</div>
-        <h3>Egg-Tofu Big Patty Bowl</h3>
-        <div class="desc">1 patty telur-tahu sayur, nasi, acar, saus pilihan</div>
-        <div class="price">Rp31.900 <small>/ porsi</small></div>
+    <!-- Mini -->
+    <div class="size-header">
+      <span class="emoji">🧆</span>
+      <h4>Mini Patty Bowl</h4>
+      <span class="badge">DIKUKUS</span>
+    </div>
+    <p class="size-desc">Empat keping mini patty, dikukus hingga matang sempurna — lembut dan ringan. Disajikan dalam mangkok ukuran value meal, cocok buat makan kenyang di tanggal tua 😆</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Single</div>
+        <h5>Chicken Mini</h5>
+        <div class="sub">4 mini patty kukus + nasi + selada + saus + sambal</div>
+        <div class="price">Rp23.900</div>
         <div class="tags"><span>Cheesy</span><span>Salted Egg</span><span>Mentai</span><span>Teriyaki</span></div>
       </div>
-      <div class="menu-card">
-        <div class="emoji">🥚🥚</div>
-        <h3>Paket Berdua</h3>
-        <div class="desc">2 Egg-Tofu Big, hemat Rp1.900</div>
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Paket 2</div>
+        <h5>Paket 2 Mini</h5>
+        <div class="sub">2 Chicken Mini — hemat Rp3.900, gratis ongkir Grab ✅</div>
+        <div class="price">Rp43.900</div>
+      </div>
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Paket 4</div>
+        <h5>Paket Family Mini</h5>
+        <div class="sub">4 Chicken Mini — untuk grup kecil</div>
+        <div class="price">Rp93.900</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== EGG-TOFU ===== -->
+<section id="eggtofu" style="background: var(--white);">
+  <div class="container">
+
+    <div class="product-intro">
+      <div class="emoji-big">🥚</div>
+      <h3>Egg-Tofu Patty Bowl</h3>
+      <p>Telur campur tahu putih dan sayuran, dibuat patty — tekstur fluffy, protein tetap terjaga. Setiap porsi dapat nasi hangat, selada segar, patty pilihan, saus homemade (Cheesy / Salted Egg / Mentai / Teriyaki), dan sambal homemade.</p>
+    </div>
+
+    <!-- Big -->
+    <div class="size-header">
+      <span class="emoji">🥮</span>
+      <h4>Big Patty Bowl</h4>
+      <span class="badge">PAN-SEAR</span>
+    </div>
+    <p class="size-desc">Patty besar egg-tofu, dimasak pan-sear. Disajikan dalam mangkok besar.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Single</div>
+        <h5>Egg-Tofu Big</h5>
+        <div class="sub">1 patty besar + nasi + selada + saus + sambal</div>
+        <div class="price">Rp31.900</div>
+        <div class="tags"><span>Cheesy</span><span>Salted Egg</span><span>Mentai</span><span>Teriyaki</span></div>
+      </div>
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Paket 2</div>
+        <h5>Paket Berdua</h5>
+        <div class="sub">2 Egg-Tofu Big — hemat Rp1.900</div>
         <div class="price">Rp61.900</div>
       </div>
-      <div class="menu-card">
-        <div class="emoji">👨‍👩‍👧‍👧</div>
-        <h3>Paket Family</h3>
-        <div class="desc">4 Egg-Tofu Big, hemat Rp5.700</div>
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Paket 4</div>
+        <h5>Paket Family</h5>
+        <div class="sub">4 Egg-Tofu Big — untuk keluarga</div>
         <div class="price">Rp121.900</div>
       </div>
     </div>
 
-    <div class="menu-section-title">🪙 Mini — 4 Keping, Buat Yang Laper Sedang</div>
-    <div class="menu-grid">
-      <div class="menu-card">
-        <div class="emoji">🪙</div>
-        <h3>Chicken Mini Patty Bowl</h3>
-        <div class="desc">4 mini patty kukus, nasi, saus pilihan</div>
-        <div class="price">Rp23.900 <small>/ porsi</small></div>
-      </div>
-      <div class="menu-card">
-        <div class="emoji">🪙🪙</div>
-        <h3>Paket 2 Mini</h3>
-        <div class="desc">Hemat Rp3.900 + gratis ongkir Grab</div>
-        <div class="price">Rp43.900</div>
-      </div>
-      <div class="menu-card">
-        <div class="emoji">👨‍👩‍👧‍👧</div>
-        <h3>Paket Family Mini</h3>
-        <div class="desc">4 porsi Mini, untuk grup kecil</div>
-        <div class="price">Rp93.900</div>
-      </div>
+    <!-- Mini -->
+    <div class="size-header">
+      <span class="emoji">🧆</span>
+      <h4>Mini Patty Bowl</h4>
+      <span class="badge">DIKUKUS</span>
     </div>
-    <div class="menu-grid" style="margin-top: 0;">
-      <div class="menu-card">
-        <div class="emoji">🪙</div>
-        <h3>Egg-Tofu Mini Patty Bowl</h3>
-        <div class="desc">4 mini patty egg-tofu kukus, nasi, saus pilihan</div>
-        <div class="price">Rp21.900 <small>/ porsi</small></div>
+    <p class="size-desc">Empat keping mini patty egg-tofu kukus — solusi kenyang di tanggal tua 😆</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Single</div>
+        <h5>Egg-Tofu Mini</h5>
+        <div class="sub">4 mini patty kukus + nasi + selada + saus + sambal</div>
+        <div class="price">Rp21.900</div>
+        <div class="tags"><span>Cheesy</span><span>Salted Egg</span><span>Mentai</span><span>Teriyaki</span></div>
       </div>
-      <div class="menu-card">
-        <div class="emoji">🪙🪙</div>
-        <h3>Paket 2 Mini</h3>
-        <div class="desc">Hemat Rp1.900 + gratis ongkir Grab</div>
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Paket 2</div>
+        <h5>Paket 2 Mini</h5>
+        <div class="sub">2 Egg-Tofu Mini — hemat Rp1.900, gratis ongkir Grab ✅</div>
         <div class="price">Rp41.900</div>
       </div>
-      <div class="menu-card">
-        <div class="emoji">👨‍👩‍👧‍👧</div>
-        <h3>Paket Family Mini</h3>
-        <div class="desc">4 porsi Mini Egg-Tofu</div>
+      <div class="card">
+        <div class="img-placeholder">📸 Foto Paket 4</div>
+        <h5>Paket Family Mini</h5>
+        <div class="sub">4 Egg-Tofu Mini — untuk grup kecil</div>
         <div class="price">Rp81.900</div>
       </div>
     </div>
+
   </div>
 </section>
 
-<section id="how">
+<!-- ===== PRICING TABLE ===== -->
+<section id="pricing">
   <div class="container">
-    <h2 class="section-title">📍 Cara Pesan</h2>
-    <p class="section-sub">Dateng langsung atau pesan lewat Grab — sama aja enaknya.</p>
-    <div class="how-grid">
-      <div class="how-step">
-        <div class="icon">🛒</div>
-        <h4>Pilih Menu</h4>
-        <p>Chicken atau Egg-Tofu, Big atau Mini, saus favorit kamu</p>
-      </div>
-      <div class="how-step">
-        <div class="icon">📱</div>
-        <h4>Pesan via Grab</h4>
-        <p>Cari <strong>Patty Bowl</strong> di GrabFood dan langsung order</p>
-      </div>
-      <div class="how-step">
-        <div class="icon">🚀</div>
-        <h4>Gratis Ongkir</h4>
-        <p>Paket 2 Mini udah di atas min gratis ongkir Rp40rb</p>
-      </div>
-      <div class="how-step">
-        <div class="icon">😋</div>
-        <h4>Nikmati</h4>
-        <p>Makan sehat tanpa deep fry — kenyang, puas, tanpa rasa bersalah</p>
-      </div>
-    </div>
+    <h2 class="section-title">💰 Tabel Harga Lengkap</h2>
+    <p class="section-sub">Harga sudah termasuk komisi Grab. Semua masih untung kok — bahkan pas diskon terbesar.</p>
+
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>Menu</th>
+          <th>Harga</th>
+          <th>Jenis</th>
+          <th>Ukuran</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Chicken Big</td>
+          <td class="price-cell">Rp33.900</td>
+          <td>Big (pan-sear)</td>
+          <td>1 porsi</td>
+        </tr>
+        <tr>
+          <td>Paket Berdua Chicken</td>
+          <td class="price-cell">Rp63.900</td>
+          <td>Big (pan-sear)</td>
+          <td>2 porsi</td>
+        </tr>
+        <tr>
+          <td>Paket Family Chicken</td>
+          <td class="price-cell">Rp133.900</td>
+          <td>Big (pan-sear)</td>
+          <td>4 porsi</td>
+        </tr>
+        <tr style="background: var(--sage-light);">
+          <td><strong>Chicken Mini</strong></td>
+          <td class="price-cell">Rp23.900</td>
+          <td>Mini (kukus)</td>
+          <td>1 porsi</td>
+        </tr>
+        <tr style="background: var(--sage-light);">
+          <td>Paket 2 Chicken Mini</td>
+          <td class="price-cell">Rp43.900</td>
+          <td>Mini (kukus)</td>
+          <td>2 porsi</td>
+        </tr>
+        <tr style="background: var(--sage-light);">
+          <td>Paket Family Chicken Mini</td>
+          <td class="price-cell">Rp93.900</td>
+          <td>Mini (kukus)</td>
+          <td>4 porsi</td>
+        </tr>
+        <tr>
+          <td>Egg-Tofu Big</td>
+          <td class="price-cell">Rp31.900</td>
+          <td>Big (pan-sear)</td>
+          <td>1 porsi</td>
+        </tr>
+        <tr>
+          <td>Paket Berdua Egg-Tofu</td>
+          <td class="price-cell">Rp61.900</td>
+          <td>Big (pan-sear)</td>
+          <td>2 porsi</td>
+        </tr>
+        <tr>
+          <td>Paket Family Egg-Tofu</td>
+          <td class="price-cell">Rp121.900</td>
+          <td>Big (pan-sear)</td>
+          <td>4 porsi</td>
+        </tr>
+        <tr style="background: var(--sage-light);">
+          <td><strong>Egg-Tofu Mini</strong></td>
+          <td class="price-cell">Rp21.900</td>
+          <td>Mini (kukus)</td>
+          <td>1 porsi</td>
+        </tr>
+        <tr style="background: var(--sage-light);">
+          <td>Paket 2 Egg-Tofu Mini</td>
+          <td class="price-cell">Rp41.900</td>
+          <td>Mini (kukus)</td>
+          <td>2 porsi</td>
+        </tr>
+        <tr style="background: var(--sage-light);">
+          <td>Paket Family Egg-Tofu Mini</td>
+          <td class="price-cell">Rp81.900</td>
+          <td>Mini (kukus)</td>
+          <td>4 porsi</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 12px; font-size: 0.85rem; color: var(--gray);">Pemesanan hanya melalui GrabFood. Cari <strong>Patty Bowl</strong> di aplikasi Grab.</p>
   </div>
 </section>
 
+<!-- ===== PROMO ===== -->
 <section id="promo" style="background: var(--white);">
   <div class="container">
     <h2 class="section-title">🔥 Diskon Tiering</h2>
-    <p class="section-sub">Makin banyak, makin hemat. Pilih salah satu tier waktu checkout.</p>
-    <div class="promo-box">
-      <div class="promo-tier">
-        <div class="disc-pct">10%</div>
-        <div style="font-weight:700;">Min Rp30rb</div>
-        <div class="disc-min">1 Big ✅ | 2 Mini ✅</div>
-      </div>
-      <div class="promo-tier">
-        <div class="disc-pct">15%</div>
-        <div style="font-weight:700;">Min Rp60rb</div>
-        <div class="disc-min">2 Big ✅ | 3+ Mini ✅</div>
-      </div>
-      <div class="promo-tier">
-        <div class="disc-pct">20%</div>
-        <div style="font-weight:700;">Min Rp120rb</div>
-        <div class="disc-min">Paket Family ✅ | 6 Mini ✅</div>
-      </div>
-    </div>
+    <p class="section-sub">Pilih salah satu tier diskon saat checkout. Makin banyak, makin hemat.</p>
+
+    <p style="text-align:center; color: var(--brand); font-weight:700; font-size:1.1rem;">Diskon up to 20% — syarat & ketentuan berlaku ✨</p>
   </div>
 </section>
 
-<section id="order" style="text-align:center; padding-bottom: 100px;">
+<!-- ===== ORDER ===== -->
+<section id="order" style="text-align:center; padding-bottom: 80px;">
   <div class="container">
-    <h2 class="section-title">🥩 Siap Makan Sehat?</h2>
-    <p class="section-sub" style="margin-bottom:24px;">Buka GrabFood sekarang, cari <strong>Patty Bowl</strong>, dan pesan menu favorit kamu!</p>
-    <a href="https://grab.com" class="btn" target="_blank">Pesan di GrabFood</a>
+    <h2 class="section-title">🥩 Pesan Sekarang</h2>
+    <p class="section-sub" style="margin-bottom:24px;">Cari <strong>Patty Bowl</strong> di GrabFood dan pesan menu favorit kamu!</p>
+    <a href="https://grab.com" class="btn" target="_blank">Pesan di GrabFood 🚀</a>
   </div>
 </section>
 
 <footer>
   <div class="logo"><span>Patty</span><span class="bowl">Bowl</span></div>
-  <p>Ricebowl sehat — pan-sear & kukus, tanpa deep fry.</p>
-  <p style="margin-top: 4px;">📍 Tersedia di GrabFood | 🕐 10:00 - 21:00</p>
+  <p>🌿 Healthy Patty Bowl — Sehat, High Protein, No Deep Fry</p>
+  <p style="margin-top: 4px;">📍 Tersedia di GrabFood</p>
 </footer>
 
 </body>
