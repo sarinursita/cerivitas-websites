@@ -1,459 +1,346 @@
-1|<!--
-2|Title: Asma' Design Studio
-3|Author: Asma' Hafidzah Nur Rahmah
-4|Icon: 🌻✨
-5|Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
-6|-->
-7|<!DOCTYPE html>
-8|<html lang="id">
-9|<head>
-10|<meta charset="UTF-8">
-11|<meta name="viewport" content="width=device-width, initial-scale=1.0">
-12|<title>Asma' Design Studio 🌻✨</title>
-13|<style>
-14|  * { box-sizing: border-box; margin: 0; padding: 0; }
-15|  html { scroll-behavior: smooth; }
-body {
+<!--
+Title: Asma' Design Studio
+Author: Asma' Hafidzah Nur Rahmah
+Icon: 🌻✨
+Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asma' Design Studio 🌻✨</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background: #faf7f2;
     color: #4a3520;
-20|    line-height: 1.6;
-21|    -webkit-font-smoothing: antialiased;
-22|  }
-23|
-24|  /* ===== NAV ===== */
-25|  nav {
-26|    position: fixed;
-27|    top: 0; left: 0; right: 0;
-28|    z-index: 1000;
-29|    background: rgba(92,58,30,0.92);
-30|    backdrop-filter: blur(12px);
-31|    padding: 12px 24px;
-32|    display: flex;
-33|    justify-content: space-between;
-34|    align-items: center;
-35|  }
-36|  nav .logo {
-37|    color: #faf0e6;
-38|    font-weight: 700;
-39|    font-size: 18px;
-40|    text-decoration: none;
-41|  }
-42|  nav .menu {
-43|    display: flex;
-44|    gap: 16px;
-45|    list-style: none;
-46|  }
-47|  nav .menu a {
-48|    color: #d4bfa8;
-49|    text-decoration: none;
-50|    font-size: 14px;
-51|    transition: color 0.2s;
-52|  }
-53|  nav .menu a:hover { color: #f0c8a0; }
-54|  .hamburger { display: none; color: #faf0e6; font-size: 24px; cursor: pointer; background: none; border: none; }
-55|
-56|  /* ===== HERO ===== */
-57|  .hero {
-58|    min-height: 100vh;
-59|    background: linear-gradient(135deg, #5c3a1e 0%, #7a5230 50%, #8b6340 100%);
-60|    display: flex;
-61|    align-items: center;
-62|    justify-content: center;
-63|    padding: 100px 24px 60px;
-64|    position: relative;
-65|    overflow: hidden;
-66|  }
-67|  .hero::before {
-68|    content: '';
-69|    position: absolute;
-70|    width: 400px; height: 400px;
-71|    background: rgba(240,200,160,0.06);
-72|    border-radius: 50%;
-73|    top: -100px; right: -100px;
-74|  }
-75|  .hero::after {
-76|    content: '';
-77|    position: absolute;
-78|    width: 300px; height: 300px;
-79|    background: rgba(240,200,160,0.04);
-80|    border-radius: 50%;
-81|    bottom: -80px; left: -80px;
-82|  }
-83|  .hero-inner {
-84|    max-width: 1100px;
-85|    width: 100%;
-86|    display: flex;
-87|    align-items: center;
-88|    gap: 48px;
-89|    position: relative;
-90|    z-index: 1;
-91|  }
-92|  .hero-text { flex: 1; color: #faf0e6; animation: fadeUp 0.8s ease; }
-93|  .hero-text .emoji-big { font-size: 64px; margin-bottom: 8px; }
-94|  .hero-text h1 { font-size: 42px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
-95|  .hero-text .tagline { font-size: 18px; opacity: 0.85; margin-bottom: 24px; }
-96|  .hero-text .btn {
-97|    display: inline-block;
-98|    background: #f0c8a0;
-99|    color: #5c3a1e;
-100|    padding: 14px 32px;
-101|    border-radius: 40px;
-102|    font-weight: 700;
-103|    font-size: 16px;
-104|    text-decoration: none;
-105|    transition: all 0.25s;
-106|  }
-107|  .hero-text .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-108|  .hero-img { flex: 1; text-align: center; }
-109|  .hero-img img {
-110|    width: 100%;
-111|    max-width: 420px;
-112|    border-radius: 24px;
-113|    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-114|    animation: fadeUp 1s ease 0.2s both;
-115|  }
-116|
-117|  /* ===== SECTIONS ===== */
-118|  section { padding: 80px 24px; }
-119|  .section-inner { max-width: 800px; margin: 0 auto; }
-120|  .section-title {
-121|    font-size: 28px;
-122|    color: #5c3a1e;
-123|    margin-bottom: 32px;
-124|    text-align: center;
-125|  }
-126|
-127|  /* ABOUT */
-128|  #about { background: #ffffff; }
-129|  .about-card {
-130|    background: white;
-131|    border-radius: 24px;
-132|    padding: 36px;
-133|    box-shadow: 0 4px 24px rgba(92,58,30,0.08);
-134|    border: 1px solid #e8d5c0;
-135|  }
-136|  .about-top {
-137|    display: flex;
-138|    gap: 28px;
-139|    align-items: flex-start;
-140|    margin-bottom: 24px;
-141|  }
-142|  .about-top img {
-143|    width: 120px; height: 120px;
-144|    border-radius: 50%;
-145|    object-fit: cover;
-146|    border: 3px solid #c0a080;
-147|    box-shadow: 0 4px 16px rgba(92,58,30,0.15);
-148|    flex-shrink: 0;
-149|  }
-150|  .about-top .info .name { font-size: 22px; font-weight: 700; color: #5c3a1e; }
-151|  .about-top .info .detail { color: #8b6f50; font-size: 14px; margin: 4px 0 12px; }
-152|  .exp-list { display: flex; flex-wrap: wrap; gap: 8px; }
-153|  .exp-item {
-154|    background: #f5ebe0;
-155|    padding: 5px 12px;
-156|    border-radius: 16px;
-157|    font-size: 12px;
-158|    color: #5c3a1e;
-159|  }
-160|
-161|  /* STORY */
-162|  #story { background: #5c3a1e; color: #faf0e6; }
-163|  .story-card {
-164|    background: rgba(255,255,255,0.08);
-165|    backdrop-filter: blur(10px);
-166|    border-radius: 24px;
-167|    padding: 36px;
-168|    border: 1px solid rgba(255,255,255,0.1);
-169|    font-size: 17px;
-170|    line-height: 1.8;
-171|  }
-172|  .story-card .hl { color: #f0c8a0; font-weight: 600; }
-173|
-174|  /* PRODUCTS */
-175|  #products { background: #ffffff; }
-176|  .produk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-177|  .produk-item {
-178|    background: white;
-179|    border-radius: 14px;
-180|    padding: 14px 16px;
-181|    display: flex; justify-content: space-between; align-items: center;
-182|    border: 1px solid #e8d5c0;
-183|    transition: transform 0.2s, box-shadow 0.2s;
-184|    cursor: default;
-185|  }
-186|  .produk-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(92,58,30,0.1); }
-187|  .produk-item .n { font-size: 13px; font-weight: 500; }
-188|  .produk-item .h { font-size: 14px; font-weight: 700; color: #8b6340; white-space: nowrap; }
-189|
-190|  /* PROMO */
-191|  #promo {
-192|    background: linear-gradient(135deg, #7a5230 0%, #5c3a1e 100%);
-193|    color: #faf0e6;
-194|  }
-195|  .promo-card {
-196|    background: rgba(255,255,255,0.08);
-197|    backdrop-filter: blur(10px);
-198|    border-radius: 24px;
-199|    padding: 32px;
-200|    border: 1px solid rgba(255,255,255,0.1);
-201|    text-align: center;
-202|  }
-203|  .promo-card .label {
-204|    display: inline-block;
-205|    background: #f0c8a0;
-206|    color: #5c3a1e;
-207|    padding: 6px 20px;
-208|    border-radius: 20px;
-209|    font-weight: 700;
-210|    font-size: 13px;
-211|    margin-bottom: 16px;
-212|  }
-213|  .promo-card h3 { font-size: 24px; margin-bottom: 6px; }
-214|  .promo-card .pricetag { font-size: 32px; font-weight: 800; color: #f0c8a0; margin: 8px 0 16px; }
-215|  .promo-card ul { list-style: none; padding: 0; }
-216|  .promo-card li { padding: 6px 0; font-size: 15px; opacity: 0.9; }
-217|  .promo-card li::before { content: '✅ '; }
-218|  .promo-card .hemat { font-size: 13px; opacity: 0.7; margin-top: 12px; }
-219|
-220|  /* KEUNGGULAN */
-221|  #keunggulan { background: #ffffff; }
-222|  .keunggulan-list { display: flex; flex-direction: column; gap: 14px; }
-223|  .keunggulan-item {
-224|    background: white;
-225|    border-radius: 16px;
-226|    padding: 18px 22px;
-227|    border: 1px solid #e8d5c0;
-228|    display: flex; align-items: center; gap: 14px;
-229|    transition: transform 0.2s;
-230|  }
-231|  .keunggulan-item:hover { transform: translateX(6px); }
-232|  .keunggulan-item .ic { font-size: 28px; flex-shrink: 0; }
-233|  .keunggulan-item strong { color: #8b6340; }
-234|
-235|  /* CONTACT */
-236|  #contact { background: #ffffff; text-align: center; }
-237|  .contact-card {
-238|    background: white;
-239|    border-radius: 24px;
-240|    padding: 36px;
-241|    box-shadow: 0 4px 24px rgba(92,58,30,0.08);
-242|    border: 1px solid #e8d5c0;
-243|    max-width: 480px; margin: 0 auto;
-244|  }
-245|  .contact-card .tag {
-246|    display: inline-block;
-247|    background: #5c3a1e;
-248|    color: #faf0e6;
-249|    padding: 8px 24px;
-250|    border-radius: 20px;
-251|    font-weight: 600;
-252|    margin-bottom: 16px;
-253|  }
-254|  .contact-card .motto { font-style: italic; color: #8b6f50; margin-top: 12px; }
-255|
-256|  /* FOOTER */
-257|  footer {
-258|    background: #4a3018;
-259|    color: #b8a088;
-260|    text-align: center;
-261|    padding: 24px;
-262|    font-size: 13px;
-263|  }
-264|
-265|  /* ANIMATIONS */
-266|  @keyframes fadeUp {
-267|    from { opacity: 0; transform: translateY(30px); }
-268|    to { opacity: 1; transform: translateY(0); }
-269|  }
-270|  .fade-up { animation: fadeUp 0.6s ease both; }
-271|  .fade-up-1 { animation: fadeUp 0.6s ease 0.1s both; }
-272|  .fade-up-2 { animation: fadeUp 0.6s ease 0.2s both; }
-273|
-274|  /* RESPONSIVE */
-275|  @media (max-width: 768px) {
-276|    .hero-inner { flex-direction: column-reverse; text-align: center; gap: 32px; }
-277|    .hero-text h1 { font-size: 30px; }
-278|    .about-top { flex-direction: column; align-items: center; text-align: center; }
-279|    .exp-list { justify-content: center; }
-280|    .produk-grid { grid-template-columns: 1fr; }
-281|    nav .menu { display: none; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: #5c3a1e; padding: 16px 24px; }
-282|    nav .menu.open { display: flex; }
-283|    .hamburger { display: block; }
-284|  }
-285|</style>
-286|</head>
-287|<body>
-288|
-289|<!-- NAV -->
-290|<nav>
-291|  <a href="#" class="logo">🌻 Asma' Studio</a>
-292|  <button class="hamburger" onclick="document.querySelector('.menu').classList.toggle('open')">☰</button>
-293|  <ul class="menu">
-294|    <li><a href="#about" onclick="document.querySelector('.menu').classList.remove('open')">Profil</a></li>
-295|    <li><a href="#story" onclick="document.querySelector('.menu').classList.remove('open')">Cerita</a></li>
-296|    <li><a href="#products" onclick="document.querySelector('.menu').classList.remove('open')">Produk</a></li>
-297|    <li><a href="#promo" onclick="document.querySelector('.menu').classList.remove('open')">Promo</a></li>
-298|    <li><a href="#contact" onclick="document.querySelector('.menu').classList.remove('open')">Kontak</a></li>
-299|  </ul>
-300|</nav>
-301|
-302|<!-- HERO -->
-303|<section class="hero">
-304|  <div class="hero-inner">
-305|    <div class="hero-text">
-306|      <div class="emoji-big">🌻✨</div>
-307|      <h1>Asma' Design Studio</h1>
-308|      <p class="tagline">Jasa desain grafis — ramah di kantong, maksimal di hasil!</p>
-309|      <a href="#products" class="btn">Lihat Produk →</a>
-310|    </div>
-311|    <div class="hero-img">
-312|      <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80" alt="Creative Design Workspace">
-313|    </div>
-314|  </div>
-315|</section>
-316|
-317|<!-- ABOUT -->
-318|<section id="about">
-319|  <div class="section-inner">
-320|    <h2 class="section-title">👩‍🎨 Profil Desainer</h2>
-321|    <div class="about-card">
-322|      <div class="about-top">
-        <img src="asma-foto.webp" alt="Asma'" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid #c0a080;box-shadow:0 4px 16px rgba(92,58,30,0.15);flex-shrink:0">
-324|        <div class="info">
-325|          <div class="name">Asma' Hafidzah Nur Rahmah</div>
-326|          <div class="detail">Kelas 5 SD → 6 &bull; Paser, Kalimantan Timur</div>
-327|          <div class="exp-list">
-328|            <span class="exp-item">🎯 Flyer Pengajian</span>
-329|            <span class="exp-item">⭐ Logo Jualan</span>
-330|            <span class="exp-item">🎉 Ucapan Hari Raya</span>
-331|            <span class="exp-item">🌸 Hari Kartini</span>
-332|            <span class="exp-item">👶 Hari Anak</span>
-333|            <span class="exp-item">🔧 Hari Buruh</span>
-334|            <span class="exp-item">🕌 Isra' Mi'raj</span>
-335|            <span class="exp-item">🎂 Ulang Tahun</span>
-336|            <span class="exp-item">📊 Saving Tracker</span>
-337|            <span class="exp-item">Dan masih banyak lagi!</span>
-338|          </div>
-339|        </div>
-340|      </div>
-341|      <p style="color:#8b6f50;font-size:14px">🚀 Baru serius mendalami sekarang — tapi hasilnya udah siap dipake!</p>
-342|    </div>
-343|  </div>
-344|</section>
-345|
-346|<!-- STORY -->
-347|<section id="story">
-348|  <div class="section-inner">
-349|    <h2 class="section-title" style="color:#faf0e6">💡 Latar Belakang Bisnis</h2>
-350|    <div class="story-card">
-351|      <p style="font-size:20px;margin-bottom:16px;opacity:0.7">"Kenapa bikin <span class="hl">Asma' Design Studio</span>?"</p>
-352|      <p>
-353|        Berawal dari ikut project <span class="hl">Cerivitas Workshop Business</span>, 
-354|        Asma' jadi tertarik buat bikin bisnis desain sendiri. Dari situ, 
-355|        <strong class="hl">Asma' Design Studio</strong> lahir — bisnis jasa desain grafis 
-356|        yang ramah di kantong, khusus buat kamu yang butuh desain keren 
-357|        tanpa bikin dompet nangis! 🎉
-358|      </p>
-359|    </div>
-360|  </div>
-361|</section>
-362|
-363|<!-- PRODUCTS -->
-364|<section id="products">
-365|  <div class="section-inner">
-366|    <h2 class="section-title">🖼 Produk & Harga</h2>
-367|    <p style="text-align:center;color:#8b6f50;margin-bottom:24px;font-size:14px">
-368|      17 jenis jasa desain — mulai Rp3.500!
-369|    </p>
-370|    <div class="produk-grid">
-371|      <div class="produk-item"><span class="n">🖼 Poster/Flyer Event</span><span class="h">Rp10k</span></div>
-372|      <div class="produk-item"><span class="n">✉ Desain Undangan</span><span class="h">Rp20k</span></div>
-373|      <div class="produk-item"><span class="n">🏴 Banner/Spanduk</span><span class="h">Rp25k</span></div>
-374|      <div class="produk-item"><span class="n">🎨 Desain Canva (Tugas/PPT)</span><span class="h">Rp12k</span></div>
-375|      <div class="produk-item"><span class="n">⭐ Logo UMKM/Personal</span><span class="h">Rp11,5k</span></div>
-376|      <div class="produk-item"><span class="n">🎀 Sticker Sheet (4 gambar)</span><span class="h">Rp3,5k</span></div>
-377|      <div class="produk-item"><span class="n">🛍 Stiker Jualan</span><span class="h">Rp10k</span></div>
-378|      <div class="produk-item"><span class="n">🏷 Name Tag</span><span class="h">Rp5k</span></div>
-379|      <div class="produk-item"><span class="n">📚 Desain Sampul Buku</span><span class="h">Rp10k</span></div>
-380|      <div class="produk-item"><span class="n">📋 Planner/Tracker/Printable</span><span class="h">Rp8k</span></div>
-381|      <div class="produk-item"><span class="n">🖥 Background/Wallpaper</span><span class="h">Rp5k</span></div>
-382|      <div class="produk-item"><span class="n">📄 CV</span><span class="h">Rp11k</span></div>
-383|      <div class="produk-item"><span class="n">🎉 Desain Ucapan/Greeting</span><span class="h">Rp4k</span></div>
-384|      <div class="produk-item"><span class="n">📊 Poster Infografis</span><span class="h">Rp10k</span></div>
-385|      <div class="produk-item"><span class="n">🍳 Recipe Design</span><span class="h">Rp8k</span></div>
-386|      <div class="produk-item"><span class="n">📖 Poster Edukasi Islami</span><span class="h">Rp8k</span></div>
-387|      <div class="produk-item"><span class="n">🎯 Desain Promosi</span><span class="h">Rp10k</span></div>
-388|    </div>
-389|  </div>
-390|</section>
-391|
-392|<!-- PROMO -->
-393|<section id="promo">
-394|  <div class="section-inner">
-395|    <h2 class="section-title" style="color:#faf0e6">🎁 Promo Spesial</h2>
-396|    <div class="promo-card">
-397|      <div class="label">✨ PROMO GRAND OPENING ✨</div>
-398|      <h3>Hemat Rp2.000!</h3>
-399|      <div class="pricetag">Rp10.000</div>
-400|      <ul>
-401|        <li>🎀 Sticker Sheet (4 gambar) — Rp3.500</li>
-402|        <li>🎉 Desain Ucapan/Greeting — Rp4.000</li>
-403|        <li>🏷 Name Tag — Rp5.000</li>
-404|      </ul>
-405|      <p class="hemat">Promo Grand Opening — stok terbatas! Total kalo beli sendiri: Rp12.500, kamu hemat Rp2.500! 🔥</p>
-406|    </div>
-407|  </div>
-408|</section>
-409|
-410|<!-- KEUNGGULAN -->
-411|<section id="keunggulan">
-412|  <div class="section-inner">
-413|    <h2 class="section-title">🌟 Kenapa Pilih Asma' Design Studio?</h2>
-414|    <div class="keunggulan-list">
-415|      <div class="keunggulan-item">
-416|        <span class="ic">💰</span>
-417|        <span><strong>Harga super ramah</strong> — mulai Rp3.500 aja! Sesekali dompet ga bakal nangis 😄</span>
-418|      </div>
-419|      <div class="keunggulan-item">
-420|        <span class="ic">✨</span>
-421|        <span><strong>Custom sesuai request</strong> — bukan template mentah. Kamu bilang mau gimana, Asma' bikin!</span>
-422|      </div>
-423|      <div class="keunggulan-item">
-424|        <span class="ic">🎯</span>
-425|        <span><strong>Cocok buat pelajar & UMKM</strong> — kebutuhan desain sehari-hari dengan harga pelajar</span>
-426|      </div>
-427|      <div class="keunggulan-item">
-428|        <span class="ic">🔄</span>
-429|        <span><strong>Bisa revisi</strong> sampai kamu puas. Hasil akhirnya pasti sesuai maumu!</span>
-430|      </div>
-431|      <div class="keunggulan-item">
-432|        <span class="ic">🎨</span>
-433|        <span><strong>Desain aesthetic & kekinian</strong> — biar brand kamu keliatan profesional</span>
-434|      </div>
-435|    </div>
-436|  </div>
-437|</section>
-438|
-439|<!-- CONTACT -->
-440|<section id="contact">
-441|  <div class="section-inner">
-442|    <h2 class="section-title">📞 Yuk Order!</h2>
-443|    <div class="contact-card">
-444|      <div class="tag">#AsmaDesignStudio</div>
-445|      <p style="font-size:16px;margin-bottom:8px;font-weight:600">📩 DM Instagram buat order & tanya-tanya</p>
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(92,58,30,0.92);
+    backdrop-filter: blur(12px);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo { color: #faf0e6; font-weight: 700; font-size: 18px; text-decoration: none; }
+  nav .menu { display: flex; gap: 16px; list-style: none; }
+  nav .menu a { color: #d4bfa8; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  nav .menu a:hover { color: #f0c8a0; }
+  .hamburger { display: none; color: #faf0e6; font-size: 24px; cursor: pointer; background: none; border: none; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #5c3a1e 0%, #7a5230 50%, #8b6340 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 100px 24px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1100px; width: 100%;
+    display: flex; align-items: center; gap: 48px;
+    position: relative; z-index: 1;
+  }
+  .hero-text { flex: 1; color: #faf0e6; animation: fadeUp 0.8s ease; }
+  .hero-text .emoji-big { font-size: 64px; margin-bottom: 8px; }
+  .hero-text h1 { font-size: 42px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .hero-text .tagline { font-size: 18px; opacity: 0.85; margin-bottom: 24px; }
+  .hero-text .btn {
+    display: inline-block;
+    background: #f0c8a0; color: #5c3a1e;
+    padding: 14px 32px; border-radius: 40px;
+    font-weight: 700; font-size: 16px; text-decoration: none;
+    transition: all 0.25s;
+  }
+  .hero-text .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+  .hero-img { flex: 1; text-align: center; }
+  .hero-img img {
+    width: 100%; max-width: 420px; border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  /* SECTIONS */
+  section { padding: 80px 24px; }
+  .section-inner { max-width: 800px; margin: 0 auto; }
+  .section-title { font-size: 28px; color: #5c3a1e; margin-bottom: 32px; text-align: center; }
+
+  /* ABOUT */
+  #about { background: #ffffff; }
+  .about-card {
+    background: white; border-radius: 24px; padding: 36px;
+    box-shadow: 0 4px 24px rgba(92,58,30,0.08);
+    border: 1px solid #e8d5c0;
+  }
+  .about-top { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 24px; }
+  .about-top img {
+    width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+    border: 3px solid #c0a080; box-shadow: 0 4px 16px rgba(92,58,30,0.15); flex-shrink: 0;
+  }
+  .about-top .info .name { font-size: 22px; font-weight: 700; color: #5c3a1e; }
+  .about-top .info .detail { color: #8b6f50; font-size: 14px; margin: 4px 0 12px; }
+  .exp-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .exp-item { background: #f5ebe0; padding: 5px 12px; border-radius: 16px; font-size: 12px; color: #5c3a1e; }
+
+  /* STORY */
+  #story { background: #5c3a1e; color: #faf0e6; }
+  .story-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 24px; padding: 36px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 17px; line-height: 1.8;
+  }
+  .story-card .hl { color: #f0c8a0; font-weight: 600; }
+
+  /* PRODUCTS */
+  #products { background: #ffffff; }
+  .produk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .produk-item {
+    background: white; border-radius: 14px; padding: 14px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    border: 1px solid #e8d5c0;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .produk-item:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(92,58,30,0.1); }
+  .produk-item .n { font-size: 13px; font-weight: 500; }
+  .produk-item .h { font-size: 14px; font-weight: 700; color: #8b6340; white-space: nowrap; }
+
+  /* PROMO */
+  #promo { background: linear-gradient(135deg, #7a5230 0%, #5c3a1e 100%); color: #faf0e6; }
+  .promo-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 24px; padding: 32px;
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+  }
+  .promo-card .label {
+    display: inline-block; background: #f0c8a0; color: #5c3a1e;
+    padding: 6px 20px; border-radius: 20px; font-weight: 700; font-size: 13px; margin-bottom: 16px;
+  }
+  .promo-card h3 { font-size: 24px; margin-bottom: 6px; }
+  .promo-card .pricetag { font-size: 32px; font-weight: 800; color: #f0c8a0; margin: 8px 0 16px; }
+  .promo-card ul { list-style: none; padding: 0; }
+  .promo-card li { padding: 6px 0; font-size: 15px; opacity: 0.9; }
+  .promo-card li::before { content: '✅ '; }
+  .promo-card .hemat { font-size: 13px; opacity: 0.7; margin-top: 12px; }
+
+  /* KEUNGGULAN */
+  #keunggulan { background: #ffffff; }
+  .keunggulan-list { display: flex; flex-direction: column; gap: 14px; }
+  .keunggulan-item {
+    background: white; border-radius: 16px; padding: 18px 22px;
+    border: 1px solid #e8d5c0;
+    display: flex; align-items: center; gap: 14px;
+    transition: transform 0.2s;
+  }
+  .keunggulan-item:hover { transform: translateX(6px); }
+  .keunggulan-item .ic { font-size: 28px; flex-shrink: 0; }
+  .keunggulan-item strong { color: #8b6340; }
+
+  /* CONTACT */
+  #contact { background: #ffffff; text-align: center; }
+  .contact-card {
+    background: white; border-radius: 24px; padding: 36px;
+    box-shadow: 0 4px 24px rgba(92,58,30,0.08);
+    border: 1px solid #e8d5c0;
+    max-width: 480px; margin: 0 auto;
+  }
+  .contact-card .tag {
+    display: inline-block; background: #5c3a1e;
+    color: #faf0e6; padding: 8px 24px;
+    border-radius: 20px; font-weight: 600; margin-bottom: 16px;
+  }
+  .contact-card .motto { font-style: italic; color: #8b6f50; margin-top: 12px; }
+
+  footer { background: #4a3018; color: #b8a088; text-align: center; padding: 24px; font-size: 13px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-inner { flex-direction: column-reverse; text-align: center; gap: 32px; }
+    .hero-text h1 { font-size: 30px; }
+    .about-top { flex-direction: column; align-items: center; text-align: center; }
+    .exp-list { justify-content: center; }
+    .produk-grid { grid-template-columns: 1fr; }
+    nav .menu { display: none; flex-direction: column; position: absolute; top: 56px; left: 0; right: 0; background: #5c3a1e; padding: 16px 24px; }
+    nav .menu.open { display: flex; }
+    .hamburger { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">🌻 Asma' Studio</a>
+  <button class="hamburger" onclick="document.querySelector('.menu').classList.toggle('open')">☰</button>
+  <ul class="menu">
+    <li><a href="#about" onclick="document.querySelector('.menu').classList.remove('open')">Profil</a></li>
+    <li><a href="#story" onclick="document.querySelector('.menu').classList.remove('open')">Cerita</a></li>
+    <li><a href="#products" onclick="document.querySelector('.menu').classList.remove('open')">Produk</a></li>
+    <li><a href="#promo" onclick="document.querySelector('.menu').classList.remove('open')">Promo</a></li>
+    <li><a href="#contact" onclick="document.querySelector('.menu').classList.remove('open')">Kontak</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="emoji-big">🌻✨</div>
+      <h1>Asma' Design Studio</h1>
+      <p class="tagline">Jasa desain grafis — ramah di kantong, maksimal di hasil!</p>
+      <a href="#products" class="btn">Lihat Produk →</a>
+    </div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80" alt="Desain Workspace">
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <h2 class="section-title">👩‍🎨 Profil Desainer</h2>
+    <div class="about-card">
+      <div class="about-top">
+        <img src="asma-foto.webp" alt="Asma'">
+        <div class="info">
+          <div class="name">Asma' Hafidzah Nur Rahmah</div>
+          <div class="detail">Kelas 5 SD → 6 &bull; Paser, Kalimantan Timur</div>
+          <div class="exp-list">
+            <span class="exp-item">🎯 Flyer Pengajian</span>
+            <span class="exp-item">⭐ Logo Jualan</span>
+            <span class="exp-item">🎉 Ucapan Hari Raya</span>
+            <span class="exp-item">🌸 Hari Kartini</span>
+            <span class="exp-item">👶 Hari Anak</span>
+            <span class="exp-item">🔧 Hari Buruh</span>
+            <span class="exp-item">🕌 Isra' Mi'raj</span>
+            <span class="exp-item">🎂 Ulang Tahun</span>
+            <span class="exp-item">📊 Saving Tracker</span>
+            <span class="exp-item">Dan masih banyak lagi!</span>
+          </div>
+        </div>
+      </div>
+      <p style="color:#8b6f50;font-size:14px">🚀 Baru serius mendalami sekarang — tapi hasilnya udah siap dipake!</p>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="section-inner">
+    <h2 class="section-title" style="color:#faf0e6">💡 Latar Belakang Bisnis</h2>
+    <div class="story-card">
+      <p style="font-size:20px;margin-bottom:16px;opacity:0.7">"Kenapa bikin <span class="hl">Asma' Design Studio</span>?"</p>
+      <p>
+        Berawal dari ikut project <span class="hl">Cerivitas Workshop Business</span>, 
+        Asma' jadi tertarik buat bikin bisnis desain sendiri. Dari situ, 
+        <strong class="hl">Asma' Design Studio</strong> lahir — bisnis jasa desain grafis 
+        yang ramah di kantong, khusus buat kamu yang butuh desain keren 
+        tanpa bikin dompet nangis! 🎉
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="section-inner">
+    <h2 class="section-title">🖼 Produk & Harga</h2>
+    <p style="text-align:center;color:#8b6f50;margin-bottom:24px;font-size:14px">17 jenis jasa desain — mulai Rp3.500!</p>
+    <div class="produk-grid">
+      <div class="produk-item"><span class="n">🖼 Poster/Flyer Event</span><span class="h">Rp10k</span></div>
+      <div class="produk-item"><span class="n">✉ Desain Undangan</span><span class="h">Rp20k</span></div>
+      <div class="produk-item"><span class="n">🏴 Banner/Spanduk</span><span class="h">Rp25k</span></div>
+      <div class="produk-item"><span class="n">🎨 Desain Canva (Tugas/PPT)</span><span class="h">Rp12k</span></div>
+      <div class="produk-item"><span class="n">⭐ Logo UMKM/Personal</span><span class="h">Rp11,5k</span></div>
+      <div class="produk-item"><span class="n">🎀 Sticker Sheet (4 gambar)</span><span class="h">Rp3,5k</span></div>
+      <div class="produk-item"><span class="n">🛍 Stiker Jualan</span><span class="h">Rp10k</span></div>
+      <div class="produk-item"><span class="n">🏷 Name Tag</span><span class="h">Rp5k</span></div>
+      <div class="produk-item"><span class="n">📚 Desain Sampul Buku</span><span class="h">Rp10k</span></div>
+      <div class="produk-item"><span class="n">📋 Planner/Tracker/Printable</span><span class="h">Rp8k</span></div>
+      <div class="produk-item"><span class="n">🖥 Background/Wallpaper</span><span class="h">Rp5k</span></div>
+      <div class="produk-item"><span class="n">📄 CV</span><span class="h">Rp11k</span></div>
+      <div class="produk-item"><span class="n">🎉 Desain Ucapan/Greeting</span><span class="h">Rp4k</span></div>
+      <div class="produk-item"><span class="n">📊 Poster Infografis</span><span class="h">Rp10k</span></div>
+      <div class="produk-item"><span class="n">🍳 Recipe Design</span><span class="h">Rp8k</span></div>
+      <div class="produk-item"><span class="n">📖 Poster Edukasi Islami</span><span class="h">Rp8k</span></div>
+      <div class="produk-item"><span class="n">🎯 Desain Promosi</span><span class="h">Rp10k</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="promo">
+  <div class="section-inner">
+    <h2 class="section-title" style="color:#faf0e6">🎁 Promo Spesial</h2>
+    <div class="promo-card">
+      <div class="label">✨ PROMO GRAND OPENING ✨</div>
+      <h3>Hemat Rp2.500!</h3>
+      <div class="pricetag">Rp10.000</div>
+      <ul>
+        <li>🎀 Sticker Sheet (4 gambar) — Rp3.500</li>
+        <li>🎉 Desain Ucapan/Greeting — Rp4.000</li>
+        <li>🏷 Name Tag — Rp5.000</li>
+      </ul>
+      <p class="hemat">Promo Grand Opening — stok terbatas! Hemat Rp2.500 dari harga normal Rp12.500! 🔥</p>
+    </div>
+  </div>
+</section>
+
+<section id="keunggulan">
+  <div class="section-inner">
+    <h2 class="section-title">🌟 Kenapa Pilih Asma' Design Studio?</h2>
+    <div class="keunggulan-list">
+      <div class="keunggulan-item">
+        <span class="ic">💰</span>
+        <span><strong>Harga super ramah</strong> — mulai Rp3.500 aja! Sesekali dompet ga bakal nangis 😄</span>
+      </div>
+      <div class="keunggulan-item">
+        <span class="ic">✨</span>
+        <span><strong>Custom sesuai request</strong> — bukan template mentah. Kamu bilang mau gimana, Asma' bikin!</span>
+      </div>
+      <div class="keunggulan-item">
+        <span class="ic">🎯</span>
+        <span><strong>Cocok buat pelajar & UMKM</strong> — kebutuhan desain sehari-hari dengan harga pelajar</span>
+      </div>
+      <div class="keunggulan-item">
+        <span class="ic">🔄</span>
+        <span><strong>Bisa revisi</strong> sampai kamu puas. Hasil akhirnya pasti sesuai maumu!</span>
+      </div>
+      <div class="keunggulan-item">
+        <span class="ic">🎨</span>
+        <span><strong>Desain aesthetic & kekinian</strong> — biar brand kamu keliatan profesional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <h2 class="section-title">📞 Yuk Order!</h2>
+    <div class="contact-card">
+      <div class="tag">#AsmaDesignStudio</div>
+      <p style="font-size:16px;margin-bottom:8px;font-weight:600">📩 DM Instagram buat order & tanya-tanya</p>
       <p style="font-size:15px;margin-bottom:8px;color:#5c3a1e">📞 Atau hubungi: <strong>[isi nomor HP kamu]</strong></p>
-446|      <p class="motto">"Jasa desain grafis — ramah di kantong, maksimal di hasil!"</p>
-447|    </div>
-448|    <p style="margin-top:30px;color:#c0a890;font-size:13px">© 2026 Asma' Design Studio 🌻✨</p>
-449|  </div>
-450|</section>
-451|
-452|<footer>
-453|  Dibuat dengan ❤️ oleh Asma' Hafidzah Nur Rahmah &bull; Paser, Kalimantan Timur
-454|</footer>
-455|
-456|</body>
-457|</html>
-458|
+      <p class="motto">"Jasa desain grafis — ramah di kantong, maksimal di hasil!"</p>
+    </div>
+    <p style="margin-top:30px;color:#c0a890;font-size:13px">© 2026 Asma' Design Studio 🌻✨</p>
+  </div>
+</section>
+
+<footer>
+  Dibuat dengan ❤️ oleh Asma' Hafidzah Nur Rahmah &bull; Paser, Kalimantan Timur
+</footer>
+
+</body>
+</html>
