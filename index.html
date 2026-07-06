@@ -1,39 +1,165 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>albumzia.com — Zia Fithraturrahmah</title>
-  <meta http-equiv="refresh" content="0; url=albumzia.html" />
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: #05000a;
-      color: #c4b5fd;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-    }
-    .loading {
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cerivitas Websites — Hasil Workshop Agent Adventure</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter','Segoe UI',sans-serif; background:#fef6fb; color:#5d3a5c; min-height:100vh; }
+.header { background:linear-gradient(135deg,#f48fb1,#ce93d8); color:#fff; padding:2rem 1.2rem; text-align:center; }
+.header h1 { font-size:1.8rem; margin-bottom:0.3rem; }
+.header p { opacity:.9; font-size:.9rem; }
+.container { max-width:900px; margin:0 auto; padding:1.5rem 1rem; }
+.date-group { margin-bottom:2rem; }
+.date-group h2 { font-size:1.2rem; color:#ce93d8; border-bottom:2px solid #fce4ec; padding-bottom:.5rem; margin-bottom:1rem; }
+.website-list { display:grid; gap:.7rem; }
+.website-card { background:#fff0f5; border:1px solid rgba(100,70,120,0.12); border-radius:12px; padding:1rem; transition: transform .2s, box-shadow .2s; }
+.website-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(100,70,120,0.1); }
+.website-card a { text-decoration:none; color:#5d3a5c; display:flex; align-items:center; gap:.8rem; }
+.website-card .emoji { font-size:1.5rem; }
+.website-card .title { font-weight:600; font-size:.95rem; }
+.website-card .title small { font-weight:400; color:#9e7a9e; font-size:.8rem; display:block; margin-top:.2rem; }
+.website-card:hover .title { color:#f48fb1; }
+
+/* Filter buttons */
+.filters { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1rem; justify-content:center; }
+.filter-btn { background:#fff0f5; border:1px solid rgba(100,70,120,0.12); border-radius:20px; padding:.4rem 1rem; cursor:pointer; font-size:.85rem; color:#5d3a5c; transition:all .2s; }
+.filter-btn.active, .filter-btn:hover { background:#f48fb1; color:#fff; border-color:#f48fb1; }
+
+#loading { text-align:center; padding:3rem; color:#9e7a9e; }
+#error-msg { text-align:center; padding:2rem; color:#e57373; display:none; }
+</style>
 </head>
 <body>
-  <div class="loading">
-    <p style="font-size:3rem;margin-bottom:12px;">✨</p>
-    <p>Mengarahkan ke albumzia.com...</p>
-  </div>
-  <script>
-    window.location.href = 'albumzia.html';
-  </script>
+<div class="header">
+  <h1>🌟 Cerivitas Websites</h1>
+  <p>Hasil karya peserta Agent Adventure Workshop</p>
+</div>
+<div class="container">
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-filter="all">Semua</button>
+</div>
+<div id="loading">Memuat daftar website...</div>
+<div id="error-msg" style="display:none;">Gagal memuat daftar website.</div>
+<div id="website-list"></div>
+</div>
+<script>
+// 🌟 Cerivitas Website Registry
+// Update ini kalau ada website baru!
+const WEBSITES = [
+  // === PAID Workshop — 28 Jun 2026 ===
+  { file:'bukit-emas-nun-jauh.html',     title:'Bukit Emas nun Jauh',      desc:'Petualangan Tatang',               emoji:'⛰️', author:'',  date:'2026-06-28', tag:'paid' },
+  { file:'cerita-misteri.html',          title:'Cerita Misteri',           desc:'Cerita horor interaktif',          emoji:'👻', author:'',  date:'2026-06-28', tag:'paid' },
+  { file:'chordrik.html',                title:'Chordrik',                 desc:'Transposisi chord gitar',          emoji:'🎸', author:'',  date:'2026-06-28', tag:'paid' },
+  { file:'dapur-zia.html',               title:'Dapur Zia',                desc:'Ayam Geprek Level 1-100',          emoji:'🍗', author:'Zia',  date:'2026-06-28', tag:'paid' },
+  { file:'jarvis-misteri.html',          title:'Jarvis Misteri',           desc:'Game misteri interaktif',           emoji:'🔍', author:'',  date:'2026-06-28', tag:'paid' },
+  { file:'mama-dina-cookies.html',       title:'Mama Dina Cookies',        desc:'Landing page bisnis kue',          emoji:'🍪', author:'',  date:'2026-06-28', tag:'paid' },
+  { file:'galeri.html',                  title:'Galeri',                   desc:'Galeri foto & karya',              emoji:'🖼️', author:'',  date:'2026-06-28', tag:'paid' },
+  { file:'tentang.html',                 title:'Tentang',                  desc:'Tentang workshop',                 emoji:'📖', author:'',  date:'2026-06-28', tag:'paid' },
+
+  // === FREE Workshop — 27 Jun 2026 ===
+  { file:'risol-heaven.html',            title:'Risol Heaven',             desc:'Landing page bisnis kuliner',       emoji:'🥟', author:'',  date:'2026-06-27', tag:'free' },
+  { file:'seri-misteri-kiki.html',       title:'Seri Misteri Kiki',        desc:'Cerita misteri interaktif',         emoji:'🐱', author:'',  date:'2026-06-27', tag:'free' },
+  { file:'warung-pizza.html',            title:'Warung Pizza',             desc:'Landing page bisnis kuliner',       emoji:'🍕', author:'',  date:'2026-06-27', tag:'free' },
+
+  // === Jumat, 26 Jun 2026 ===
+  { file:'happy-stickers.html',          title:'Happy Stickers',           desc:'Stiker lucu',                       emoji:'🎀', author:'',  date:'2026-06-26', tag:'free' },
+
+  // === 29 Jun 2026 ===
+  { file:'the-kingdom-of-staria.html',   title:'The Kingdom of Staria',    desc:'Dunia fantasi interaktif',          emoji:'👑', author:'',  date:'2026-06-29', tag:'paid' },
+
+  // === 30 Jun 2026 ===
+  { file:'albumzia.html',                title:'Album Zia',                desc:'Karya Zia Fithraturrahmah',         emoji:'🎵', author:'Zia', date:'2026-06-30', tag:'paid' },
+
+  // === Tambahan ===
+  { file:'asma-design-studio.html',       title:'Asma Design Studio',      desc:'Jasa desain grafis',               emoji:'🎨', author:'Asma', date:'2026-07-01', tag:'paid' },
+  { file:'kutukan-dingin.html',           title:'Kutukan Dingin',           desc:'Cerita horor oleh Aqil',           emoji:'❄️', author:'Aqil', date:'2026-07-03', tag:'paid' },
+  { file:'noas-tales.html',               title:"Noa's Tales",             desc:'Cerita interaktif Noa',            emoji:'📚', author:'Noa', date:'2026-07-03', tag:'paid' },
+  { file:'patty-bowl/index.html',         title:'Patty Bowl',               desc:'Ricebowl sehat tanpa deep fry',    emoji:'🥣', author:'',  date:'2026-07-04', tag:'paid' },
+  { file:'karya.html',                    title:'Karya — CYOA Stories',     desc:'Choose Your Own Adventure',         emoji:'🎭', author:'',  date:'2026-06-26', tag:'special' },
+  { file:'proyek.html',                   title:'Proyek',                   desc:'Proyek peserta workshop',           emoji:'📋', author:'',  date:'2026-06-26', tag:'special' },
+  { file:'blog.html',                     title:'Blog',                     desc:'Artikel & catatan',                emoji:'✍️', author:'',  date:'2026-06-26', tag:'special' },
+  { file:'skills.html',                   title:'Skills',                   desc:'Daftar skill peserta',              emoji:'💡', author:'',  date:'2026-06-26', tag:'special' },
+  { file:'thoughts.html',                 title:'Thoughts',                 desc:'Refleksi peserta',                  emoji:'💭', author:'',  date:'2026-06-26', tag:'special' },
+  { file:'updates.html',                  title:'Updates',                  desc:'Update kegiatan workshop',          emoji:'📢', author:'',  date:'2026-06-26', tag:'special' },
+];
+
+// Group by date
+function groupByDate(sites) {
+  const groups = {};
+  const tagLabels = {
+    'paid': 'PAID Workshop',
+    'free': 'FREE Workshop',
+    'special': 'Lainnya'
+  };
+  sites.forEach(s => {
+    const key = s.date;
+    if (!groups[key]) groups[key] = { label: key, sites: [] };
+    groups[key].sites.push(s);
+  });
+  return Object.values(groups).sort((a,b) => b.label.localeCompare(a.label));
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  return `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function render(filter = 'all') {
+  const container = document.getElementById('website-list');
+  let filtered = WEBSITES;
+  if (filter !== 'all') {
+    filtered = WEBSITES.filter(s => s.tag === filter);
+  }
+
+  const groups = groupByDate(filtered);
+  if (groups.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:#9e7a9e;">Tidak ada website untuk filter ini.</p>';
+    return;
+  }
+
+  container.innerHTML = groups.map(g => `
+    <div class="date-group">
+      <h2>📅 ${formatDate(g.label)}${g.label === 'paid' || g.label === 'free' ? ' — ' + (g.label === 'paid' ? 'PAID Workshop' : 'FREE Workshop') : ''}</h2>
+      <div class="website-list">
+        ${g.sites.map(s => `
+          <div class="website-card">
+            <a href="${s.file}">
+              <span class="emoji">${s.emoji}</span>
+              <div class="title">${s.title}${s.author ? `<small>Karya ${s.author}</small>` : `<small>${s.desc}</small>`}</div>
+            </a>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+// Filter buttons
+const filters = document.getElementById('filters');
+const filterTags = [...new Set(WEBSITES.map(s => s.tag))];
+filterTags.forEach(tag => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn';
+  btn.dataset.filter = tag;
+  const labels = { all:'Semua', paid:'PAID', free:'FREE', special:'Lainnya' };
+  btn.textContent = labels[tag] || tag;
+  filters.appendChild(btn);
+});
+
+filters.addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render(btn.dataset.filter);
+});
+
+document.getElementById('loading').style.display = 'none';
+render('all');
+</script>
 </body>
 </html>
