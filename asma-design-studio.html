@@ -82,9 +82,14 @@ Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
     border: 1px solid #e8d5c0;
   }
   .about-top { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 24px; }
-  .about-top img {
+  .about-top .photo-wrap {
+    width: 148px; height: 148px; border-radius: 50%;
+    background: #f5ebe0; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-top .photo-wrap img {
     width: 140px; height: 140px; border-radius: 50%; object-fit: cover; object-position: center 20%;
-    border: 4px solid #e8d5c0; box-shadow: 0 4px 20px rgba(92,58,30,0.15); flex-shrink: 0;
+    border: 4px solid #e8d5c0; box-shadow: 0 4px 20px rgba(92,58,30,0.15);
   }
   .about-top .info .name { font-size: 24px; font-weight: 700; color: #5c3a1e; }
   .about-top .info .detail { color: #8b6f50; font-size: 15px; margin: 4px 0 14px; }
@@ -215,7 +220,7 @@ Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
     <h2 class="section-title">👩‍🎨 Profil Desainer</h2>
     <div class="about-card">
       <div class="about-top">
-        <img src="asma-foto.webp" alt="Asma'">
+        <div class="photo-wrap"><img src="asma-foto.webp" alt="Asma'"></div>
         <div class="info">
           <div class="name">Asma' Hafidzah Nur Rahmah</div>
           <div class="detail">Kelas 5 SD → 6 &bull; Paser, Kalimantan Timur</div>
