@@ -31,7 +31,8 @@ Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
     justify-content: space-between;
     align-items: center;
   }
-  nav .logo { color: #faf0e6; font-weight: 700; font-size: 22px; text-decoration: none; }
+  nav .logo { display: flex; align-items: center; gap: 10px; color: #faf0e6; font-weight: 700; font-size: 22px; text-decoration: none; }
+  nav .logo img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #f0c8a0; }
   nav .menu { display: flex; gap: 24px; list-style: none; }
   nav .menu a { color: #d4bfa8; text-decoration: none; font-size: 17px; transition: color 0.2s; }
   nav .menu a:hover { color: #f0c8a0; }
@@ -213,7 +214,7 @@ Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
 <body>
 
 <nav>
-  <a href="#" class="logo">🌻 Asma' Studio</a>
+  <a href="#" class="logo"><img src="asma-logo.jpeg" alt="Logo Asma' Design Studio"> 🌻 Asma' Studio</a>
   <button class="hamburger" onclick="document.querySelector('.menu').classList.toggle('open')">☰</button>
   <ul class="menu">
     <li><a href="#about" onclick="document.querySelector('.menu').classList.remove('open')">Profil</a></li>
@@ -228,7 +229,7 @@ Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="emoji-big">🌻✨</div>
+      <div class="emoji-big"><img src="asma-logo.jpeg" alt="Logo Asma'" style="width:72px;height:72px;border-radius:50%;border:3px solid #e8d5c0;vertical-align:middle;margin-right:10px;object-fit:cover"> 🌻✨</div>
       <h1>Asma' Design Studio</h1>
       <p class="tagline">Jasa desain grafis — ramah di kantong, maksimal di hasil!</p>
       <a href="#products" class="btn">Lihat Produk →</a>
