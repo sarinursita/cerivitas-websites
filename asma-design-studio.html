@@ -144,6 +144,20 @@ Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
   }
   @media (max-width: 768px) { .portfolio-grid { grid-template-columns: 1fr; } }
 
+  /* TESTIMONI */
+  .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .testi-card {
+    background: white; border-radius: 20px; padding: 28px;
+    border: 1px solid #e8d5c0;
+    display: flex; gap: 18px; align-items: flex-start;
+    transition: transform 0.2s;
+  }
+  .testi-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(92,58,30,0.08); }
+  .testi-avatar { font-size: 40px; flex-shrink: 0; }
+  .testi-text { font-size: 16px; color: #4a3520; font-style: italic; line-height: 1.7; }
+  .testi-name { font-size: 14px; color: #8b6f50; margin-top: 10px; font-weight: 600; }
+  @media (max-width: 768px) { .testi-grid { grid-template-columns: 1fr; } }
+
   /* PROMO */
   #promo { background: linear-gradient(135deg, #7a5230 0%, #5c3a1e 100%); color: #faf0e6; }
   .promo-card {
@@ -222,6 +236,7 @@ Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
     <li><a href="#products" onclick="document.querySelector('.menu').classList.remove('open')">Produk</a></li>
     <li><a href="#portofolio" onclick="document.querySelector('.menu').classList.remove('open')">Portofolio</a></li>
     <li><a href="#promo" onclick="document.querySelector('.menu').classList.remove('open')">Promo</a></li>
+    <li><a href="#testimoni" onclick="document.querySelector('.menu').classList.remove('open')">Testimoni</a></li>
     <li><a href="#contact" onclick="document.querySelector('.menu').classList.remove('open')">Kontak</a></li>
   </ul>
 </nav>
@@ -371,6 +386,29 @@ Desc: Jasa desain grafis — ramah di kantong, maksimal di hasil!
         <li>🏷 Name Tag — Rp5.000</li>
       </ul>
       <p class="hemat">Promo Grand Opening — stok terbatas! Hemat Rp2.500 dari harga normal Rp12.500! 🔥</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testimoni" style="background:#faf7f2;">
+  <div class="section-inner">
+    <h2 class="section-title">💬 Kata Mereka</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-avatar">🕊️</div>
+        <div class="testi-body">
+          <p class="testi-text">"Belum ada testimoni nih... <strong>kamu yang pertama?</strong> 😊"</p>
+          <p class="testi-name">— (Placeholder)</p>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-avatar">⭐</div>
+        <div class="testi-body">
+          <p class="testi-text">Nanti kalo udah order, Asma' bakal taruh testimoni kamu di sini! 🎉</p>
+          <p class="testi-name">— (Kamu?)</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
