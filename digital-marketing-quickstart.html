@@ -32,6 +32,34 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f7f
   --radius:16px;
 }
 
+/* ===== TABLE ===== */
+.content-table-wrapper{overflow-x:auto;margin:32px 0}
+.content-table{
+  width:100%;border-collapse:separate;border-spacing:0;
+  font-size:0.85rem;border-radius:12px;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.content-table thead{background:var(--blue-primary);color:var(--white)}
+.content-table th{
+  padding:12px 14px;text-align:left;font-weight:600;
+  white-space:nowrap;
+}
+.content-table td{padding:10px 14px;border-bottom:1px solid #eef6fc;color:var(--gray-800)}
+.content-table tbody tr{background:var(--white);transition:background 0.2s}
+.content-table tbody tr:hover{background:var(--blue-light)}
+.content-table .tag{
+  display:inline-block;font-size:0.7rem;font-weight:600;
+  padding:2px 8px;border-radius:12px;
+}
+.tag-educate{background:#e3f2fd;color:#1565c0}
+.tag-entertain{background:#fff3e0;color:#e65100}
+.tag-inspire{background:#f3e5f5;color:#7b1fa2}
+.tag-selling{background:#ffebee;color:#c62828}
+.table-caption{
+  font-size:0.9rem;color:var(--gray-600);text-align:center;
+  margin-top:12px;font-style:italic;
+}
+
 /* ===== NAV ===== */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -415,6 +443,59 @@ footer strong{opacity:1}
         <h4>6️⃣ Pantau & Sesuaikan</h4>
         <p>Tiap hari liat dashboard: udah sesuai goal belum? Kalo belum, sesuaikan rencana selanjutnya!</p>
       </div>
+    </div>
+
+    <!-- CONTOH KALENDER 1 BULAN -->
+    <div style="margin-top:48px;margin-bottom:32px">
+      <h3 style="font-size:1.3rem;color:var(--blue-dark);margin-bottom:4px">🏫 Contoh: Kalender Konten 1 Bulan — Sekolah</h3>
+      <p style="color:var(--gray-600);font-size:0.9rem;margin-bottom:20px">
+        Goal bulan ini: <strong>Penerimaan Murid Baru (PMB)</strong> — target: orang tua calon murid
+      </p>
+
+      <div class="content-table-wrapper">
+        <table class="content-table">
+          <thead>
+            <tr>
+              <th>Minggu</th>
+              <th>Hari</th>
+              <th>Tipe</th>
+              <th>Judul Konten</th>
+              <th>Visual</th>
+              <th>CTA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- MINGGU 1: BRAND AWARENESS -->
+            <tr><td rowspan="5"><strong>Minggu 1</strong><br><span style="font-size:0.75rem;color:#64748b">Brand Awareness</span></td><td>Senin</td><td><span class="tag tag-educate">Educate</span></td><td>Apa sih yang bikin sekolah kita beda?</td><td>Carousel (5 slide)</td><td>💬 "Menurutmu, hal terpenting dari sekolah apa?"</td></tr>
+            <tr><td>Selasa</td><td><span class="tag tag-educate">Educate</span></td><td>Fasilitas sekolah: lab, perpus, lapangan</td><td>Video 30 detik</td><td>🔗 "Link info lengkap di bio"</td></tr>
+            <tr><td>Rabu</td><td><span class="tag tag-entertain">Entertain</span></td><td>Semangat pagi murid-murid! 🏃</td><td>Reels/TikTok</td><td>❤️ "Double tap kalo kangen masa sekolah"</td></tr>
+            <tr><td>Kamis</td><td><span class="tag tag-inspire">Inspire</span></td><td>Testimoni orang tua: "Anakku jadi percaya diri"</td><td>Gambar + quotes</td><td>📲 "DM buat dapetin info PMB"</td></tr>
+            <tr><td>Jumat</td><td><span class="tag tag-educate">Educate</span></td><td>Kurikulum terbaru: apa yang dipelajari?</td><td>Infografis</td><td>🔗 "Swipe up buat download brosur"</td></tr>
+
+            <!-- MINGGU 2: ENGAGEMENT -->
+            <tr><td rowspan="5"><strong>Minggu 2</strong><br><span style="font-size:0.75rem;color:#64748b">Engagement</span></td><td>Senin</td><td><span class="tag tag-entertain">Entertain</span></td><td>Kegiatan ekstrakurikuler seru! 🎭⚽🎨</td><td>Video montase</td><td>💬 "Ekskul favoritmu apa?"</td></tr>
+            <tr><td>Selasa</td><td><span class="tag tag-inspire">Inspire</span></td><td>Cerita alumni: sukses dari sekolah kita</td><td>Interview singkat</td><td>🔗 "Baca cerita lengkapnya di bio"</td></tr>
+            <tr><td>Rabu</td><td><span class="tag tag-educate">Educate</span></td><td>Tips milih sekolah buat anak (buat ortu)</td><td>Carousel (10 slide)</td><td>❤️ "Save biar ga lupa!"</td></tr>
+            <tr><td>Kamis</td><td><span class="tag tag-entertain">Entertain</span></td><td>Tour sekolah virtual — 1 menit</td><td>Video 60 detik</td><td>🔗 "Daftar virtual tour di link bio"</td></tr>
+            <tr><td>Jumat</td><td><span class="tag tag-inspire">Inspire</span></td><td>Prestasi murid: juara lomba sains 🏆</td><td>Foto + cerita</td><td>💬 "Kasi selamat di kolom komen!"</td></tr>
+
+            <!-- MINGGU 3: DESIRE BUILDING -->
+            <tr><td rowspan="5"><strong>Minggu 3</strong><br><span style="font-size:0.75rem;color:#64748b">Desire Building</span></td><td>Senin</td><td><span class="tag tag-educate">Educate</span></td><td>Biaya sekolah vs investasi masa depan?</td><td>Infografis</td><td>🔗 "Konsultasi gratis via WA"</td></tr>
+            <tr><td>Selasa</td><td><span class="tag tag-inspire">Inspire</span></td><td>Hari pertama murid baru — pengalaman seru</td><td>Video POV</td><td>❤️ "Share ke temen yang mau daftar"</td></tr>
+            <tr><td>Rabu</td><td><span class="tag tag-educate">Educate</span></td><td>Program beasiswa: siapa aja bisa!</td><td>Carousel</td><td>📲 "DM buat cek syarat beasiswa"</td></tr>
+            <tr><td>Kamis</td><td><span class="tag tag-entertain">Entertain</span></td><td>Guru-guru kocak: challenge seru 🎯</td><td>Reels</td><td>💬 "Tag guru favoritmu!"</td></tr>
+            <tr><td>Jumat</td><td><span class="tag tag-selling">Selling</span></td><td>Promo pendaftaran: diskon 15% khusus minggu ini!</td><td>Poster grafis</td><td>🔗 "Daftar sekarang di link bio!"</td></tr>
+
+            <!-- MINGGU 4: ACTION -->
+            <tr><td rowspan="5"><strong>Minggu 4</strong><br><span style="font-size:0.75rem;color:#64748b">Closing / Action</span></td><td>Senin</td><td><span class="tag tag-selling">Selling</span></td><td>Open House sekolah — datang & lihat langsung</td><td>Poster + lokasi</td><td>📲 "Daftar hadir: DM atau link bio"</td></tr>
+            <tr><td>Selasa</td><td><span class="tag tag-inspire">Inspire</span></td><td>Hitung mundur Open House: persiapan panitia 🎉</td><td>Behind the scene</td><td>❤️ "Yang mau dateng, react ya!"</td></tr>
+            <tr><td>Rabu</td><td><span class="tag tag-selling">Selling</span></td><td>FAQs PMB: semua yang perlu ortu tau</td><td>Carousel Q&A</td><td>🔗 "Link pendaftaran di bio"</td></tr>
+            <tr><td>Kamis</td><td><span class="tag tag-educate">Educate</span></td><td>Perbandingan: sekolah kami vs sekolah lain</td><td>Tabel perbandingan</td><td>💬 "Tanya2 soal sekolah kami di sini"</td></tr>
+            <tr><td>Jumat</td><td><span class="tag tag-selling">Selling</span></td><td>🚨 Last call! Pendaftaran tutup besok!</td><td>Video urgency</td><td>🔗 "Daftar sekarang juga!"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-caption">💡 Tips: Jadwal posting ideal Senin-Jumat jam 19.00-21.00 (ortu lagi santai) & Sabtu pagi jam 08.00-10.00</p>
     </div>
 
     <div class="big-card" style="margin-top:16px;text-align:center;background:var(--blue-light);border-color:var(--blue-mid)">
