@@ -60,6 +60,46 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f7f
   margin-top:12px;font-style:italic;
 }
 
+/* ===== PROFILE / KYC ===== */
+.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-bottom:28px}
+.profile-card{
+  background:var(--white);border-radius:14px;overflow:hidden;
+  box-shadow:var(--shadow-sm);border:1px solid rgba(126,200,227,0.15);
+  transition:all 0.3s;
+}
+.profile-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.profile-head{
+  padding:16px 18px;color:var(--white);font-weight:700;font-size:0.95rem;
+  display:flex;align-items:center;gap:8px;
+}
+.profile-body{padding:16px 18px;font-size:0.82rem;color:var(--gray-700);line-height:1.6}
+.profile-body strong{color:var(--blue-dark)}
+.profile-body .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed #eef6fc}
+.profile-body .row:last-child{border-bottom:none}
+.profile-body .label{color:var(--gray-600);font-size:0.78rem}
+.profile-body .value{font-weight:600;font-size:0.82rem;text-align:right;max-width:55%}
+
+.template-box{
+  background:var(--white);border-radius:14px;
+  border:2px dashed var(--blue-mid);overflow:hidden;
+}
+.template-box .head{
+  background:var(--blue-light);padding:12px 20px;
+  font-weight:600;color:var(--blue-dark);font-size:0.9rem;
+}
+.template-box .body{padding:20px}
+.template-box .field{margin-bottom:12px}
+.template-box .field label{
+  display:block;font-size:0.78rem;font-weight:600;
+  color:var(--gray-600);margin-bottom:2px;
+}
+.template-box .field .input-line{
+  display:block;width:100%;border:none;border-bottom:2px dashed var(--blue-mid);
+  padding:4px 0;font-size:0.9rem;color:var(--gray-800);background:transparent;
+  font-family:inherit;outline:none;
+}
+.template-box .field .input-line:focus{border-color:var(--blue-primary)}
+
 /* ===== NAV ===== */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -271,6 +311,7 @@ footer strong{opacity:1}
     <div class="nav-logo">🚀 DM Quickstart</div>
     <div class="nav-links">
       <a href="#pembeli">🎯 Kenali</a>
+      <a href="#audience">👥 Audience</a>
       <a href="#temukan">📱 Temukan</a>
       <a href="#aida">🧠 AIDA</a>
       <a href="#konten">📝 Konten</a>
@@ -287,6 +328,7 @@ footer strong{opacity:1}
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#pembeli" onclick="closeMenu()">🎯 Kenali</a>
+  <a href="#audience" onclick="closeMenu()">👥 Audience</a>
   <a href="#temukan" onclick="closeMenu()">📱 Temukan</a>
   <a href="#aida" onclick="closeMenu()">🧠 AIDA</a>
   <a href="#konten" onclick="closeMenu()">📝 Konten</a>
@@ -353,7 +395,168 @@ menu.addEventListener('click',(e)=>{if(e.target===menu)closeMenu()});
   </div>
 </section>
 
-<!-- TEMUKAN MEREKA -->
+<!-- KENALI AUDIENCE -->
+<section id="audience" style="background:var(--blue-light)">
+  <div class="section-inner">
+    <h2 class="section-title">👥 Siapa Aja yang Liat Medsos Kita?</h2>
+    <p class="section-sub">
+      Di bisnis sekolah, yang nonton medsos kita tuh <strong>beda-beda orangnya</strong> — dan mereka semua butuh konten yang beda juga! ⚡
+    </p>
+
+    <div class="big-card" style="background:var(--white)">
+      <h3>🎯 Masalahnya</h3>
+      <p>Kalo kita bikin konten cuma buat <strong>orang tua</strong>, anak-anak/siswa bakal bosen & skip. Tapi kalo cuma buat <strong>anak-anak</strong>, orang tua mikir "ah, ini sekolah ga serius."</p>
+      <br>
+      <p>💡 <strong>Solusinya:</strong> Kita harus paham <em>setiap</em> penonton kita, terus bikin konten yang pas buat masing-masing. Kayak <strong>masak buat tamu</strong> — ada yang suka pedas, ada yang suka manis. Kita sesuaikan! 😄</p>
+    </div>
+
+    <h4 style="color:var(--blue-dark);margin-top:40px;margin-bottom:20px;font-size:1.05rem">📋 Contoh Profil Penonton Medsos Sekolah</h4>
+
+    <div class="profile-grid">
+      <!-- ORANG TUA -->
+      <div class="profile-card">
+        <div class="profile-head" style="background:linear-gradient(135deg,#2a8fc6,#1a5f82)">👨‍👩‍👧‍👦 Orang Tua (Pembeli)</div>
+        <div class="profile-body">
+          <div class="row"><span class="label">Usia</span><span class="value">30-50 tahun</span></div>
+          <div class="row"><span class="label">Pekerjaan</span><span class="value">Karyawan, Guru, Wirausaha</span></div>
+          <div class="row"><span class="label">Mau lihat</span><span class="value">Kualitas & fasilitas sekolah</span></div>
+          <div class="row"><span class="label">Bahasa</span><span class="value">Formal, sopan, meyakinkan</span></div>
+          <div class="row"><span class="label">Platform</span><span class="value">IG, Facebook, WA</span></div>
+          <div class="row"><span class="label">Jam aktif</span><span class="value">19.00-22.00, Sabtu pagi</span></div>
+        </div>
+      </div>
+
+      <!-- SISWA -->
+      <div class="profile-card">
+        <div class="profile-head" style="background:linear-gradient(135deg,#7ec8e3,#2a8fc6)">🧑‍🎓 Siswa / Anak</div>
+        <div class="profile-body">
+          <div class="row"><span class="label">Usia</span><span class="value">6-18 tahun</span></div>
+          <div class="row"><span class="label">Suka</span><span class="value">Seru, aesthetic, gaul, game</span></div>
+          <div class="row"><span class="label">Mau lihat</span><span class="value">Kegiatan seru, temen, ekskul</span></div>
+          <div class="row"><span class="label">Bahasa</span><span class="value">Santai, anak muda, gaul</span></div>
+          <div class="row"><span class="label">Platform</span><span class="value">TikTok, IG Reels, YouTube</span></div>
+          <div class="row"><span class="label">Jam aktif</span><span class="value">15.00-21.00, akhir pekan</span></div>
+        </div>
+      </div>
+
+      <!-- ALUMNI -->
+      <div class="profile-card">
+        <div class="profile-head" style="background:linear-gradient(135deg,#6c5ce7,#4a3db8)">🎓 Alumni</div>
+        <div class="profile-body">
+          <div class="row"><span class="label">Usia</span><span class="value">19-40+ tahun</span></div>
+          <div class="row"><span class="label">Mau lihat</span><span class="value">Prestasi sekolah, nostalgia</span></div>
+          <div class="row"><span class="label">Butuh</span><span class="value">Bangga sama almamater</span></div>
+          <div class="row"><span class="label">Bahasa</span><span class="value">Sedikit formal, hangat</span></div>
+          <div class="row"><span class="label">Platform</span><span class="value">IG, LinkedIn, FB</span></div>
+          <div class="row"><span class="label">Peran</span><span class="value">Bisa jadi referensi & donatur</span></div>
+        </div>
+      </div>
+
+      <!-- GURU / CALON GURU -->
+      <div class="profile-card">
+        <div class="profile-head" style="background:linear-gradient(135deg,#e17055,#c0392b)">👩‍🏫 Guru / Calon Guru</div>
+        <div class="profile-body">
+          <div class="row"><span class="label">Usia</span><span class="value">22-50 tahun</span></div>
+          <div class="row"><span class="label">Mau lihat</span><span class="value">Lingkungan kerja, kultur</span></div>
+          <div class="row"><span class="label">Butuh</span><span class="value">Professional, kredibel</span></div>
+          <div class="row"><span class="label">Bahasa</span><span class="value">Formal, profesional</span></div>
+          <div class="row"><span class="label">Platform</span><span class="value">LinkedIn, IG, FB</span></div>
+          <div class="row"><span class="label">Peran</span><span class="value">Bisa jadi referensi & pelamar</span></div>
+        </div>
+      </div>
+
+      <!-- MASYARAKAT -->
+      <div class="profile-card">
+        <div class="profile-head" style="background:linear-gradient(135deg,#00b894,#008060)">🏘️ Masyarakat Umum</div>
+        <div class="profile-body">
+          <div class="row"><span class="label">Usia</span><span class="value">Semua usia</span></div>
+          <div class="row"><span class="label">Mau lihat</span><span class="value">Kegiatan positif sekolah</span></div>
+          <div class="row"><span class="label">Butuh</span><span class="value">Branding sekolah di mata publik</span></div>
+          <div class="row"><span class="label">Bahasa</span><span class="value">Netral, informatif</span></div>
+          <div class="row"><span class="label">Platform</span><span class="value">IG, FB, TikTok</span></div>
+          <div class="row"><span class="label">Dampak</span><span class="value">Kepercayaan & reputasi</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="big-card" style="background:var(--white)">
+      <h3>🎯 Artinya Buat Konten Kita?</h3>
+      <p>Setiap minggu, konten sekolah harus <strong>campur aduk</strong> biar semua penonton dapet jatahnya:</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px">
+        <div style="background:#f8fafc;border-radius:10px;padding:14px;text-align:center">
+          <p style="font-size:1.4rem">👨‍👩‍👧‍👦</p>
+          <p style="font-weight:600;color:var(--blue-dark);font-size:0.8rem">Ortu</p>
+          <p style="font-size:0.78rem;color:var(--gray-600)">Fasilitas, prestasi, biaya</p>
+        </div>
+        <div style="background:#f8fafc;border-radius:10px;padding:14px;text-align:center">
+          <p style="font-size:1.4rem">🧑‍🎓</p>
+          <p style="font-weight:600;color:var(--blue-dark);font-size:0.8rem">Siswa</p>
+          <p style="font-size:0.78rem;color:var(--gray-600)">Seru, gaul, kegiatan</p>
+        </div>
+        <div style="background:#f8fafc;border-radius:10px;padding:14px;text-align:center">
+          <p style="font-size:1.4rem">🎓</p>
+          <p style="font-weight:600;color:var(--blue-dark);font-size:0.8rem">Alumni</p>
+          <p style="font-size:0.78rem;color:var(--gray-600)">Nostalgia, bangga</p>
+        </div>
+        <div style="background:#f8fafc;border-radius:10px;padding:14px;text-align:center">
+          <p style="font-size:1.4rem">👩‍🏫</p>
+          <p style="font-weight:600;color:var(--blue-dark);font-size:0.8rem">Guru</p>
+          <p style="font-size:0.78rem;color:var(--gray-600)">Profesional, kredibel</p>
+        </div>
+        <div style="background:#f8fafc;border-radius:10px;padding:14px;text-align:center">
+          <p style="font-size:1.4rem">🏘️</p>
+          <p style="font-weight:600;color:var(--blue-dark);font-size:0.8rem">Publik</p>
+          <p style="font-size:0.78rem;color:var(--gray-600)">Reputasi, branding</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMPLATE KYC -->
+    <div style="margin-top:40px">
+      <h4 style="color:var(--blue-dark);margin-bottom:8px;font-size:1.05rem">✏️ Template Profil Pembeli — isi sendiri!</h4>
+      <p style="color:var(--gray-600);font-size:0.88rem;margin-bottom:20px">Copy template ini buat <strong>setiap</strong> jenis penonton bisnismu. Ganti nama penontonnya sesuai kebutuhan! 📋</p>
+
+      <div class="template-box">
+        <div class="head">📋 Profil: __________ (nama penonton, misal: "Orang Tua" / "Siswa" / dll)</div>
+        <div class="body">
+          <div class="field">
+            <label>👤 Siapa mereka?</label>
+            <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Usia, pekerjaan, status — tulis di sini...</div>
+          </div>
+          <div class="field">
+            <label>💡 Apa yang mereka cari di medsos kita?</label>
+            <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Misal: info fasilitas, konten seru, nostalgia...</div>
+          </div>
+          <div class="field">
+            <label>🗣️ Bahasa & gaya konten yang cocok?</label>
+            <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Formal / santai / gaul / hangat?</div>
+          </div>
+          <div class="field">
+            <label>📱 Paling aktif di platform mana?</label>
+            <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">IG / TikTok / FB / LinkedIn / WA?</div>
+          </div>
+          <div class="field">
+            <label>⏰ Kapan mereka paling sering online?</label>
+            <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Misal: 19.00-22.00, Sabtu pagi...</div>
+          </div>
+          <div class="field">
+            <label>🎣 CTA apa yang paling cocok buat mereka?</label>
+            <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">DM / klik link / komen / share?</div>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>📝 Contoh judul konten yang mereka suka?</label>
+            <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Tulis ide judul yang kira-kira menarik buat mereka...</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#e8f4fd;border-radius:12px;padding:16px 20px;margin-top:20px;border:1px solid var(--blue-mid)">
+        <p style="font-size:0.88rem;color:var(--blue-dark)">💡 <strong>Tips:</strong> Bikin template ini buat <strong>setiap jenis penonton</strong> bisnismu. Kalo udah, tempelin di dinding atau simpen di notes. Tiap kali mau bikin konten, tinggal liat: <em>"Ini buat siapa? Oh, orang tua — berarti pake bahasa formal, jam 8 malam, CTA-nya DM."</em> Gampang! 😄</p>
+      </div>
+    </div>
+
+  </div>
+</section>
 <section id="temukan">
   <div class="section-inner">
     <h2 class="section-title">📱 Temukan Mereka</h2>
