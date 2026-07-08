@@ -100,6 +100,29 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f7f
 }
 .template-box .field .input-line:focus{border-color:var(--blue-primary)}
 
+/* ===== PLATFORM ANALYSIS ===== */
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:24px 0}
+.platform-card{
+  background:var(--white);border-radius:14px;overflow:hidden;
+  box-shadow:var(--shadow-sm);border:1px solid rgba(126,200,227,0.15);
+  transition:all 0.3s;
+}
+.platform-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.platform-head{
+  padding:14px 18px;color:var(--white);font-weight:700;font-size:0.95rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.platform-head .priority{
+  background:rgba(255,255,255,0.25);font-size:0.7rem;
+  padding:2px 10px;border-radius:20px;font-weight:600;
+}
+.platform-body{padding:16px 18px}
+.platform-body .row{display:flex;gap:8px;margin-bottom:8px;align-items:flex-start}
+.platform-body .row:last-child{margin-bottom:0}
+.platform-body .icon{font-size:1.1rem;flex-shrink:0;width:20px;text-align:center}
+.platform-body .text{font-size:0.82rem;color:var(--gray-700);line-height:1.5}
+.platform-body .text strong{color:var(--blue-dark)}
+
 /* ===== NAV ===== */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -465,6 +488,67 @@ menu.addEventListener('click',(e)=>{if(e.target===menu)closeMenu()});
       <p style="font-size:0.85rem;color:#795548">💡 <strong>Ingat:</strong> Semua contoh di panduan ini (AIDA, jenis konten, kalender, template posting) pake bisnis sekolah. Tapi <strong>konsepnya bisa dipake buat bisnis apapun!</strong> Tinggal ganti produk, pembeli, dan platformnya aja. 🔄</p>
     </div>
 
+    <!-- TEMPLATE PROFIL BISNIS -->
+    <div style="margin-top:40px">
+      <h4 style="color:var(--blue-dark);margin-bottom:8px;font-size:1.05rem">✏️ Template Profil Bisnis & Produk — isi sendiri!</h4>
+      <p style="color:var(--gray-600);font-size:0.88rem;margin-bottom:20px">Copy template ini buat bisnismu sendiri. Isi bagian yang kosong, tempelin di dinding, jadi acuan tiap bikin konten! 📋</p>
+
+      <div class="template-box">
+        <div class="head">🏢 Profil Bisnis & Produk</div>
+        <div class="body">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div>
+              <div class="field">
+                <label>🏢 Nama Bisnis</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Tulis nama bisnismu di sini...</div>
+              </div>
+              <div class="field">
+                <label>🏷️ Jenis Bisnis</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Sekolah / Kuliner / Fashion / Jasa / dll</div>
+              </div>
+              <div class="field">
+                <label>📍 Lokasi</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Kota, daerah operasional</div>
+              </div>
+              <div class="field">
+                <label>🎯 Target Pelanggan</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Siapa yang mau kamu jangkau?</div>
+              </div>
+              <div class="field">
+                <label>⭐ Keunggulan</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Apa yang bikin kamu beda dari pesaing?</div>
+              </div>
+            </div>
+            <div>
+              <div class="field">
+                <label>📦 Produk Utama</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Apa yang kamu jual?</div>
+              </div>
+              <div class="field">
+                <label>💡 Yang "Dibeli" Pelanggan</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Bukan barangnya, tapi manfaatnya. Misal: masa depan anak, kepercayaan diri, kesehatan</div>
+              </div>
+              <div class="field">
+                <label>👤 Siapa Pembeli?</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Yang bayar (misal: orang tua)</div>
+              </div>
+              <div class="field">
+                <label>🧑 Siapa Pemakai?</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Yang pake (misal: siswa)</div>
+              </div>
+              <div class="field">
+                <label>💰 Harga / Budget</label>
+                <div class="input-line" contenteditable="true" style="border-bottom:2px dashed var(--blue-mid);padding:4px 0;font-size:0.9rem;color:var(--gray-800)">Range harga, bisa per item atau investasi</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:#e8f4fd;border-radius:12px;padding:14px 18px;margin-top:16px;border:1px solid var(--blue-mid)">
+        <p style="font-size:0.85rem;color:var(--blue-dark)">💡 <strong>Tips:</strong> Isi template ini sekali, simpen di notes. Tiap kali ada ide konten, tinggal liat ke sini: <em>"Produkku apa? Siapa pembelinya? Oh iya — sekarang tinggal bikin konten yang sesuai!"</em></p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -654,6 +738,104 @@ menu.addEventListener('click',(e)=>{if(e.target===menu)closeMenu()});
       <div class="card"><div class="card-icon">📱</div><h3>TikTok</h3><p>Konten pendek, viral, entertain — jangkau anak muda.</p></div>
       <div class="card"><div class="card-icon">💼</div><h3>LinkedIn</h3><p>Buat jangkau profesional & B2B.</p></div>
       <div class="card"><div class="card-icon">💬</div><h3>WhatsApp</h3><p>Komunikasi personal & broadcast ke pelanggan.</p></div>
+    </div>
+
+    <!-- ANALISA PLATFORM -->
+    <div style="margin-top:48px;margin-bottom:16px">
+      <h3 style="font-size:1.2rem;color:var(--blue-dark);margin-bottom:6px">📊 Analisa Platform — Untuk Bisnis Sekolah</h3>
+      <p style="color:var(--gray-600);font-size:0.9rem;margin-bottom:24px">
+        Gak semua platform cocok buat sekolah. Ini analisa lengkap: mana yang prioritas, goal-nya apa, dan konten apa yang cocok! 🎯
+      </p>
+
+      <div class="platform-grid">
+        <!-- IG #1 -->
+        <div class="platform-card">
+          <div class="platform-head" style="background:linear-gradient(135deg,#e1306c,#c13584)">
+            📸 Instagram <span class="priority">#1 PRIORITAS</span>
+          </div>
+          <div class="platform-body">
+            <div class="row"><span class="icon">🎯</span><span class="text"><strong>Goal:</strong> Brand awareness, engagement ortu & publik</span></div>
+            <div class="row"><span class="icon">👥</span><span class="text"><strong>Penonton:</strong> Orang tua (30-50 thn), masyarakat umum</span></div>
+            <div class="row"><span class="icon">📝</span><span class="text"><strong>Konten cocok:</strong> Carousel edukasi, foto prestasi, story kegiatan harian, reels momen seru</span></div>
+            <div class="row"><span class="icon">⏰</span><span class="text"><strong>Jam posting:</strong> 19.00-21.00 (ortu santai), Sabtu pagi 08.00-10.00</span></div>
+            <div class="row"><span class="icon">📊</span><span class="text"><strong>Pantau:</strong> Jangkauan, simpan, DM masuk, klik bio</span></div>
+          </div>
+        </div>
+
+        <!-- TikTok #2 -->
+        <div class="platform-card">
+          <div class="platform-head" style="background:linear-gradient(135deg,#010101,#333)">
+            🎵 TikTok <span class="priority">#2 PRIORITAS</span>
+          </div>
+          <div class="platform-body">
+            <div class="row"><span class="icon">🎯</span><span class="text"><strong>Goal:</strong> Jangkau siswa & anak muda, viral potensial</span></div>
+            <div class="row"><span class="icon">👥</span><span class="text"><strong>Penonton:</strong> Siswa (6-18 thn), orang tua muda</span></div>
+            <div class="row"><span class="icon">📝</span><span class="text"><strong>Konten cocok:</strong> Reels seru kegiatan murid, challenge, tour sekolah, POV hari pertama</span></div>
+            <div class="row"><span class="icon">⏰</span><span class="text"><strong>Jam posting:</strong> 15.00-20.00 (pulang sekolah - malam)</span></div>
+            <div class="row"><span class="icon">📊</span><span class="text"><strong>Pantau:</strong> Tayangan, like, share, komen, follower baru</span></div>
+          </div>
+        </div>
+
+        <!-- Facebook #3 -->
+        <div class="platform-card">
+          <div class="platform-head" style="background:linear-gradient(135deg,#1877f2,#0f5fcc)">
+            📘 Facebook <span class="priority">#3</span>
+          </div>
+          <div class="platform-body">
+            <div class="row"><span class="icon">🎯</span><span class="text"><strong>Goal:</strong> Jangkau orang tua & komunitas lokal</span></div>
+            <div class="row"><span class="icon">👥</span><span class="text"><strong>Penonton:</strong> Orang tua (35-55 thn), grup komunitas</span></div>
+            <div class="row"><span class="icon">📝</span><span class="text"><strong>Konten cocok:</strong> Info PMB, artikel prestasi, event sekolah, grup diskusi orang tua</span></div>
+            <div class="row"><span class="icon">⏰</span><span class="text"><strong>Jam posting:</strong> 19.00-22.00, akhir pekan siang</span></div>
+            <div class="row"><span class="icon">📊</span><span class="text"><strong>Pantau:</strong> Jangkauan, share grup, klik link, komentar</span></div>
+          </div>
+        </div>
+
+        <!-- WhatsApp #4 -->
+        <div class="platform-card">
+          <div class="platform-head" style="background:linear-gradient(135deg,#25d366,#128c7e)">
+            💬 WhatsApp <span class="priority">#4</span>
+          </div>
+          <div class="platform-body">
+            <div class="row"><span class="icon">🎯</span><span class="text"><strong>Goal:</strong> Komunikasi personal, closing pendaftaran</span></div>
+            <div class="row"><span class="icon">👥</span><span class="text"><strong>Penonton:</strong> Orang tua yang udah tertarik (hot lead)</span></div>
+            <div class="row"><span class="icon">📝</span><span class="text"><strong>Konten cocok:</strong> Broadcast info PMB, follow-up pendaftar, jawab pertanyaan personal</span></div>
+            <div class="row"><span class="icon">⏰</span><span class="text"><strong>Jam kirim:</strong> 09.00-11.00 & 19.00-21.00 (jangan malem-malem)</span></div>
+            <div class="row"><span class="icon">📊</span><span class="text"><strong>Pantau:</strong> Pesan terbaca, balasan, jumlah pendaftar dari WA</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RINGKASAN PRIORITAS -->
+      <div class="big-card" style="margin-top:8px">
+        <h3>🎯 Rekomendasi Strategi Platform</h3>
+        <p style="margin-bottom:16px">Kalo baru mulai dan sumber daya terbatas, ini prioritas yang disarankan:</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+          <div style="background:linear-gradient(135deg,#e1306c,#c13584);border-radius:12px;padding:20px;color:white;text-align:center">
+            <p style="font-size:1.8rem;font-weight:800;margin-bottom:2px">#1</p>
+            <p style="font-weight:700;font-size:0.95rem">📸 Instagram</p>
+            <p style="font-size:0.78rem;opacity:0.9;margin-top:4px">Fokus di sini dulu — jangkau ortu & bangun brand sekolah</p>
+          </div>
+          <div style="background:linear-gradient(135deg,#010101,#333);border-radius:12px;padding:20px;color:white;text-align:center">
+            <p style="font-size:1.8rem;font-weight:800;margin-bottom:2px">#2</p>
+            <p style="font-weight:700;font-size:0.95rem">🎵 TikTok</p>
+            <p style="font-size:0.78rem;opacity:0.9;margin-top:4px">Kalo punya waktu & kreativitas — jangkau siswa & viral</p>
+          </div>
+          <div style="background:linear-gradient(135deg,#1877f2,#0f5fcc);border-radius:12px;padding:20px;color:white;text-align:center">
+            <p style="font-size:1.8rem;font-weight:800;margin-bottom:2px">#3</p>
+            <p style="font-weight:700;font-size:0.95rem">📘 Facebook</p>
+            <p style="font-size:0.78rem;opacity:0.9;margin-top:4px">Pelengkap — jangkau ortu yang lebih tua & komunitas</p>
+          </div>
+          <div style="background:linear-gradient(135deg,#25d366,#128c7e);border-radius:12px;padding:20px;color:white;text-align:center">
+            <p style="font-size:1.8rem;font-weight:800;margin-bottom:2px">#4</p>
+            <p style="font-weight:700;font-size:0.95rem">💬 WhatsApp</p>
+            <p style="font-size:0.78rem;opacity:0.9;margin-top:4px">Wajib ada — buat closing & komunikasi personal</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#e8f4fd;border-radius:12px;padding:16px 20px;margin-top:20px;border:1px solid var(--blue-mid)">
+        <p style="font-size:0.88rem;color:var(--blue-dark)">💡 <strong>Tips:</strong> Buat bisnis sekolah, <strong>Instagram + TikTok</strong> adalah kombinasi paling powerful. IG buat orang tua (branding), TikTok buat siswa (engagement). Kalo cuma bisa fokus di 1 platform — pilih <strong>Instagram</strong> dulu! 🎯</p>
+      </div>
     </div>
   </div>
 </section>
