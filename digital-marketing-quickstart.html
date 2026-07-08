@@ -1,0 +1,435 @@
+<!--
+Title: Digital Marketing Quickstart
+Author: Cindy
+Icon: 🚀
+Desc: Panduan digital marketing cepat & praktis buat anak magang — dari nol sampai bisa action!
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Marketing Quickstart — Cindy</title>
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f7ff;color:#1a2a3a;line-height:1.7}
+
+/* ===== VARIABLES ===== */
+:root{
+  --blue-light:#e8f4fd;
+  --blue-mid:#7ec8e3;
+  --blue-primary:#2a8fc6;
+  --blue-dark:#1a5f82;
+  --white:#ffffff;
+  --gray-100:#f8fafc;
+  --gray-600:#64748b;
+  --gray-800:#1e293b;
+  --shadow-sm:0 2px 8px rgba(42,143,198,0.08);
+  --shadow-md:0 8px 30px rgba(42,143,198,0.12);
+  --shadow-lg:0 20px 60px rgba(42,143,198,0.15);
+  --radius:16px;
+}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(126,200,227,0.3);
+  padding:0 24px;transition:box-shadow 0.3s;
+}
+nav:hover{box-shadow:var(--shadow-sm)}
+.nav-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.nav-logo{
+  font-weight:700;font-size:1.2rem;color:var(--blue-dark);
+  display:flex;align-items:center;gap:8px;
+}
+.nav-links{display:flex;gap:8px;flex-wrap:wrap;}
+.nav-links a{
+  text-decoration:none;color:var(--gray-600);font-size:0.85rem;font-weight:500;
+  padding:6px 14px;border-radius:20px;transition:all 0.2s;
+}
+.nav-links a:hover{background:var(--blue-light);color:var(--blue-primary)}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  background:linear-gradient(135deg,var(--blue-light) 0%,var(--white) 50%,#f0faff 100%);
+  padding:120px 24px 80px;
+}
+.hero-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+.hero h1{
+  font-size:3rem;font-weight:800;line-height:1.15;color:var(--blue-dark);
+  margin-bottom:20px;
+}
+.hero h1 span{color:var(--blue-primary)}
+.hero p{
+  font-size:1.1rem;color:var(--gray-600);max-width:480px;margin-bottom:32px;
+}
+.hero-cta{
+  display:inline-block;background:var(--blue-primary);color:var(--white);
+  padding:14px 36px;border-radius:40px;text-decoration:none;font-weight:600;
+  transition:all 0.3s;box-shadow:0 4px 15px rgba(42,143,198,0.35);
+}
+.hero-cta:hover{
+  transform:translateY(-3px);box-shadow:0 8px 25px rgba(42,143,198,0.4);
+}
+.hero-img{
+  width:100%;border-radius:var(--radius);box-shadow:var(--shadow-lg);
+  animation:fadeInUp 0.8s ease-out;
+}
+
+/* ===== SECTIONS ===== */
+section{padding:80px 24px}
+.section-inner{max-width:900px;margin:0 auto}
+.section-title{
+  font-size:2rem;font-weight:700;color:var(--blue-dark);margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-sub{
+  font-size:1.05rem;color:var(--gray-600);margin-bottom:48px;max-width:650px;
+}
+
+/* ===== CARDS ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+.card{
+  background:var(--white);border-radius:var(--radius);padding:28px 24px;
+  box-shadow:var(--shadow-sm);transition:all 0.3s;
+  border:1px solid rgba(126,200,227,0.15);
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.card-icon{font-size:2rem;margin-bottom:12px}
+.card h3{font-size:1.1rem;color:var(--blue-dark);margin-bottom:8px}
+.card p{font-size:0.92rem;color:var(--gray-600);line-height:1.6}
+.card strong{color:var(--blue-primary)}
+
+/* ===== BIG CARDS ===== */
+.big-card{
+  background:var(--white);border-radius:var(--radius);padding:36px 32px;
+  box-shadow:var(--shadow-sm);margin-bottom:24px;
+  border:1px solid rgba(126,200,227,0.15);
+  transition:all 0.3s;
+}
+.big-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.big-card h3{
+  font-size:1.2rem;color:var(--blue-dark);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.big-card p,.big-card li{font-size:0.95rem;color:var(--gray-600);line-height:1.7}
+.big-card ul{padding-left:20px;margin-top:8px}
+.big-card ul li{margin-bottom:6px}
+.big-card ul li::marker{color:var(--blue-mid)}
+
+/* ===== AIDA FLOW ===== */
+.aida-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:32px 0}
+.aida-step{
+  background:var(--white);border-radius:12px;padding:20px;text-align:center;
+  box-shadow:var(--shadow-sm);border:2px solid var(--blue-light);
+  transition:all 0.3s;
+}
+.aida-step:hover{transform:translateY(-4px);border-color:var(--blue-primary)}
+.aida-step .step-num{
+  font-size:0.75rem;font-weight:700;color:var(--white);
+  background:var(--blue-primary);width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin:0 auto 10px;
+}
+.aida-step h4{font-size:1rem;color:var(--blue-dark);margin-bottom:6px}
+.aida-step p{font-size:0.85rem;color:var(--gray-600)}
+
+/* ===== CONTENT TYPES ===== */
+.content-types{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.ctype{
+  background:var(--white);border-radius:var(--radius);padding:24px;text-align:center;
+  box-shadow:var(--shadow-sm);transition:all 0.3s;
+}
+.ctype:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.ctype-emoji{font-size:2.5rem;margin-bottom:10px}
+.ctype h4{font-size:1rem;color:var(--blue-dark);margin-bottom:4px}
+.ctype .tag{
+  display:inline-block;background:var(--blue-light);color:var(--blue-primary);
+  font-size:0.7rem;font-weight:600;padding:3px 10px;border-radius:20px;margin-bottom:8px;
+}
+.ctype p{font-size:0.85rem;color:var(--gray-600)}
+
+/* ===== TIMELINE ===== */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{
+  content:'';position:absolute;left:12px;top:0;bottom:0;
+  width:2px;background:var(--blue-mid);
+}
+.timeline-item{position:relative;margin-bottom:32px;padding-left:16px}
+.timeline-item::before{
+  content:'';position:absolute;left:-28px;top:6px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--blue-primary);border:3px solid var(--blue-light);
+}
+.timeline-item h4{color:var(--blue-dark);margin-bottom:4px}
+.timeline-item p{font-size:0.9rem;color:var(--gray-600)}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--blue-dark);color:var(--white);
+  text-align:center;padding:48px 24px;
+}
+footer p{opacity:0.8;font-size:0.9rem}
+footer strong{opacity:1}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero h1,.hero p,.hero-cta{animation:fadeInUp 0.6s ease-out both}
+.hero p{animation-delay:0.15s}
+.hero-cta{animation-delay:0.3s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero-inner{grid-template-columns:1fr;gap:32px}
+  .hero h1{font-size:2rem}
+  .hero p{font-size:1rem}
+  .aida-flow{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+  section{padding:48px 20px}
+  .section-title{font-size:1.5rem}
+}
+@media(max-width:480px){
+  .aida-flow{grid-template-columns:1fr}
+  .content-types{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">🚀 DM Quickstart</div>
+    <div class="nav-links">
+      <a href="#pembeli">🎯 Kenali</a>
+      <a href="#temukan">📱 Temukan</a>
+      <a href="#aida">🧠 AIDA</a>
+      <a href="#konten">📝 Konten</a>
+      <a href="#kalender">📅 Jadwal</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <h1>Digital Marketing? <span>Gampang!</span></h1>
+      <p>Dari nol sampai bisa bikin konten, jadwalin posting, dan ukur hasil — semua pake bahasa manusia, bukan istilah ribet.</p>
+      <a href="#pembeli" class="hero-cta">🚀 Mulai Belajar</a>
+    </div>
+    <img
+      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80"
+      alt="Digital Marketing Workspace"
+      class="hero-img"
+    >
+  </div>
+</section>
+
+<!-- KENALI PEMBELI -->
+<section id="pembeli" style="background:var(--white)">
+  <div class="section-inner">
+    <h2 class="section-title">🎯 Kenali Pembelimu</h2>
+    <p class="section-sub">Kita jualan biar dapet untung. Artinya harus ada yang beli. Tapi… <strong>siapa yang kita harapkan beli?</strong></p>
+
+    <div class="big-card">
+      <h3>❓ Pertanyaan Dasar</h3>
+      <p>Sebelum bikin konten, jawab dulu: <strong>kita jualan apa?</strong> Terus <strong>siapa yang mau beli?</strong> Kenapa penting? Supaya kita bisa menyesuaikan cara ngobrol sama mereka.</p>
+      <br>
+      <p>💡 <strong>Contoh:</strong> Kita jualan snack ke bocil beda caranya sama jualan snack diet ke karyawan. Bahasa, gaya, tempat — semua beda. <strong>Sesuaikan!</strong></p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🤔</div>
+        <h3>Produk Apa?</h3>
+        <p>Apa yang kamu jual? Makin jelas produknya, makin gampang cari pembeli.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">👤</div>
+        <h3>Siapa Pembeli?</h3>
+        <p>Usia berapa? Kerja apa? Suka ngapain? Suka kumpul di mana? Ini penting banget!</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h3>Gimana Ngobrolnya?</h3>
+        <p>Bahasa anak muda? Formal? Santai? Sesuain biar nyambung sama mereka.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMUKAN MEREKA -->
+<section id="temukan">
+  <div class="section-inner">
+    <h2 class="section-title">📱 Temukan Mereka</h2>
+    <p class="section-sub">Dulu belum ada internet — kita dateng langsung ke tempat pembeli ngumpul.</p>
+
+    <div class="big-card">
+      <h3>🕰️ Dulu vs Sekarang</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:12px">
+        <div style="background:#f8fafc;border-radius:12px;padding:20px">
+          <p style="font-weight:700;color:var(--blue-dark);margin-bottom:8px">🕰️ Dulu</p>
+          <p style="font-size:0.9rem">Pembeli suka CFD → kita jualan di CFD.<br>Pembeli suka nonton TV → pasang iklan di sinetron.</p>
+        </div>
+        <div style="background:var(--blue-light);border-radius:12px;padding:20px">
+          <p style="font-weight:700;color:var(--blue-dark);margin-bottom:8px">📱 Sekarang</p>
+          <p style="font-size:0.9rem">Pembeli kumpul di medsos!<br>Maka kita harus <strong>ada di sana</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards" style="margin-top:16px">
+      <div class="card"><div class="card-icon">📸</div><h3>Instagram</h3><p>Visual, story, reels — cocok buat brand awareness & engagement.</p></div>
+      <div class="card"><div class="card-icon">📱</div><h3>TikTok</h3><p>Konten pendek, viral, entertain — jangkau anak muda.</p></div>
+      <div class="card"><div class="card-icon">💼</div><h3>LinkedIn</h3><p>Buat jangkau profesional & B2B.</p></div>
+      <div class="card"><div class="card-icon">💬</div><h3>WhatsApp</h3><p>Komunikasi personal & broadcast ke pelanggan.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AIDA -->
+<section id="aida" style="background:var(--white)">
+  <div class="section-inner">
+    <h2 class="section-title">🧠 Proses AIDA</h2>
+    <p class="section-sub">Ini kerangka dasar cara pembeli memproses konten kita — dari lihat sampai action.</p>
+
+    <div class="aida-flow">
+      <div class="aida-step">
+        <div class="step-num">1</div>
+        <h4>Attention</h4>
+        <p>Buat mereka <strong>liat</strong> konten kita. Pake visual menarik, hook di awal.</p>
+      </div>
+      <div class="aida-step">
+        <div class="step-num">2</div>
+        <h4>Interest</h4>
+        <p>Buat mereka <strong>penasaran</strong>. Kasi info yang bikin pengen tau lebih.</p>
+      </div>
+      <div class="aida-step">
+        <div class="step-num">3</div>
+        <h4>Desire</h4>
+        <p>Buat mereka <strong>pengen</strong>. Tunjukkin kenapa produk ini solusi mereka.</p>
+      </div>
+      <div class="aida-step">
+        <div class="step-num">4</div>
+        <h4>Action</h4>
+        <p>Buat mereka <strong>action</strong>. Kasi CTA yang jelas: klik, beli, daftar, DM.</p>
+      </div>
+    </div>
+
+    <div class="big-card" style="text-align:center">
+      <h3 style="justify-content:center">🎯 Intinya</h3>
+      <p>Dari "<em>apaan tuh?</em>" sampe "<em>aku mau beli!</em>" — itu AIDA. Setiap konten yang kamu bikin harus melewati proses ini.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JENIS KONTEN -->
+<section id="konten">
+  <div class="section-inner">
+    <h2 class="section-title">📝 Jenis Konten</h2>
+    <p class="section-sub">Tiap konten yang kamu bikin mesti punya tujuan. Nih 4 jenis utamanya:</p>
+
+    <div class="content-types">
+      <div class="ctype">
+        <div class="ctype-emoji">📚</div>
+        <span class="tag">Educate</span>
+        <h4>Edukasi</h4>
+        <p>Kasi ilmu & tips. Bangun <strong>brand awareness</strong>. Bikin pembeli anggap kamu ahlinya.</p>
+      </div>
+      <div class="ctype">
+        <div class="ctype-emoji">🎉</div>
+        <span class="tag" style="background:#fff3e0;color:#e67e22">Entertain</span>
+        <h4>Hiburan</h4>
+        <p>Lucu, seru, relatable. Bikin orang <strong>engage</strong> & ngikutin akun kamu.</p>
+      </div>
+      <div class="ctype">
+        <div class="ctype-emoji">✨</div>
+        <span class="tag" style="background:#f3e8ff;color:#8b5cf6">Inspire</span>
+        <h4>Inspirasi</h4>
+        <p>Cerita sukses, testimoni, hasil. Bangun <strong>trust & kepercayaan</strong>.</p>
+      </div>
+      <div class="ctype">
+        <div class="ctype-emoji">🛒</div>
+        <span class="tag" style="background:#ffebee;color:#e74c3c">Selling</span>
+        <h4>Penjualan</h4>
+        <p>Promo, diskon, ajakan beli. Target: <strong>konversi & transaksi</strong>.</p>
+      </div>
+    </div>
+
+    <div class="big-card" style="margin-top:32px">
+      <h3>🎣 CTA — Call to Action</h3>
+      <p>Setiap konten perlu <strong>pancingan</strong>. Abis liat konten kita, pembeli diharapin ngapain?</p>
+      <ul>
+        <li>💬 "Komen pendapatmu!" → biar engagement naik</li>
+        <li>🔗 "Link di bio" → biar mereka cek produk</li>
+        <li>📲 "DM buat order" → langsung transaksi</li>
+        <li>❤️ "Double tap kalo setuju" → biar jangkauan naik</li>
+      </ul>
+      <p style="margin-top:12px"><strong>Ingat:</strong> tanpa CTA, kontenmu cuma pajangan! 😄</p>
+    </div>
+  </div>
+</section>
+
+<!-- KALENDER KONTEN -->
+<section id="kalender" style="background:var(--white)">
+  <div class="section-inner">
+    <h2 class="section-title">📅 Kalender Konten</h2>
+    <p class="section-sub">Udah tau jenis konten & tujuannya? Sekarang rencanain dalam sebulan!</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>1️⃣ Tentukan Goal Bisnis Bulan Ini</h4>
+        <p>Mau naikin brand awareness? Atau fokus jualan? Goal nentuin arah semua konten.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2️⃣ Pilih Tema Topik</h4>
+        <p>Misal: minggu 1 edukasi, minggu 2 entertain, minggu 3 selling. Atau campur-campur tiap minggu.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>3️⃣ Rencana Harian</h4>
+        <p>Per hari: <strong>judul</strong> apa, <strong>visual</strong> gimana, tipe posting (single image / carousel / video), <strong>caption, CTA, hashtag</strong>.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>4️⃣ Bikin Desain + Copy</h4>
+        <p>Pake <strong>Canva</strong> buat desain. Bisa juga pake AI buat generate gambar & caption biar cepet!</p>
+      </div>
+      <div class="timeline-item">
+        <h4>5️⃣ Jadwalin & Posting</h4>
+        <p>Tentukan hari & jam posting. Pake AI Agent yang nyambung ke akun medsos, suruh schedule pake cron. Tinggal pantau! 🚀</p>
+      </div>
+      <div class="timeline-item">
+        <h4>6️⃣ Pantau & Sesuaikan</h4>
+        <p>Tiap hari liat dashboard: udah sesuai goal belum? Kalo belum, sesuaikan rencana selanjutnya!</p>
+      </div>
+    </div>
+
+    <div class="big-card" style="margin-top:16px;text-align:center;background:var(--blue-light);border-color:var(--blue-mid)">
+      <h3 style="justify-content:center">🤖 Bisa Pake AI Agent!</h3>
+      <p>Mau lebih canggih? Sambungin akun medsos kamu ke AI Agent, suruh dia jadwalin posting otomatis pake cron. Tiap hari pantau dashboard, liat hasilnya, terus refine strategi. <strong>Digital marketing jadi auto-pilot!</strong> 🚀</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-size:1.5rem;margin-bottom:12px">🚀</p>
+  <p><strong>Digital Marketing Quickstart</strong> — by Cindy</p>
+  <p style="margin-top:8px">Dari nol sampai bisa action. Digital marketing itu gampang! 😊</p>
+</footer>
+
+</body>
+</html>
