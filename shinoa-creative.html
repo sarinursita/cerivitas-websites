@@ -22,6 +22,29 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(15,11,26,0.9);b
 .nav-links a{color:var(--text-muted);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:0.9rem;transition:all 0.3s}
 .nav-links a:hover{color:#fff;background:rgba(124,58,237,0.15)}
 .hero{min-height:100vh;display:flex;align-items:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+
+/* Shooting Stars */
+.stars-container{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;width:4px;height:4px;background:#fff;border-radius:50%;animation:twinkle 3s ease-in-out infinite}
+.star:nth-child(1){top:10%;left:15%;animation-delay:0s}
+.star:nth-child(2){top:25%;left:75%;animation-delay:0.8s}
+.star:nth-child(3){top:45%;left:30%;animation-delay:1.6s}
+.star:nth-child(4){top:60%;left:85%;animation-delay:2.4s}
+.star:nth-child(5){top:80%;left:10%;animation-delay:0.4s}
+.star:nth-child(6){top:15%;left:55%;animation-delay:1.2s}
+.star:nth-child(7){top:70%;left:45%;animation-delay:2s}
+.star:nth-child(8){top:35%;left:90%;animation-delay:0.2s}
+
+@keyframes twinkle{0%,100%{opacity:0.2;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+
+.shooting-star{position:absolute;width:3px;height:3px;background:linear-gradient(to right,transparent,#fff);border-radius:50%;animation:shoot linear infinite}
+.shooting-star::after{content:'';position:absolute;top:50%;right:100%;width:60px;height:1px;background:linear-gradient(to left,transparent,rgba(255,255,255,0.6));transform:translateY(-50%)}
+.shooting-star:nth-child(9){top:8%;left:50%;animation-duration:4s;animation-delay:0s}
+.shooting-star:nth-child(10){top:30%;left:20%;animation-duration:5s;animation-delay:3s}
+.shooting-star:nth-child(11){top:55%;left:70%;animation-duration:4.5s;animation-delay:6s}
+.shooting-star:nth-child(12){top:75%;left:40%;animation-duration:5.5s;animation-delay:9s}
+
+@keyframes shoot{0%{transform:translate(0,0) rotate(-35deg);opacity:1}70%{opacity:1}100%{transform:translate(-300px,200px) rotate(-35deg);opacity:0}}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:0.15}
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,11,26,0.92),rgba(26,18,48,0.85))}
@@ -73,7 +96,7 @@ section{padding:60px 20px}
 </head>
 <body>
 <nav><div class="nav-inner"><span class="logo">⭐ Shinoa Creative</span><div class="nav-links"><a href="#home">Beranda</a><a href="#stories">Cerita</a><a href="#gallery">Galeri</a><a href="#music">Cover Lagu</a><a href="#about">Tentang</a><a href="#socials">Socials</a></div></div></nav>
-<section class="hero" id="home"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&q=80" alt="Abstract purple and blue art"></div><div class="hero-inner"><div class="hero-text"><h1>Shinoa Creative</h1><p>A place where my art can shine bright ✨</p><a href="#stories" class="btn">Jelajahi Karya ✨</a></div><div class="hero-img"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&q=80" alt="Creative workspace"></div></div></section>
+<section class="hero" id="home"><div class="hero-bg"><div class="stars-container"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="shooting-star"></div><div class="shooting-star"></div><div class="shooting-star"></div><div class="shooting-star"></div></div><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1600&q=80" alt="Abstract purple and blue art"></div><div class="hero-inner"><div class="hero-text"><h1>Shinoa Creative</h1><p>A place where my art can shine bright ✨</p><a href="#stories" class="btn">Jelajahi Karya ✨</a></div><div class="hero-img"><img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&q=80" alt="Creative workspace"></div></div></section>
 <section id="stories"><div class="section-inner"><div class="section-title"><h2>📖 Cerita</h2><p>Kumpulan cerita karya Shinoa</p></div><div class="grid"><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=600&q=80" alt="Fantasy story"><div class="card-body"><h3>Petualangan di Negeri Awan</h3><p>Sebuah kisah tentang keberanian dan persahabatan di dunia yang melayang di atas langit.</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Mystery story"><div class="card-body"><h3>Misteri Harta Karun</h3><p>Dua sahabat menemukan peta kuno yang membawa mereka pada petualangan tak terduga.</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Dream story"><div class="card-body"><h3>Pelangi di Ujung Mimpi</h3><p>Seorang anak yang bisa mewarnai mimpinya dengan imajinasi tanpa batas.</p></div></div></div></div></section>
 <section id="gallery" style="background:var(--dark2)"><div class="section-inner"><div class="section-title"><h2>🖼️ Galeri</h2><p>Kumpulan ilustrasi dan gambar karya Shinoa</p></div><div class="grid"><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&q=80" alt="Art 1"><div class="card-body"><h3>Galaxy Dream</h3><p>Ilustrasi digital, 2025</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=600&q=80" alt="Art 2"><div class="card-body"><h3>Purple Moon</h3><p>Cat air digital, 2025</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80" alt="Art 3"><div class="card-body"><h3>Starburst</h3><p>Mixed media, 2025</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&q=80" alt="Art 4"><div class="card-body"><h3>Ocean of Stars</h3><p>Digital painting, 2025</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1531913764164-f85c3e02e714?w=600&q=80" alt="Art 5"><div class="card-body"><h3>Dreamscape</h3><p>Ilustrasi, 2024</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=600&q=80" alt="Art 6"><div class="card-body"><h3>Midnight Bloom</h3><p>Ilustrasi flora, 2025</p></div></div></div></div></section>
 <section id="music"><div class="section-inner"><div class="section-title"><h2>🎵 Cover Lagu</h2><p>Kumpulan cover lagu by Shinoa</p></div><div class="grid"><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80" alt="Music 1"><div class="card-body"><h3>Blue Bird — Cover</h3><p>Naruto Opening • 2025</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80" alt="Music 2"><div class="card-body"><h3>Hikaru Nara — Cover</h3><p>March Comes in Like a Lion • 2025</p></div></div><div class="card"><img class="card-img" src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80" alt="Music 3"><div class="card-body"><h3>Sparkle — Cover</h3><p>Your Name OST • 2024</p></div></div></div></div></section>
