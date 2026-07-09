@@ -1,0 +1,342 @@
+<!--
+Title: Asma' Design Studio - Format Pesanan
+Author: Asma' Hafidzah Nur Rahmah
+Desc: Form pemesanan jasa desain grafis
+-->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Format Pesanan | Asma' Design Studio 🌻✨</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #faf7f2;
+    color: #4a3520;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .header {
+    background: #5c3a1e;
+    color: #faf0e6;
+    padding: 24px 32px;
+    text-align: center;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 4px; }
+  .header p { font-size: 15px; opacity: 0.8; }
+  .header a {
+    color: #f0c8a0;
+    text-decoration: none;
+  }
+  .header a:hover { text-decoration: underline; }
+
+  /* FORM */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  .order-card {
+    background: white;
+    border-radius: 24px;
+    padding: 36px 32px;
+    box-shadow: 0 4px 24px rgba(92,58,30,0.08);
+    border: 1px solid #e8d5c0;
+  }
+
+  .order-card h2 {
+    font-size: 22px;
+    color: #5c3a1e;
+    margin-bottom: 24px;
+    text-align: center;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed #e8d5c0;
+  }
+
+  .field {
+    margin-bottom: 20px;
+  }
+  .field label {
+    display: block;
+    font-weight: 600;
+    font-size: 15px;
+    color: #5c3a1e;
+    margin-bottom: 6px;
+  }
+  .field label .required { color: #c0392b; }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e8d5c0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: inherit;
+    color: #4a3520;
+    background: #faf7f2;
+    transition: border-color 0.2s;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: #8b6340;
+    background: white;
+  }
+  .field textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  .field .hint {
+    font-size: 13px;
+    color: #b8a088;
+    margin-top: 4px;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* PRICE LIST MINI */
+  .price-ref {
+    background: #f5ebe0;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  .price-ref h3 {
+    font-size: 16px;
+    color: #5c3a1e;
+    margin-bottom: 12px;
+  }
+  .price-ref table {
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+  }
+  .price-ref td {
+    padding: 6px 0;
+    border-bottom: 1px solid #e8d5c0;
+  }
+  .price-ref td:last-child {
+    text-align: right;
+    font-weight: 600;
+    color: #8b6340;
+  }
+  .price-ref .link a {
+    color: #8b6340;
+    font-weight: 600;
+  }
+
+  /* SUBMIT BUTTON */
+  .btn-submit {
+    display: block;
+    width: 100%;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 8px;
+  }
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.25);
+  }
+
+  .btn-kembali {
+    display: inline-block;
+    margin-top: 20px;
+    color: #8b6f50;
+    text-decoration: none;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+  }
+  .btn-kembali:hover { color: #5c3a1e; }
+
+  footer {
+    background: #4a3018;
+    color: #b8a088;
+    text-align: center;
+    padding: 24px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 600px) {
+    .field-row { grid-template-columns: 1fr; }
+    .order-card { padding: 24px 18px; }
+    .header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🌻 Format Pesanan — Asma' Design Studio</h1>
+  <p><a href="asma-design-studio.html">← Kembali ke Beranda</a></p>
+</div>
+
+<div class="container">
+
+  <div class="order-card">
+    <h2>📋 Form Pemesanan</h2>
+
+    <!-- Price Reference -->
+    <div class="price-ref">
+      <h3>💰 Daftar Harga</h3>
+      <table>
+        <tr><td>🖼 Poster/Flyer Event</td><td>Rp10k</td></tr>
+        <tr><td>⭐ Logo UMKM/Personal</td><td>Rp11,5k</td></tr>
+        <tr><td>🛍 Stiker Jualan</td><td>Rp10k</td></tr>
+        <tr><td>🎀 Sticker Sheet (4 gambar)</td><td>Rp3,5k</td></tr>
+        <tr><td>🎂 Desain Ucapan/Greeting</td><td>Rp4k</td></tr>
+        <tr><td>🎨 Desain Canva/Tugas</td><td>Rp12k</td></tr>
+        <tr><td colspan="2" class="link" style="text-align:center;padding-top:10px;"><a href="asma-design-studio.html#products">Lihat semua produk →</a></td></tr>
+      </table>
+    </div>
+
+    <!-- Nama -->
+    <div class="field">
+      <label>Nama Lengkap <span class="required">*</span></label>
+      <input type="text" id="nama" placeholder="Contoh: Siti Aisyah">
+    </div>
+
+    <!-- No WA -->
+    <div class="field">
+      <label>No. WhatsApp <span class="required">*</span></label>
+      <input type="tel" id="wa" placeholder="Contoh: 0812xxxxxx">
+      <div class="hint">Nomor yang bisa dihubungi</div>
+    </div>
+
+    <!-- Jenis Desain -->
+    <div class="field">
+      <label>Jenis Desain <span class="required">*</span></label>
+      <select id="jenis">
+        <option value="">— Pilih jenis desain —</option>
+        <option>🖼 Poster/Flyer Event</option>
+        <option>⭐ Logo UMKM/Personal</option>
+        <option>🛍 Stiker Jualan</option>
+        <option>🎀 Sticker Sheet</option>
+        <option>🎂 Desain Ucapan/Greeting</option>
+        <option>🎨 Desain Canva/Tugas/PPT</option>
+        <option>🏴 Banner/Spanduk</option>
+        <option>✉ Desain Undangan</option>
+        <option>📖 Poster Edukasi Islami</option>
+        <option>📋 Planner/Tracker/Printable</option>
+        <option>📊 Poster Infografis</option>
+        <option>Lainnya</option>
+      </select>
+    </div>
+
+    <!-- Ukuran -->
+    <div class="field-row">
+      <div class="field">
+        <label>Ukuran</label>
+        <input type="text" id="ukuran" placeholder="Contoh: 1080x1080 px">
+        <div class="hint">Kosongi jika tidak tahu</div>
+      </div>
+      <div class="field">
+        <label>Format File</label>
+        <select id="format">
+          <option value="">Terserah kak ✨</option>
+          <option>PNG</option>
+          <option>JPG</option>
+          <option>PDF</option>
+          <option>Canva Edit Link</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Warna -->
+    <div class="field">
+      <label>Preferensi Warna</label>
+      <input type="text" id="warna" placeholder="Contoh: Hijau & cream, atau biar kak Asma' yg tentuin ✨">
+    </div>
+
+    <!-- Detail -->
+    <div class="field">
+      <label>Detail Pesanan <span class="required">*</span></label>
+      <textarea id="detail" placeholder="Jelaskan desain yang kamu mau...&#10;&#10;Contoh:&#10;• Poster kajian dengan tema &#10;• Ada foto/ logo yang mau dipasang&#10;• Tulisannya: ..."></textarea>
+    </div>
+
+    <!-- Deadline -->
+    <div class="field">
+      <label>Deadline</label>
+      <input type="text" id="deadline" placeholder="Contoh: 3 hari lagi / Minggu depan / Santai aja kak ✨">
+    </div>
+
+    <!-- Referensi -->
+    <div class="field">
+      <label>Referensi (opsional)</label>
+      <textarea id="referensi" placeholder="Kasih link contoh desain atau gambar referensi kalo ada..."></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <a href="#" id="waButton" class="btn-submit" target="_blank">
+      💬 Kirim Pesanan via WhatsApp
+    </a>
+    <p style="text-align:center;font-size:13px;color:#b8a088;margin-top:10px;">Klik tombol di atas, nanti otomatis terisi 😊</p>
+  </div>
+
+  <a href="asma-design-studio.html" class="btn-kembali">← Kembali ke Beranda Asma' Design Studio</a>
+</div>
+
+<footer>
+  🌻 Asma' Design Studio — Paser, Kalimantan Timur &bull; © 2026
+</footer>
+
+<script>
+document.getElementById('waButton').addEventListener('click', function(e) {
+  e.preventDefault();
+
+  const nama = document.getElementById('nama').value.trim();
+  const wa = document.getElementById('wa').value.trim();
+  const jenis = document.getElementById('jenis').value;
+  const ukuran = document.getElementById('ukuran').value.trim();
+  const formatFile = document.getElementById('format').value;
+  const warna = document.getElementById('warna').value.trim();
+  const detail = document.getElementById('detail').value.trim();
+  const deadline = document.getElementById('deadline').value.trim();
+  const referensi = document.getElementById('referensi').value.trim();
+
+  if (!nama || !wa || !jenis || !detail) {
+    alert('Yuk isi dulu: Nama, No. WA, Jenis Desain, sama Detail Pesanan ya 😊');
+    return;
+  }
+
+  let msg = `🌻 *Halo Kak Asma'! Saya mau order desain!*\n\n`;
+  msg += `📌 *Nama:* ${nama}\n`;
+  msg += `📞 *No. WA:* ${wa}\n`;
+  msg += `🎨 *Jenis Desain:* ${jenis}\n`;
+  if (ukuran) msg += `📐 *Ukuran:* ${ukuran}\n`;
+  if (formatFile) msg += `💾 *Format:* ${formatFile}\n`;
+  if (warna) msg += `🎨 *Warna:* ${warna}\n`;
+  msg += `\n📝 *Detail Pesanan:*\n${detail}\n`;
+  if (deadline) msg += `\n⏰ *Deadline:* ${deadline}\n`;
+  if (referensi) msg += `\n🔗 *Referensi:* ${referensi}\n`;
+  msg += `\n✨ Makasih Kak Asma'!`;
+
+  const waNumber = '6285849324328';
+  const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+});
+</script>
+
+</body>
+</html>
